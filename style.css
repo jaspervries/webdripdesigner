@@ -1,0 +1,310 @@
+/*
+This file is part of WebDRIP Designer
+Copyright (C) 2013-2016 Jasper Vries
+
+WebDRIP Designer is free software: you can redistribute it and/or 
+modify it under the terms of version 3 of the GNU General Public 
+License as published by the Free Software Foundation.
+
+WebDRIP Designer is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
+*/
+html, body {
+	font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+
+div#content {
+	margin-right: 196px;
+}
+
+div#examplescontainer {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 152px; /* imagewidth + 8 px */
+	height: 100%;
+	background-color: #333;
+}
+a.drip-example {
+	border: 4px solid #333;
+	border-bottom: none;
+	margin: 0;
+	margin-bottom: -5px;
+	display: block;
+	width: 144px;
+	text-align: center;
+}
+a.drip-example img {
+	max-width: 144px;
+	max-height: 96px;
+}
+#dialog a.drip-history {
+	border: 4px solid #333;
+	background-color: #333;
+	margin: 4px;
+	padding: 0;
+	display: block;
+	float:left;
+	width: 192px;
+	height: 128px;
+	text-align: center;
+}
+#dialog a.drip-history img {
+	max-width: 192px;
+	max-height: 128px;
+	padding: 0;
+}
+
+select#example_select {
+	width: 152px;
+	border: none;
+	background-color: #333;
+	color: #CCC;
+	text-align: center;
+	font-variant: small-caps;
+}
+
+.drip_i, .drip_s, img.alignment, img.button, span.button {
+	border: 1px solid #999;
+	border-radius: 4px;
+	padding: 2px;
+	margin: 2px;
+	cursor: pointer;
+	background-color: #000;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+img.alignment, img.button, span.button {
+	margin: -4px 0 0;
+	background-color: inherit;
+	vertical-align: middle;
+}
+
+span.button {
+	height: 16px;
+	line-height: 16px;
+	color: #666;
+}
+
+span.button img {
+	vertical-align: bottom;
+}
+
+#drip_line {
+	cursor: pointer;
+	vertical-align: top;
+}
+
+div#addl_tools {
+	margin: 4px 0 8px 0;
+}
+div#picto_tools {
+	margin: 6px 0 0;
+}
+
+img.alignmentactive {
+	background-color: #DDD;
+}
+
+.drip_i:hover, .drip_s:hover, img.alignment:hover, img.button:hover, span.button:hover {
+	border-color: #CCC;
+	opacity: 0.8;
+}
+
+#drip_template_info {
+	float: right;
+	font-size: small;
+	color: #999;
+}
+
+input.template_editor_val {
+	width: 48px;	
+}
+
+#drip, #drip_text {
+	float: left;
+	margin-right: 20px;
+}
+
+#drip {
+	border: 8px solid #333;	
+	border-radius: 8px;
+}
+
+#drip_text {
+	width: 440px;	
+}
+
+#drip_font {
+	margin: 0;
+	visibility: hidden;
+	padding: 0;
+	height: 0;
+}
+
+#drip_text input.drip_t {
+	margin-bottom: 10px;
+	width: 240px
+}
+
+fieldset {
+	clear: left;
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+fieldset.condensed {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#menu {
+	float:right;
+}
+#menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#menu li {
+	float:left;
+	margin: 0;
+	padding: 0;
+	
+}
+#menu li::before {
+    content: " | ";
+}
+#menu li:first-child:before {
+    content: "";
+}
+
+#history_navigation {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#history_navigation li {
+	float:left;
+	margin: 2px;
+}
+#history_navigation li a {
+	padding: 2px 8px;
+	border-radius: 2px;
+	font-weight: bold;
+}
+#historycontainer {
+	clear: both;
+}
+
+a {
+	cursor: pointer;
+	color: #000;
+}
+a:hover, #drip_clear_all:hover, a#unset_image:hover, #open_special_chars:hover {
+	color: #666;
+}
+
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}
+.ui-dialog{
+	font-size: small;
+}
+
+lh {
+	font-weight: bold;
+	font-size: medium;
+}
+dt {
+	font-weight: bold;
+	margin-top: 16px;
+}
+
+h1 {
+	font-size: large;
+	font-weight: bold;
+}
+h2 {
+	font-size: medium;
+	font-weight: bold;
+}
+
+div.infobox {
+	display: block;
+	border: 1px solid #06C;
+	border-radius: 4px;
+	background-color: #D3EEFE;
+	margin: 8px 0;
+	padding: 4px;	
+}
+
+/*tegeltjes */
+#fieldset_tiles a {
+	margin-right: 32px;	
+}
+#ins_tile_regular, #ins_tile_sroute, #ins_tile_omll, #ins_tile_omlr, #ins_tile_omlb, #ins_tile_afrit {
+	border: none;
+	padding: 2px 4px 4px;
+	height: 18px;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	background-repeat: no-repeat;
+}
+#ins_tile_regular {
+	width: 40px;
+	background-image:url(icon/tile_regular.png);
+}
+#ins_tile_afrit {
+	padding-left: 20px;
+	width: 32px;
+	background-image:url(icon/tile_afrit.png);
+}
+#ins_tile_sroute {
+	padding-left: 12px;
+	width: 32px;
+	background-image:url(icon/tile_sroute.png);
+}
+#ins_tile_omll {
+	padding-left: 12px;
+	width: 21px;
+	background-image:url(icon/tile_omll.png);
+}
+#ins_tile_omlr {
+	padding-right: 12px;
+	width: 21px;
+	background-image:url(icon/tile_omlr.png);
+}
+#ins_tile_omlb {
+	width: 16px;
+	height: 22px;
+	padding-top: 12px;
+	background-image:url(icon/tile_omlb.png);
+}
+
+#dialog img {
+	vertical-align: middle;
+	padding: 2px;
+}
+
+#specialchars span {
+	border: 1px solid #999;
+	border-radius: 4px;
+	padding: 2px;
+	margin: 2px;
+	width: 1.4em;
+	height: 1.4em;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+}
+#specialchars span:hover {
+	border-color: #DDD;
+	opacity: 0.8;
+}
