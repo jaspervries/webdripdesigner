@@ -45,7 +45,7 @@ chdir('..');
 //copy files
 //main dir
 $files = scandir('.');
-$filetypes = array('.html', '.php', '.png', '.css');
+$filetypes = array('.html', '.php', '.png', '.css', '.txt', '.htaccess');
 if ($jshrink === FALSE) $filetypes[] = '.js';
 $ignore = array('config.cfg.php', 'release.php');
 $js = array();
