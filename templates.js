@@ -331,6 +331,18 @@ tpl.push({
 	symbol: 'Regel_22'
 });
 tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_dplus',
+	size: [512, 88],
+	lines: [66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
 	name: 'Small Links 1+1',
 	class: 'rws_dplus',
 	size: [512, 88],
@@ -401,6 +413,18 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType3Yellow',
 	picto: 'Picto_40',
+	symbol: 'Regel_15_geel'
+});
+tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_type3a',
+	size: [112, 80],
+	lines: [45, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3Yellow',
+	picto: 'Picto_40',
+	num_picto: 2,
 	symbol: 'Regel_15_geel'
 });
 /*
@@ -525,6 +549,18 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType3',
 	picto: 'Picto_40',
+	symbol: 'Regel_15'
+});
+tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_type3c',
+	size: [112, 80],
+	lines: [45, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3',
+	picto: 'Picto_40',
+	num_picto: 2,
 	symbol: 'Regel_15'
 });
 tpl.push({
