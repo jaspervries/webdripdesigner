@@ -179,6 +179,18 @@ tpl.push({
 	symbol: 'Regel_22'
 });
 tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_type1',
+	size: [192, 128],
+	lines: [77, 106],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_70',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
 	name: 'Large',
 	class: 'rws_type1',
 	size: [192, 128],
@@ -246,6 +258,18 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType2',
 	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_type2',
+	size: [144, 96],
+	lines: [52, 77],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	num_picto: 2,
 	symbol: 'Regel_19'
 });
 tpl.push({

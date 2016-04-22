@@ -108,7 +108,7 @@ div#picto_tools {
 	margin: 6px 0 0;
 }
 
-img.alignmentactive {
+img.alignmentactive, .buttonactive {
 	background-color: #DDD;
 }
 

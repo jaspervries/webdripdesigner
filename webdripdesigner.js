@@ -18,9 +18,11 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 //general initialization
 var active_textarea = '#drip_t1';
 var drip_i1 = null;
+var drip_i2 = null;
 var drip_changed = false;
 var active_template_class;
 var picto_show_all = false;
+var picto_active = 1;
 //template
 var tpl_name;
 var tpl_size;
@@ -30,6 +32,7 @@ var tpl_lineheight;
 var tpl_line = 0;
 var tpl_font;
 var tpl_picto;
+var tpl_num_picto = 1;
 var tpl_symbol;
 var tpl_charspacing = 3;
 //content
@@ -391,13 +394,19 @@ function redraw_drip() {
 	//draw picto
 	var picto_width = 0;
 	var picto_height = 0;
+	//picto 1
 	if ((drip_i1 != null) && (sprites.picto[tpl_picto]) && (sprites.picto[tpl_picto][drip_i1.substr(5)])) {
 		var image = document.getElementById('sprites');
 		var id = drip_i1.substr(5);
 		picto_width = sprites.picto[tpl_picto][id][2];
 		picto_height = sprites.picto[tpl_picto][id][3];
+		//if there are two picto, draw top aligned centered in left half
+		if (tpl_num_picto == 2) {
+			var picto_left = Math.round((tpl_size[0] * 0.25 - picto_width / 2));
+			var picto_top = 0;
+		}
 		//if there can be no text under the image, draw image left center
-		if (picto_height > tpl_size[1] - tpl_lineheight) {
+		else if (picto_height > tpl_size[1] - tpl_lineheight) {
 			var picto_left = 0;
 			var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
 		}
@@ -411,6 +420,17 @@ function redraw_drip() {
 			var picto_left = 0;
 			var picto_top = 0;
 		}
+		context.drawImage(image, sprites.picto[tpl_picto][id][0], sprites.picto[tpl_picto][id][1], sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3], picto_left, picto_top, sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3]);
+	}
+	//picto 2, if any
+	if ((tpl_num_picto == 2) && (drip_i2 != null) && (sprites.picto[tpl_picto]) && (sprites.picto[tpl_picto][drip_i2.substr(5)])) {
+		var image = document.getElementById('sprites');
+		var id = drip_i2.substr(5);
+		picto_width = sprites.picto[tpl_picto][id][2];
+		picto_height = sprites.picto[tpl_picto][id][3];
+		//draw second picto top aligned centered in right half
+		var picto_left = Math.round((tpl_size[0] * 0.75 - picto_width / 2));
+		var picto_top = 0;
 		context.drawImage(image, sprites.picto[tpl_picto][id][0], sprites.picto[tpl_picto][id][1], sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3], picto_left, picto_top, sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3]);
 	}
 	//prepare text lines
@@ -429,7 +449,8 @@ function redraw_drip() {
 		var width = line_info[i]["width"];
 		//decide start position
 		var left;
-		if (tpl_lines[i] < picto_height) left = picto_width+2; //text next to picto
+		if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height)) left = Math.round((tpl_size[0] * 0.75 + picto_width / 2)) + 2; //two picto, people should better not make templates like this
+		else if (tpl_lines[i] < picto_height) left = picto_width+2; //text next to picto
 		else left = 0; //no picto
 		if (tpl_align[i] == 'right') {
 			var start = tpl_size[0] - width;
@@ -514,12 +535,22 @@ function clear_all_lines() {
 }
 
 function set_image(id) {
-	drip_i1 = id;
+	if (picto_active == 2) {
+		drip_i2 = id;
+	}
+	else {
+		drip_i1 = id;
+	}
 	set_drip_changed();
 }
 
 function unset_image() {
-	drip_i1 = null;
+	if (picto_active == 2) {
+		drip_i2 = null;
+	}
+	else {
+		drip_i1 = null;
+	}
 	set_drip_changed();
 }
 
@@ -591,6 +622,10 @@ function set_template(i) {
 	tpl_line = tpl[i].line;
 	tpl_font = tpl[i].font;
 	tpl_picto = tpl[i].picto;
+	tpl_num_picto = tpl[i].num_picto;
+	if (!tpl_num_picto) { //backward compatibility for templates without num picto definition
+		tpl_num_picto = 1;
+	}
 	tpl_symbol = tpl[i].symbol;
 	if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) tpl_charspacing = 2;
 	else tpl_charspacing = 3;
@@ -627,6 +662,7 @@ function load_template() {
 	}
 	//set template info
 	set_template_info();
+	set_active_picto_buttons();
 	set_drip_changed();
 	redraw_drip_delayed();
 }
@@ -650,12 +686,14 @@ function save_drip() {
 			l: tpl_line,
 			f: tpl_font,
 			p: tpl_picto,
+			q: tpl_num_picto,
 			s: tpl_symbol
 		},
 		c: {
 			t: [],
 			l: 0,
-			i1: drip_i1
+			i1: drip_i1,
+			i2: drip_i2
 		}
 	};
 	for (var i = 0; i < tpl_lines.length; i++) {
@@ -677,11 +715,15 @@ function load_drip(md5) {
 			tpl_line = save.t.l;
 			tpl_font = save.t.f;
 			tpl_picto = save.t.p;
+			tpl_num_picto = save.t.q;
 			tpl_symbol = save.t.s;
 			if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) tpl_charspacing = 2;
 			else tpl_charspacing = 3;
 			if (!tpl_size) { //backward compatibility for saves without size definition
 				tpl_size = [192, 128];
+			}
+			if (!tpl_num_picto) { //backward compatibility for saves without num picto definition
+				tpl_num_picto = 1;
 			}
 			//set content
 			for (var i = 0; i < tpl_lines.length; i++) {
@@ -691,6 +733,7 @@ function load_drip(md5) {
 			if (save.c.l == 1) $('#drip_line').prop('checked', true);
 			else $('#drip_line').prop('checked', false);
 			drip_i1 = save.c.i1;
+			drip_i2 = save.c.i2;
 			//process loading template
 			load_template();
 			//set template selection

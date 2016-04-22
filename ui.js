@@ -107,6 +107,7 @@ $(document).ready(function () {
 		$('#template_editor_width').val(tpl_size[0]);
 		$('#template_editor_height').val(tpl_size[1]);
 		$('#template_editor_picto').val(tpl_picto);
+		$('#template_editor_num_picto').val(tpl_num_picto);
 		$('#template_editor_font').val(tpl_font);
 		$('#template_editor_charspacing').val(tpl_charspacing);
 		$('#template_editor_lines').val(tpl_lines.length);
@@ -136,6 +137,7 @@ $(document).ready(function () {
 			tpl_size.push(parseInt($('#template_editor_height').val()));
 		}
 		tpl_picto = $('#template_editor_picto').val();
+		tpl_num_picto = $('#template_editor_num_picto').val();
 		tpl_font = $('#template_editor_font').val();
 		if (tpl_font == 'CdmsBdType1') {
 			tpl_symbol = 'Regel_22';
@@ -186,8 +188,14 @@ $(document).ready(function () {
 	//clear all
 	$('#drip_clear_all').click( function() {
 		clear_all_lines();
+		if (tpl_num_picto == 2) {
+			picto_active = 2;
+			unset_image();
+		}
+		picto_active = 1;
 		unset_image();
 		$('#drip_line').prop('checked', false);
+		set_active_picto_buttons();
 	});
 
 	//load examples
@@ -211,7 +219,41 @@ $(document).ready(function () {
 		loadexamples();
 		$('#dialog').dialog('close');
 	});
+	
+	/*
+	* active picto
+	*/
+	set_active_picto_buttons();
+	$('#picto_select_1').click( function() {
+		picto_active = 1;
+		set_active_picto_buttons();
+	});
+	$('#picto_select_2').click( function() {
+		picto_active = 2;
+		set_active_picto_buttons();
+	});
 });
+
+//set active picto buttons
+function set_active_picto_buttons() {
+	if (tpl_num_picto > 1) {
+		$('#picto_select_1').show();
+		$('#picto_select_2').show();
+	}
+	else {
+		picto_active = 1;
+		$('#picto_select_1').hide();
+		$('#picto_select_2').hide();
+	}
+	if (picto_active == 2) {
+		$('#picto_select_1').removeClass('buttonactive');
+		$('#picto_select_2').addClass('buttonactive');
+	}
+	else { //picto 1 active
+		$('#picto_select_1').addClass('buttonactive');
+		$('#picto_select_2').removeClass('buttonactive');
+	}
+}
 
 //show history
 function showhistory(num_start) {

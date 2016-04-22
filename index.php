@@ -1,4 +1,4 @@
-<?php $version = '0.10' ?>
+<?php $version = '0.11' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
 Copyright (C) 2013-2016 Jasper Vries
@@ -53,7 +53,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <fieldset id="fieldset_picto">
 <legend>Pictogram</legend>
 <div id="drip_picto"></div>
-<div id="picto_tools"><a id="picto_show_all"><span class="button"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span></a> <a id="picto_show_pref"><span class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span></a> <a id="unset_image" onclick="unset_image()"><span class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></a></div>
+<div id="picto_tools"><a id="picto_show_all"><span class="button"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span></a> <a id="picto_show_pref"><span class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span></a> <a id="picto_select_1"><span class="button">pictogram 1</span></a> <a id="picto_select_2"><span class="button">pictogram 2</span></a> <a id="unset_image" onclick="unset_image()"><span class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></a></div>
 </fieldset>
 
 <fieldset>
@@ -137,6 +137,10 @@ foreach ($special_chars as $char_this) {
 <option value="Picto_60">Picto 60</option>
 <option value="Picto_70">Picto 70</option>
 <option value="Picto_92">Picto 92</option>
+</select></td></tr>
+<tr><td>Aantal:</td><td><select class="template_editor_val" id="template_editor_num_picto">
+<option value="1">1</option>
+<option value="2">2</option>
 </select></td></tr>
 <tr><td>Lettertype:</td><td><select class="template_editor_val" id="template_editor_font">
 <option value="CdmsBdType1">CdmsBdType1</option>
