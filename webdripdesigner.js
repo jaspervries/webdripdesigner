@@ -667,14 +667,6 @@ function load_template() {
 	redraw_drip_delayed();
 }
 
-function download_image(drip) {
-	var canvas = document.getElementById(drip);
-	var canvasData = canvas.toDataURL();
-	canvasData = encodeURIComponent(canvasData);
-  	canvasData.replace(/~/g,'%7E').replace(/%20/g,'+');
-	window.open('download.php?type='+$('input:radio[name=filetype]:checked').val()+'&data='+canvasData+'&sav='+save_drip());
-}
-
 function save_drip() {
 	var save = { 
 		v: 1,

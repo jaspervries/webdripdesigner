@@ -17,14 +17,14 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 */
 
 //prepare GET data
-$data = $_GET['data'];
-$data = urldecode($_GET['data']);
+$data = $_POST['data'];
+$data = urldecode($_POST['data']);
 $data = substr($data, strrpos($data, ',')+1);
 $data = str_replace(' ', '+', $data);
 $image = base64_decode($data);
-$md5 = md5($_GET['sav']);
+$md5 = md5($_POST['sav']);
 //if valid image
-if (in_array($_GET['type'], array('png', 'bmp', 'gif')) && ($image = imagecreatefromstring($image))) {
+if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreatefromstring($image))) {
 	//store locally, always overwrite in case rendering has changed
 	imagepng($image, 'store/'.substr($md5,0,1).'/'.$md5.'.png');
 	//connect db
@@ -77,20 +77,20 @@ if (in_array($_GET['type'], array('png', 'bmp', 'gif')) && ($image = imagecreate
 	`user_id` = '".$id."',
 	`timestamp` = NULL,
 	`image_md5` = '".$md5."',
-	`image_raw` = '".mysqli_real_escape_string($db['link'], $_GET['sav'])."',
+	`image_raw` = '".mysqli_real_escape_string($db['link'], $_POST['sav'])."',
 	`useragent` = '".mysqli_real_escape_string($db['link'], $_SERVER['HTTP_USER_AGENT'])."'
 	ON DUPLICATE KEY UPDATE
 	`timestamp` = NULL,
-	`image_raw` = '".mysqli_real_escape_string($db['link'], $_GET['sav'])."',
+	`image_raw` = '".mysqli_real_escape_string($db['link'], $_POST['sav'])."',
 	`useragent` = '".mysqli_real_escape_string($db['link'], $_SERVER['HTTP_USER_AGENT'])."'";
 	mysqli_query($db['link'], $qry);
 	//output to browser
-	header('Content-Type: image/'.$_GET['type']);
-	header('Content-Disposition: attachment; filename=drip_'.$md5.'.'.$_GET['type']);
+	header('Content-Type: image/'.$_POST['type']);
+	header('Content-Disposition: attachment; filename=drip_'.$md5.'.'.$_POST['type']);
 	header('Pragma: no-cache');
-	if ($_GET['type'] == 'png') imagepng($image);
-	elseif ($_GET['type'] == 'gif') imagegif($image);
-	elseif ($_GET['type'] == 'bmp') {
+	if ($_POST['type'] == 'png') imagepng($image);
+	elseif ($_POST['type'] == 'gif') imagegif($image);
+	elseif ($_POST['type'] == 'bmp') {
 		include('BMP.php');
 		imagebmp($image);
 	}

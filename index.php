@@ -81,7 +81,8 @@ for ($i = 0; $i < 5; $i++) {
 <div id="addl_tools"><span id="drip_line_gui" class="button"><input type="checkbox" id="drip_line"><label for="drip_line"><img src="icon/separatorline.png" width="16" height="16" alt="scheidingslijn"> scheidingslijn</label></span> <span id="open_special_chars" class="button"><img src="icon/specialchars.png" width="16" height="16" alt="speciale tekens"> speciale tekens</span> <span id="drip_clear_all" class="button"><img src="icon/trash.png" width="16" height="16" alt="beeldstand wissen"> beeldstand wissen</span></div>
 <div id="download_tools">
 <!-- <input type="button" onClick="redraw_drip('drip')" value="opnieuw tekenen"> -->
-<input type="button" onClick="download_image('drip')" value="Download"> <input type="radio" name="filetype" value="bmp" id="filetype_bmp"><label for="filetype_bmp">BMP</label> <input type="radio" checked="checked" name="filetype" value="png" id="filetype_png"><label for="filetype_png">PNG</label> <input type="radio" name="filetype" value="gif" id="filetype_gif"><label for="filetype_gif">GIF</label></div>
+<form action="download.php" method="post"><input type="hidden" name="data" id="form_data"><input type="hidden" name="sav" id="form_sav">
+<input type="submit" value="Download" id="download_button"> <input type="radio" name="type" value="bmp" id="filetype_bmp"><label for="type_bmp">BMP</label> <input type="radio" checked="checked" name="type" value="png" id="filetype_png"><label for="filetype_png">PNG</label> <input type="radio" name="type" value="gif" id="filetype_gif"><label for="filetype_gif">GIF</label></form></div>
 </div>
 </fieldset>
 
