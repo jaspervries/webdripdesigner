@@ -519,11 +519,13 @@ function redraw_drip() {
 	//separator line
 	if (($('#drip_line').prop('checked') == true) && (tpl_line != -1)) {
 		var top = Math.round((tpl_lines[tpl_line+1] - tpl_lines[tpl_line] + tpl_lineheight) / 2) + tpl_lines[tpl_line] + 0.5;
-		if (top < picto_height) left = picto_width+2;
-		else left = 2;
+		var left = 2;
+		if ((top < picto_height) && (picto_width > 0)) left = picto_width + 2;
+		var right = tpl_size[0] - 2;
+		if ((top < picto_height) && (picto_width2 > 0)) right = tpl_size[0] - picto_width2 - 2;
 		context.beginPath();
 		context.moveTo(left, top);
-		context.lineTo((tpl_size[0] - 2), top);
+		context.lineTo(right, top);
 		context.strokeStyle = "#FFF";
 		context.stroke();
 	}
