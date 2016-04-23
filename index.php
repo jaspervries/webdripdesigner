@@ -53,7 +53,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <fieldset id="fieldset_picto">
 <legend>Pictogram</legend>
 <div id="drip_picto"></div>
-<div id="picto_tools"><a id="picto_show_all"><span class="button"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span></a> <a id="picto_show_pref"><span class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span></a> <a id="picto_select_1"><span class="button">pictogram 1</span></a> <a id="picto_select_2"><span class="button">pictogram 2</span></a> <a id="unset_image" onclick="unset_image()"><span class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></a></div>
+<div id="picto_tools"><span class="button" id="picto_show_all"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span> <span id="picto_show_pref" class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span> <span class="button" id="picto_select_1">pictogram 1</span> <span class="button" id="picto_select_2">pictogram 2</span> <span id="unset_image" onclick="unset_image()" class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></div>
 </fieldset>
 
 <fieldset>
@@ -66,13 +66,13 @@ for ($i = 0; $i < 5; $i++) {
 ?>
 <span class="drip_input" id="drip_input<?php echo $i; ?>">
 	<input type="text" class="drip_t" id="drip_t<?php echo $i; ?>"> 
-    <a onClick="set_alignment(<?php echo $i; ?>, 'left')"><img class="alignment" id="alignment_left_<?php echo $i; ?>" src="icon/align-left.png" width="16" height="16" alt="links" title="Links"></a> 
-    <a onClick="set_alignment(<?php echo $i; ?>, 'center')"><img class="alignment" id="alignment_center_<?php echo $i; ?>" src="icon/align-center.png" width="16" height="16" alt="midden" title="Centreren"></a> 
-    <a onClick="set_alignment(<?php echo $i; ?>, 'block')"><img class="alignment" id="alignment_block_<?php echo $i; ?>" src="icon/align-block.png" width="16" height="16" alt="blok" title="Blok"></a> 
-    <a onClick="set_alignment(<?php echo $i; ?>, 'right')"><img class="alignment" id="alignment_right_<?php echo $i; ?>" src="icon/align-right.png" width="16" height="16" alt="rechts" title="Rechts"></a> 
-    <a onClick="move_line(<?php echo $i; ?>, 'down')"><img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen"></a> 
-    <a onClick="move_line(<?php echo $i; ?>, 'up')"><img class="button" src="icon/line_remove.png" width="16" height="16" alt="regel verwijderen" title="Deze regel verwijderen"></a>
-    <a onClick="clear_line(<?php echo $i; ?>)"><img class="button" src="icon/line_clear.png" width="16" height="16" alt="regel leeg maken" title="Deze regel leeg maken"></a>
+    <img class="alignment" id="alignment_left_<?php echo $i; ?>" src="icon/align-left.png" width="16" height="16" alt="links" title="Links" onClick="set_alignment(<?php echo $i; ?>, 'left')">
+    <img class="alignment" id="alignment_center_<?php echo $i; ?>" src="icon/align-center.png" width="16" height="16" alt="midden" title="Centreren" onClick="set_alignment(<?php echo $i; ?>, 'center')">
+    <img class="alignment" id="alignment_block_<?php echo $i; ?>" src="icon/align-block.png" width="16" height="16" alt="blok" title="Blok" onClick="set_alignment(<?php echo $i; ?>, 'block')"> 
+    <img class="alignment" id="alignment_right_<?php echo $i; ?>" src="icon/align-right.png" width="16" height="16" alt="rechts" title="Rechts" onClick="set_alignment(<?php echo $i; ?>, 'right')">
+    <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen" onClick="move_line(<?php echo $i; ?>, 'down')">
+    <img class="button" src="icon/line_remove.png" width="16" height="16" alt="regel verwijderen" title="Deze regel verwijderen" onClick="move_line(<?php echo $i; ?>, 'up')">
+    <img class="button" src="icon/line_clear.png" width="16" height="16" alt="regel leeg maken" title="Deze regel leeg maken" onClick="clear_line(<?php echo $i; ?>)">
     <br>
 </span>
 <?php
