@@ -194,7 +194,7 @@ $(document).ready(function () {
 		}
 		picto_active = 1;
 		unset_image();
-		$('#drip_line').prop('checked', false);
+		drip_line_active = 0;
 		set_active_picto_buttons();
 	});
 
@@ -244,7 +244,39 @@ $(document).ready(function () {
 		picto_active = 2;
 		set_active_picto_buttons();
 	});
+	/*
+	* drip line gui
+	*/
+	$('#drip_line_gui').click( function() {
+		if (drip_line_active == 1) {
+			drip_line_active = 0;
+		}
+		else {
+			drip_line_active = 1;
+		}
+		toggle_drip_line_gui();
+	});
+	
 });
+
+/*
+* drip line gui
+*/
+function toggle_drip_line_gui() {
+	if (tpl_line != -1) {
+		$('#drip_line_gui').show();
+	}
+	else {
+		$('#drip_line_gui').hide();
+	}
+	if (drip_line_active == 1) {
+		$('#drip_line_gui').addClass('buttonactive');
+	}
+	else {
+		$('#drip_line_gui').removeClass('buttonactive');
+	}
+	set_drip_changed();
+}
 
 //set active picto buttons
 function set_active_picto_buttons() {

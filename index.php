@@ -78,7 +78,7 @@ for ($i = 0; $i < 5; $i++) {
 <?php
 }
 ?>
-<div id="addl_tools"><span id="drip_line_gui" class="button"><input type="checkbox" id="drip_line"><label for="drip_line"><img src="icon/separatorline.png" width="16" height="16" alt="scheidingslijn"> scheidingslijn</label></span> <span id="open_special_chars" class="button"><img src="icon/specialchars.png" width="16" height="16" alt="speciale tekens"> speciale tekens</span> <span id="drip_clear_all" class="button"><img src="icon/trash.png" width="16" height="16" alt="beeldstand wissen"> beeldstand wissen</span></div>
+<div id="addl_tools"><span id="drip_line_gui" class="button"><img src="icon/separatorline.png" width="16" height="16" alt="scheidingslijn"> scheidingslijn</span> <span id="open_special_chars" class="button"><img src="icon/specialchars.png" width="16" height="16" alt="speciale tekens"> speciale tekens</span> <span id="drip_clear_all" class="button"><img src="icon/trash.png" width="16" height="16" alt="beeldstand wissen"> beeldstand wissen</span></div>
 <div id="download_tools">
 <!-- <input type="button" onClick="redraw_drip('drip')" value="opnieuw tekenen"> -->
 <form action="download.php" method="post"><input type="hidden" name="data" id="form_data"><input type="hidden" name="sav" id="form_sav">

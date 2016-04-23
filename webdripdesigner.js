@@ -23,6 +23,7 @@ var drip_changed = false;
 var active_template_class;
 var picto_show_all = false;
 var picto_active = 1;
+var drip_line_active = 0;
 //template
 var tpl_name;
 var tpl_size;
@@ -517,7 +518,7 @@ function redraw_drip() {
 		draw_text(ids, start, tpl_lines[i], context);
 	}
 	//separator line
-	if (($('#drip_line').prop('checked') == true) && (tpl_line != -1)) {
+	if ((drip_line_active == 1) && (tpl_line != -1)) {
 		var top = Math.round((tpl_lines[tpl_line+1] - tpl_lines[tpl_line] + tpl_lineheight) / 2) + tpl_lines[tpl_line] + 0.5;
 		var left = 2;
 		if ((top < picto_height) && (picto_width > 0)) left = picto_width + 2;
@@ -699,12 +700,7 @@ function load_template() {
 		$('#drip_input'+i).show();
 	}
 	//show-hide separator line gui
-	if (tpl_line == -1) {
-		$('#drip_line_gui').hide();
-	}
-	else {
-		$('#drip_line_gui').show();
-	}
+	toggle_drip_line_gui();
 	//show-hide tiles gui
 	if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) {
 		$('#fieldset_tiles').hide();
@@ -743,7 +739,7 @@ function save_drip() {
 	for (var i = 0; i < tpl_lines.length; i++) {
 		save.c.t[i] = $('#drip_t'+i).val();
 	}
-	if (($('#drip_line').prop('checked') == true) && (tpl_line != -1)) save.c.l = 1;
+	if ((drip_line_active == 1) && (tpl_line != -1)) save.c.l = 1;
 	return JSON.stringify(save);
 }
 
@@ -774,8 +770,9 @@ function load_drip(md5) {
 				$('#drip_t'+i).val(save.c.t[i]);
 			}
 			//set separator line
-			if (save.c.l == 1) $('#drip_line').prop('checked', true);
-			else $('#drip_line').prop('checked', false);
+			if (save.c.l == 1) drip_line_active = 1;
+			else drip_line_active = 0;
+			toggle_drip_line_gui();
 			drip_i1 = save.c.i1;
 			drip_i2 = save.c.i2;
 			//process loading template
