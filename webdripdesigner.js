@@ -393,6 +393,7 @@ function redraw_drip() {
 	context.fillRect(0, 0, tpl_size[0], tpl_size[1]);
 	//draw picto
 	var picto_width = 0;
+	var picto_width2 = 0;
 	var picto_height = 0;
 	//picto 1
 	if ((drip_i1 != null) && (sprites.picto[tpl_picto]) && (sprites.picto[tpl_picto][drip_i1.substr(5)])) {
@@ -400,9 +401,9 @@ function redraw_drip() {
 		var id = drip_i1.substr(5);
 		picto_width = sprites.picto[tpl_picto][id][2];
 		picto_height = sprites.picto[tpl_picto][id][3];
-		//if there are two picto, draw top aligned centered in left half
-		if (tpl_num_picto == 2) {
-			var picto_left = Math.round((tpl_size[0] * 0.25 - picto_width / 2));
+		//if there are two picto, and there can be no text next to the image, draw top aligned centered in left half
+		if ((tpl_num_picto == 2) && (picto_height <= tpl_lines[0])) {
+			var picto_left = Math.round(tpl_size[0] * 0.25 - picto_width / 2);
 			var picto_top = 0;
 		}
 		//if there can be no text under the image, draw image left center
@@ -426,21 +427,38 @@ function redraw_drip() {
 	if ((tpl_num_picto == 2) && (drip_i2 != null) && (sprites.picto[tpl_picto]) && (sprites.picto[tpl_picto][drip_i2.substr(5)])) {
 		var image = document.getElementById('sprites');
 		var id = drip_i2.substr(5);
-		picto_width = sprites.picto[tpl_picto][id][2];
+		picto_width2 = sprites.picto[tpl_picto][id][2];
 		picto_height = sprites.picto[tpl_picto][id][3];
-		//draw second picto top aligned centered in right half
-		var picto_left = Math.round((tpl_size[0] * 0.75 - picto_width / 2));
-		var picto_top = 0;
+		//if there can be no text next to the image, draw second picto top aligned centered in right half
+		if (picto_height <= tpl_lines[0]) {
+			var picto_left = Math.round(tpl_size[0] * 0.75 - picto_width2 / 2);
+			var picto_top = 0;
+		}
+		//if there can be no text under the image, draw image right center
+		else if (picto_height > tpl_size[1] - tpl_lineheight) {
+			var picto_left = tpl_size[0] - picto_width2;
+			var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
+		}
+		//otherwise draw image top right
+		else {
+			var picto_left = tpl_size[0] - picto_width2;
+			var picto_top = 0;
+		}
 		context.drawImage(image, sprites.picto[tpl_picto][id][0], sprites.picto[tpl_picto][id][1], sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3], picto_left, picto_top, sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3]);
 	}
 	//prepare text lines
 	var line_info = [];
 	var block_width = 0;
+	var block_left_of_image = false;
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var str = $('#drip_t'+i).val();
 		line_info[i] = prepare_text(str);
 		if (tpl_align[i] == 'block') {
 			block_width = Math.max(block_width, line_info[i]["width"]);
+			//set if there is a block alignment with a right-aligned second image
+			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+				block_left_of_image = true;
+			}
 		}
 	}
 	//draw text lines
@@ -448,21 +466,53 @@ function redraw_drip() {
 		var ids = line_info[i]["ids"];
 		var width = line_info[i]["width"];
 		//decide start position
-		var left;
-		if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height)) left = Math.round((tpl_size[0] * 0.75 + picto_width / 2)) + 2; //two picto, people should better not make templates like this
-		else if (tpl_lines[i] < picto_height) left = picto_width+2; //text next to picto
-		else left = 0; //no picto
+		var start = 0;
 		if (tpl_align[i] == 'right') {
-			var start = tpl_size[0] - width;
+			//there is a picto to the right
+			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+				start = tpl_size[0] - width - picto_width2 - 2;
+			}
+			//there is no picto to the right
+			else {
+				start = tpl_size[0] - width;
+			}
 		}
 		else if (tpl_align[i] == 'left') {
-			var start = left;
+			//there is a picto to the left
+			if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
+				start = picto_width + 2;
+			}
+			else {
+				start = 0;
+			}
 		}
 		else if (tpl_align[i] == 'block') {
-			var start = Math.max((tpl_size[0] - block_width), left);
+			//there is a picto to the right
+			if (block_left_of_image == true) {
+				start = tpl_size[0] - block_width - picto_width2 - 2;
+			}
+			//there is no picto to the right
+			else {
+				start = tpl_size[0] - block_width;
+			}
 		}
 		else { //align center
-			var start = Math.max((Math.round((tpl_size[0] - left - width) / 2) + left), left);
+			//there is a picto on both sides
+			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
+				start = Math.round((tpl_size[0] - picto_width - picto_width2 - 4 - width) / 2) + picto_width + 2;
+			}
+			//there is a picto only to the right
+			else if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+				start = Math.round((tpl_size[0] - picto_width2 - 2 - width) / 2);
+			}
+			//there is a picto only to the left
+			else if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
+				start = Math.round((tpl_size[0] - picto_width - 2 - width) / 2) + picto_width + 2;
+			}
+			//there is no picto
+			else {
+				start = Math.round((tpl_size[0] - width) / 2);
+			}
 		}
 		draw_text(ids, start, tpl_lines[i], context);
 	}

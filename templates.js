@@ -309,7 +309,7 @@ template_classes.push({
 	name: 'RWS DRIP+'
 });
 tpl.push({
-	name: 'Large Links',
+	name: 'Large',
 	class: 'rws_dplus',
 	size: [512, 88],
 	lines: [0, 33, 66],
@@ -317,6 +317,7 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType1',
 	picto: 'Picto_70',
+	num_picto: 2,
 	symbol: 'Regel_22'
 });
 tpl.push({
