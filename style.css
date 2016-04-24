@@ -90,22 +90,14 @@ span.button {
 	height: 16px;
 	line-height: 16px;
 	color: #666;
+	margin-top: 8px;
+}
+p span.button {
+	margin-top: 0;
 }
 
 span.button img {
 	vertical-align: bottom;
-}
-
-#drip_line {
-	cursor: pointer;
-	vertical-align: top;
-}
-
-div#addl_tools {
-	margin: 4px 0 8px 0;
-}
-div#picto_tools {
-	margin: 6px 0 0;
 }
 
 img.alignmentactive, .buttonactive, #picto_tools span.buttonactive, #addl_tools span.buttonactive {
@@ -115,6 +107,15 @@ img.alignmentactive, .buttonactive, #picto_tools span.buttonactive, #addl_tools 
 .drip_i:hover, .drip_s:hover, img.alignment:hover, img.button:hover, span.button:hover {
 	border-color: #CCC;
 	opacity: 0.8;
+}
+
+#download_tools {
+	margin-top: 8px;	
+}
+
+#drip_line {
+	cursor: pointer;
+	vertical-align: top;
 }
 
 #drip_template_info {
@@ -245,43 +246,41 @@ div.infobox {
 }
 
 /*tegeltjes */
-#fieldset_tiles a {
-	margin-right: 32px;	
-}
-#ins_tile_regular, #ins_tile_sroute, #ins_tile_omll, #ins_tile_omlr, #ins_tile_omlb, #ins_tile_afrit {
+#fieldset_tiles input {
 	border: none;
 	padding: 2px 4px 4px;
+	margin-right: 16px;
 	height: 18px;
 	font-weight: bold;
 	font-size: 14px;
 	text-align: center;
 	background-repeat: no-repeat;
 }
-#ins_tile_regular {
+input#ins_tile_regular {
 	width: 40px;
 	background-image:url(icon/tile_regular.png);
 }
-#ins_tile_afrit {
+input#ins_tile_afrit {
 	padding-left: 20px;
 	width: 32px;
 	background-image:url(icon/tile_afrit.png);
 }
-#ins_tile_sroute {
+input#ins_tile_sroute {
 	padding-left: 12px;
 	width: 32px;
 	background-image:url(icon/tile_sroute.png);
 }
-#ins_tile_omll {
+input#ins_tile_omll {
 	padding-left: 12px;
 	width: 21px;
 	background-image:url(icon/tile_omll.png);
 }
-#ins_tile_omlr {
+input#ins_tile_omlr {
 	padding-right: 12px;
 	width: 21px;
 	background-image:url(icon/tile_omlr.png);
 }
-#ins_tile_omlb {
+input#ins_tile_omlb {
 	width: 16px;
 	height: 22px;
 	padding-top: 12px;
@@ -293,6 +292,7 @@ div.infobox {
 	padding: 2px;
 }
 
+/*speciale tekens*/
 #specialchars span {
 	border: 1px solid #999;
 	border-radius: 4px;

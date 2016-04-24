@@ -93,12 +93,13 @@ for ($i = 0; $i < 5; $i++) {
 
 <fieldset id="fieldset_tiles">
 <legend>Tegeltjes</legend>
-<input type="text" id="ins_tile_regular" maxlength="4" onClick="select()"> <a onClick="insert_tile('regular')">invoegen</a>
-<input type="text" id="ins_tile_afrit" maxlength="4" onClick="select()"> <a onClick="insert_tile('afrit')">invoegen</a>
-<input type="text" id="ins_tile_sroute" maxlength="3" onClick="select()"> <a onClick="insert_tile('sroute')">invoegen</a>
-<input type="text" id="ins_tile_omll" maxlength="2" onClick="select()"> <a onClick="insert_tile('omll')">invoegen</a>
-<input type="text" id="ins_tile_omlr" maxlength="2" onClick="select()"> <a onClick="insert_tile('omlr')">invoegen</a>
-<input type="text" id="ins_tile_omlb" maxlength="1" onClick="select()"> <a onClick="insert_tile('omlb')">invoegen</a>
+<input type="text" id="ins_tile_regular" maxlength="4">
+<input type="text" id="ins_tile_afrit" maxlength="4">
+<input type="text" id="ins_tile_sroute" maxlength="3">
+<input type="text" id="ins_tile_omll" maxlength="2">
+<input type="text" id="ins_tile_omlr" maxlength="2">
+<input type="text" id="ins_tile_omlb" maxlength="1">
+<br><span class="button" id="ins_tile_button">tegeltje invoegen</span>
 </fieldset>
 </div>
 

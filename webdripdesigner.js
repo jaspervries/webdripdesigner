@@ -613,59 +613,6 @@ function insert_text(text) {
 	set_drip_changed();
 }
 
-function insert_tile(type) {
-	var id = '#ins_tile_' + type;
-	var value = $(id).val();
-	var valuematch  = false;
-	//check for valid string
-	switch (type) {
-		case 'regular':
-			if (value.match(/^[ANsU][0-9]{1,3}$/) != null) {
-				valuematch = true;
-				value = '[' + value + ']';
-			}
-			break;
-		case 'afrit':
-			if (value.match(/^[0-9]{0,2}[0-9a-z]{1}$/) != null) {
-				valuematch = true;
-				value = '[a' + value + ']';
-			}
-			break;
-		case 'sroute':
-			if (value.match(/^[0-9]{3}$/) != null) {
-				valuematch = true;
-				value = '{s' + value + '}';
-			}
-			break;
-		case 'omll':
-			if ((value.match(/^[A-Z0-9]$/) != null) || (value.match(/^[A-Z0-9][A-Za-z-0-9]$/) != null)) {
-				valuematch = true;
-				value = '<' + value + '<';
-			}
-			break;
-		case 'omlr':
-			if ((value.match(/^[A-Z0-9]$/) != null) || (value.match(/^[A-Z0-9][A-Za-z-0-9]$/) != null)) {
-				valuematch = true;
-				value = '>' + value + '>';
-			}
-			break;
-		case 'omlb':
-			if (value.match(/^[A-Z0-9]{1}$/) != null) {
-				valuematch = true;
-				value = '^' + value + '^';
-			}
-			break;
-	}
-	//if invalid string, warn
-	if (valuematch == false) {
-		alert('Geen geldige waarde voor tegeltje.');
-	}
-	//else insert
-	else {
-		insert_text(value);
-	}
-}
-
 function set_template(i) {
 	//set template values
 	tpl_name = tpl[i].name;
