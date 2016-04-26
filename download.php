@@ -84,15 +84,28 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 	`image_raw` = '".mysqli_real_escape_string($db['link'], $_POST['sav'])."',
 	`useragent` = '".mysqli_real_escape_string($db['link'], $_SERVER['HTTP_USER_AGENT'])."'";
 	mysqli_query($db['link'], $qry);
-	//output to browser
-	header('Content-Type: image/'.$_POST['type']);
-	header('Content-Disposition: attachment; filename=drip_'.$md5.'.'.$_POST['type']);
-	header('Pragma: no-cache');
-	if ($_POST['type'] == 'png') imagepng($image);
-	elseif ($_POST['type'] == 'gif') imagegif($image);
-	elseif ($_POST['type'] == 'bmp') {
-		include('BMP.php');
-		imagebmp($image);
+	//if API call
+	if (!empty($_POST['return_url'])) {
+		$url = urldecode($_POST['return_url']);
+		if (strpos($url, '?')) {
+			$url .= '&image='.$md5;
+		}
+		else {
+			$url .= '?image='.$md5;
+		}
+		header('Location:'.$url);
+	}
+	//otherwise output to browser
+	else {
+		header('Content-Type: image/'.$_POST['type']);
+		header('Content-Disposition: attachment; filename=drip_'.$md5.'.'.$_POST['type']);
+		header('Pragma: no-cache');
+		if ($_POST['type'] == 'png') imagepng($image);
+		elseif ($_POST['type'] == 'gif') imagegif($image);
+		elseif ($_POST['type'] == 'bmp') {
+			include('BMP.php');
+			imagebmp($image);
+		}
 	}
 }
 else {

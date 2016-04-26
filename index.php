@@ -82,7 +82,20 @@ for ($i = 0; $i < 5; $i++) {
 <div id="download_tools">
 <!-- <input type="button" onClick="redraw_drip('drip')" value="opnieuw tekenen"> -->
 <form action="download.php" method="post"><input type="hidden" name="data" id="form_data"><input type="hidden" name="sav" id="form_sav">
-<input type="submit" value="Download" id="download_button"> <input type="radio" name="type" value="bmp" id="filetype_bmp"><label for="type_bmp">BMP</label> <input type="radio" checked="checked" name="type" value="png" id="filetype_png"><label for="filetype_png">PNG</label> <input type="radio" name="type" value="gif" id="filetype_gif"><label for="filetype_gif">GIF</label></form></div>
+<?php if (!empty($_GET['return_url'])) {
+?>
+<input type="submit" value="OK" id="download_button">
+<input type="hidden" name="return_url" value="<?php echo htmlspecialchars($_GET['return_url']); ?>">
+<input type="hidden" name="type" value="png">
+<?php
+}
+else {
+?>
+<input type="submit" value="Download" id="download_button"> <input type="radio" name="type" value="bmp" id="filetype_bmp"><label for="type_bmp">BMP</label> <input type="radio" checked="checked" name="type" value="png" id="filetype_png"><label for="filetype_png">PNG</label> <input type="radio" name="type" value="gif" id="filetype_gif"><label for="filetype_gif">GIF</label>
+<?php
+}
+?>
+</form></div>
 </div>
 </fieldset>
 
@@ -99,7 +112,7 @@ for ($i = 0; $i < 5; $i++) {
 <input type="text" id="ins_tile_omll" maxlength="2">
 <input type="text" id="ins_tile_omlr" maxlength="2">
 <input type="text" id="ins_tile_omlb" maxlength="1">
-<br><span class="button" id="ins_tile_button">tegeltje invoegen</span>
+<span class="button" id="ins_tile_button">tegeltje invoegen</span>
 </fieldset>
 </div>
 
@@ -170,7 +183,16 @@ for ($i = 0; $i < 5; $i++) {
 </table>
 </div>
 
-<?php 
+<?php if (strlen($_GET['md5']) == 32) {
+?>
+<script type="text/javascript">
+$(document).ready(function () {
+	load_drip('<?php echo htmlspecialchars($_GET['md5']); ?>');
+});
+</script>
+<?php
+}
+
 if (file_exists('googleanalytics.inc.php')) {
     include('googleanalytics.inc.php'); 
 }

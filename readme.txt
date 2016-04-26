@@ -22,9 +22,10 @@ BermDRIP Designer van Rijkswaterstaat en kent vele nieuwe mogelijkheden.
     2.4 Spritetabel genereren
 3. Installatie
 4. Genereren van release
-5. Licentie
-    5.1 imagebmp + imagecreatefrombmp
-6. Verkrijgen van de broncode
+5. API functionaliteit
+6. Licentie
+    6.1 imagebmp + imagecreatefrombmp
+7. Verkrijgen van de broncode
 
 
 ========================================================================
@@ -193,7 +194,44 @@ install.php uitgevoerd te worden. Zie hiervoor het vorige hoofdstuk.
 
 
 ========================================================================
-5. Licentie
+5. API functionaliteit
+========================================================================
+
+De WebDRIP Designer is voorzien van API functionaliteit om de WebDRIP 
+Designer aan te roepen vanuit andere programma's. In plaats van de 
+gemaakte beeldstand ter download aan te bieden wordt de gebruiker 
+teruggestuurd naar het programma die de WebDRIP Designer heeft 
+aangeroepen. Dit programma handeld vervolgens de verwerking van de 
+gegenereerde afbeelding af. Via de API kunnen alleen beeldstanden in
+PNG-formaat worden verkregen.
+
+Aanroep:
+Roep de WebDRIP Designer aan via de normale URL, met toevoeging van de 
+parameter "return_url" aan de querystring. De waarde van de parameter 
+is de URL waar de bezoeker naar toegestuurd moet worden wanneer de 
+beeldstand klaar is. De waarde van de parameter is URL-encoded.
+
+Terugkeer:
+Wanneer de bezoeker op de OK-knop klikt (ter vervanging van de Download-
+knop), wordt de doorgestuurd naar de pagina die is opgegeven als 
+"return_url". Hierbij wordt de parameter "image" aan de querystring 
+toegevoegd met als waarde de MD5-hash van de gemaakte beeldstand. Deze 
+afbeelding kan vervolgens als PNG-bestand worden opgehaald uit 
+/store/<n>/<md5>.png
+waarin:
+<n>:    het eerste teken van de MD5-hash uit de teruggegeven parameter.
+<md5>:  de MD5-hash uit de teruggegeven parameter.
+
+Bestaande afbeelding bewerken:
+Als de teruggegeven MD5-hash wordt bewaard, kan deze worden gebruikt om 
+eerder gemaakte beeldstanden te bewerken. Voeg hiertoe de parameter 
+"md5" toe aan de querystring bij de aanroep, met als waarde de MD5-hash.
+De bewerkbare beeldstand wordt dan automatisch ingeladen bij het openen 
+van de pagina.
+
+
+========================================================================
+6. Licentie
 ========================================================================
 
 Omdat veel partijen inmiddels afhankelijk zijn van de WebDRIP Designer 
@@ -232,7 +270,7 @@ You should have received a copy of the GNU General Public License
 along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 
 ---------------------------------
-5.1 imagebmp + imagecreatefrombmp
+6.1 imagebmp + imagecreatefrombmp
 ---------------------------------
 
 WebDRIP Designer maakt gebruik van de PHP klasse 
@@ -244,7 +282,7 @@ http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-forma
 
 
 ========================================================================
-6. Verkrijgen van de broncode
+7. Verkrijgen van de broncode
 ========================================================================
 
 De broncode van de WebDRIP Designer is gepubliceerd op Bitbucket.
