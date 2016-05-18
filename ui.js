@@ -293,6 +293,9 @@ $(document).ready(function () {
 	* download image
 	*/
 	$('#download_button').click( function() {
+		if ($(this).val() == 'OK') {
+			$(this).attr('disabled', 'disabled');
+		}
 		var canvas = document.getElementById('drip');
 		var canvasData = canvas.toDataURL();
 		canvasData = encodeURIComponent(canvasData);
