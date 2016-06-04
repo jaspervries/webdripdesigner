@@ -719,3 +719,54 @@ tpl.push({
 	picto: 'Picto_30',
 	symbol: 'Regel_22'
 });
+/*
+ * Rotterdam DataDisplay
+*/
+template_classes.push({
+	id: 'rdam_dd',
+	name: 'Rotterdam DataDisplay'
+});
+tpl.push({
+	name: 'Tekst 1+3',
+	class: 'rdam_dd',
+	size: [112, 80],
+	lines: [0, 25, 45, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3Yellow',
+	picto: 'Picto_0',
+	symbol: 'Regel_15_geel'
+});
+tpl.push({
+	name: 'Tekst 2+2',
+	class: 'rdam_dd',
+	size: [112, 80],
+	lines: [0, 20, 45, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3Yellow',
+	picto: 'Picto_0',
+	symbol: 'Regel_15_geel'
+});
+tpl.push({
+	name: 'Tekst 3+1',
+	class: 'rdam_dd',
+	size: [112, 80],
+	lines: [0, 20, 40, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3Yellow',
+	picto: 'Picto_0',
+	symbol: 'Regel_15_geel'
+});
+tpl.push({
+	name: 'Tekst 4',
+	class: 'rdam_dd',
+	size: [112, 80],
+	lines: [6, 25, 45, 65],
+	lineheight: 14,
+	line: -1,
+	font: 'CdmsBdType3Yellow',
+	picto: 'Picto_0',
+	symbol: 'Regel_15_geel'
+});
