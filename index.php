@@ -147,6 +147,7 @@ foreach ($special_chars as $char_this) {
 <option value="0">(geen)</option>
 <option value="Picto_30">Picto 30</option>
 <option value="Picto_40">Picto 40</option>
+<option value="Picto_40_yellow">Picto 40 Geel</option>
 <option value="Picto_44">Picto 44</option>
 <option value="Picto_48">Picto 48</option>
 <option value="Picto_60">Picto 60</option>
