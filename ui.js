@@ -188,7 +188,7 @@ $(document).ready(function () {
 		//check for valid string
 		switch (type) {
 			case 'regular':
-				if (value.match(/^[ANsU][0-9]{1,3}$/) != null) {
+				if (value.match(/^[ANsUE][0-9]{1,3}$/) != null) {
 					valuematch = true;
 					value = '[' + value + ']';
 				}
