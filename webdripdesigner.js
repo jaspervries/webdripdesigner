@@ -450,15 +450,35 @@ function redraw_drip() {
 	//prepare text lines
 	var line_info = [];
 	var block_width = 0;
+	var arrow_width = 0;
 	var block_left_of_image = false;
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var str = $('#drip_t'+i).val();
 		line_info[i] = prepare_text(str);
+		
 		if (tpl_align[i] == 'block') {
 			block_width = Math.max(block_width, line_info[i]["width"]);
 			//set if there is a block alignment with a right-aligned second image
 			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
 				block_left_of_image = true;
+			}
+		}
+		if (tpl_align[i] == 'arrowleft') {
+			//check if first symbol in line is arrow
+			if ((arrow_width == 0) && (typeof line_info[i]["ids"][0] !== 'undefined') && (line_info[i]["ids"][0].substr(0,6) == 'symbol') && (parseInt(line_info[i]["ids"][0].split('_').pop()) >= 10) && (parseInt(line_info[i]["ids"][0].split('_').pop()) < 100)) {
+				var id = parseInt(line_info[i]["ids"][0].split('_').pop());
+				arrow_width = sprites.symbol[tpl_symbol][id][2] + tpl_charspacing;
+				//check if next character is space
+				if (typeof line_info[i]["ids"][1] !== 'undefined') {
+					//space character
+					if ((line_info[i]["ids"][1].substr(0,4) == 'text') && (line_info[i]["ids"][1].split('_').pop() == '32')) {
+						arrow_width += sprites.font[tpl_font][32][2] + tpl_charspacing; //32 is the id for a space
+					}
+					//narrow space symbol
+					else if (line_info[i]["ids"][1] == 'symbol_0') {
+						arrow_width += sprites.symbol[tpl_symbol][0][2] + tpl_charspacing; //0 is the id of a narrow space
+					}
+				}
 			}
 		}
 	}
@@ -478,13 +498,17 @@ function redraw_drip() {
 				start = tpl_size[0] - width;
 			}
 		}
-		else if (tpl_align[i] == 'left') {
+		else if ((tpl_align[i] == 'left') || (tpl_align[i] == 'arrowleft')) {
 			//there is a picto to the left
 			if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
 				start = picto_width + 2;
 			}
 			else {
 				start = 0;
+			}
+			//if arrow alignment and line does not start with arrow, add calculated arrow_width to start
+			if ((tpl_align[i] == 'arrowleft') && (typeof line_info[i]["ids"][0] !== 'undefined') && !((line_info[i]["ids"][0].substr(0,6) == 'symbol') && (parseInt(line_info[i]["ids"][0].split('_').pop()) >= 10) && (parseInt(line_info[i]["ids"][0].split('_').pop()) < 100))) {
+				start += arrow_width;
 			}
 		}
 		else if (tpl_align[i] == 'block') {

@@ -130,28 +130,29 @@ input.template_editor_val {
 
 #drip, #drip_text {
 	float: left;
-	margin-right: 20px;
 }
 
 #drip {
 	border: 8px solid #333;	
 	border-radius: 8px;
+	margin-bottom: 8px;
+	margin-right: 20px;
 }
 
-#drip_text {
-	width: 440px;	
+#drip_text .drip_input {
+	margin-bottom: 8px;
 }
 
-#drip_font {
+#drip_text input.drip_t {
+	margin-bottom: 2px;
+	width: 240px
+}
+
+#drip_sprites {
 	margin: 0;
 	visibility: hidden;
 	padding: 0;
 	height: 0;
-}
-
-#drip_text input.drip_t {
-	margin-bottom: 10px;
-	width: 240px
 }
 
 fieldset {

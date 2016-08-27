@@ -64,17 +64,17 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <?php
 for ($i = 0; $i < 5; $i++) {
 ?>
-<span class="drip_input" id="drip_input<?php echo $i; ?>">
+<div class="drip_input" id="drip_input<?php echo $i; ?>">
 	<input type="text" class="drip_t" id="drip_t<?php echo $i; ?>"> 
     <img class="alignment" id="alignment_left_<?php echo $i; ?>" src="icon/align-left.png" width="16" height="16" alt="links" title="Links" onClick="set_alignment(<?php echo $i; ?>, 'left')">
+    <img class="alignment" id="alignment_arrow_<?php echo $i; ?>" src="icon/align-arrow-left.png" width="16" height="16" alt="pijl" title="Pijl links" onClick="set_alignment(<?php echo $i; ?>, 'arrowleft')">
     <img class="alignment" id="alignment_center_<?php echo $i; ?>" src="icon/align-center.png" width="16" height="16" alt="midden" title="Centreren" onClick="set_alignment(<?php echo $i; ?>, 'center')">
     <img class="alignment" id="alignment_block_<?php echo $i; ?>" src="icon/align-block.png" width="16" height="16" alt="blok" title="Blok" onClick="set_alignment(<?php echo $i; ?>, 'block')"> 
     <img class="alignment" id="alignment_right_<?php echo $i; ?>" src="icon/align-right.png" width="16" height="16" alt="rechts" title="Rechts" onClick="set_alignment(<?php echo $i; ?>, 'right')">
     <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen" onClick="move_line(<?php echo $i; ?>, 'down')">
     <img class="button" src="icon/line_remove.png" width="16" height="16" alt="regel verwijderen" title="Deze regel verwijderen" onClick="move_line(<?php echo $i; ?>, 'up')">
     <img class="button" src="icon/line_clear.png" width="16" height="16" alt="regel leeg maken" title="Deze regel leeg maken" onClick="clear_line(<?php echo $i; ?>)">
-    <br>
-</span>
+</div>
 <?php
 }
 ?>
@@ -116,7 +116,7 @@ else {
 </fieldset>
 </div>
 
-<div id="drip_font">
+<div id="drip_sprites">
 <img src="sprites.png" id="sprites" width="1" height="1" alt="sprites">
 </div>
 
