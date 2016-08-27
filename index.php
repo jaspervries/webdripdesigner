@@ -67,8 +67,9 @@ for ($i = 0; $i < 5; $i++) {
 <div class="drip_input" id="drip_input<?php echo $i; ?>">
 	<input type="text" class="drip_t" id="drip_t<?php echo $i; ?>"> 
     <img class="alignment" id="alignment_left_<?php echo $i; ?>" src="icon/align-left.png" width="16" height="16" alt="links" title="Links" onClick="set_alignment(<?php echo $i; ?>, 'left')">
-    <img class="alignment" id="alignment_arrow_<?php echo $i; ?>" src="icon/align-arrow-left.png" width="16" height="16" alt="pijl" title="Pijl links" onClick="set_alignment(<?php echo $i; ?>, 'arrowleft')">
+    <img class="alignment" id="alignment_arrowleft_<?php echo $i; ?>" src="icon/align-arrow-left.png" width="16" height="16" alt="pijllinks" title="Pijl links" onClick="set_alignment(<?php echo $i; ?>, 'arrowleft')">
     <img class="alignment" id="alignment_center_<?php echo $i; ?>" src="icon/align-center.png" width="16" height="16" alt="midden" title="Centreren" onClick="set_alignment(<?php echo $i; ?>, 'center')">
+    <img class="alignment" id="alignment_arrowright_<?php echo $i; ?>" src="icon/align-arrow-right.png" width="16" height="16" alt="pijlrechts" title="Pijl rechts" onClick="set_alignment(<?php echo $i; ?>, 'arrowright')">
     <img class="alignment" id="alignment_block_<?php echo $i; ?>" src="icon/align-block.png" width="16" height="16" alt="blok" title="Blok" onClick="set_alignment(<?php echo $i; ?>, 'block')"> 
     <img class="alignment" id="alignment_right_<?php echo $i; ?>" src="icon/align-right.png" width="16" height="16" alt="rechts" title="Rechts" onClick="set_alignment(<?php echo $i; ?>, 'right')">
     <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen" onClick="move_line(<?php echo $i; ?>, 'down')">

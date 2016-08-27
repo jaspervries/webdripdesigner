@@ -451,31 +451,45 @@ function redraw_drip() {
 	var line_info = [];
 	var block_width = 0;
 	var arrow_width = 0;
+	var arrow_line = 0;
 	var block_left_of_image = false;
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var str = $('#drip_t'+i).val();
 		line_info[i] = prepare_text(str);
 		
-		if (tpl_align[i] == 'block') {
+		if ((tpl_align[i] == 'block') || (tpl_align[i] == 'arrowright')) {
 			block_width = Math.max(block_width, line_info[i]["width"]);
 			//set if there is a block alignment with a right-aligned second image
 			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
 				block_left_of_image = true;
 			}
 		}
-		if (tpl_align[i] == 'arrowleft') {
-			//check if first symbol in line is arrow
-			if ((arrow_width == 0) && (typeof line_info[i]["ids"][0] !== 'undefined') && (line_info[i]["ids"][0].substr(0,6) == 'symbol') && (parseInt(line_info[i]["ids"][0].split('_').pop()) >= 10) && (parseInt(line_info[i]["ids"][0].split('_').pop()) < 100)) {
-				var id = parseInt(line_info[i]["ids"][0].split('_').pop());
+		if ((tpl_align[i] == 'arrowleft') || (tpl_align[i] == 'arrowright')) {
+			//determine to check first or last character
+			if (tpl_align[i] == 'arrowleft') {
+				var id_arrow = 0;
+				var id_space = 1;
+			}
+			else if (tpl_align[i] == 'arrowright') {
+				var id_arrow = line_info[i]["ids"].length-1;
+				//if at least two characters
+				if (typeof line_info[i]["ids"][1] !== 'undefined') {
+					var id_space = line_info[i]["ids"].length-2;
+				}
+			}
+			//check if first or last symbol in line is arrow
+			if ((arrow_width == 0) && (typeof line_info[i]["ids"][0] !== 'undefined') && (line_info[i]["ids"][id_arrow].substr(0,6) == 'symbol') && (parseInt(line_info[i]["ids"][id_arrow].split('_').pop()) >= 10) && (parseInt(line_info[i]["ids"][id_arrow].split('_').pop()) < 100)) {
+				var id = parseInt(line_info[i]["ids"][id_arrow].split('_').pop());
 				arrow_width = sprites.symbol[tpl_symbol][id][2] + tpl_charspacing;
+				arrow_line = i;
 				//check if next character is space
 				if (typeof line_info[i]["ids"][1] !== 'undefined') {
 					//space character
-					if ((line_info[i]["ids"][1].substr(0,4) == 'text') && (line_info[i]["ids"][1].split('_').pop() == '32')) {
+					if ((line_info[i]["ids"][id_space].substr(0,4) == 'text') && (line_info[i]["ids"][id_space].split('_').pop() == '32')) {
 						arrow_width += sprites.font[tpl_font][32][2] + tpl_charspacing; //32 is the id for a space
 					}
 					//narrow space symbol
-					else if (line_info[i]["ids"][1] == 'symbol_0') {
+					else if (line_info[i]["ids"][id_space] == 'symbol_0') {
 						arrow_width += sprites.symbol[tpl_symbol][0][2] + tpl_charspacing; //0 is the id of a narrow space
 					}
 				}
@@ -488,7 +502,7 @@ function redraw_drip() {
 		var width = line_info[i]["width"];
 		//decide start position
 		var start = 0;
-		if (tpl_align[i] == 'right') {
+		if ((tpl_align[i] == 'right') || ((tpl_align[i] == 'arrowright') && (i == arrow_line))) {
 			//there is a picto to the right
 			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
 				start = tpl_size[0] - width - picto_width2 - 2;
@@ -511,7 +525,7 @@ function redraw_drip() {
 				start += arrow_width;
 			}
 		}
-		else if (tpl_align[i] == 'block') {
+		else if ((tpl_align[i] == 'block') || (tpl_align[i] == 'arrowright')) {
 			//there is a picto to the right
 			if (block_left_of_image == true) {
 				start = tpl_size[0] - block_width - picto_width2 - 2;
@@ -519,6 +533,11 @@ function redraw_drip() {
 			//there is no picto to the right
 			else {
 				start = tpl_size[0] - block_width;
+			}
+			if (tpl_align[i] == 'arrowright') {
+				if (width > line_info[arrow_line]["width"] - arrow_width) {
+					start = Math.max(0, start - Math.min(arrow_width, (width - line_info[arrow_line]["width"] + arrow_width)));
+				}
 			}
 		}
 		else { //align center

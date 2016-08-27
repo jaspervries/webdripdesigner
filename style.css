@@ -237,6 +237,16 @@ h2 {
 	font-weight: bold;
 }
 
+table {
+	border-collapse: collapse;
+	margin: 4px 0;
+}
+table td {
+	vertical-align: top;
+	border: 1px solid #999;
+	padding: 4px;
+}
+
 div.infobox {
 	display: block;
 	border: 1px solid #06C;
