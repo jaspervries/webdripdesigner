@@ -456,14 +456,7 @@ function redraw_drip() {
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var str = $('#drip_t'+i).val();
 		line_info[i] = prepare_text(str);
-		
-		if ((tpl_align[i] == 'block') || (tpl_align[i] == 'arrowright')) {
-			block_width = Math.max(block_width, line_info[i]["width"]);
-			//set if there is a block alignment with a right-aligned second image
-			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
-				block_left_of_image = true;
-			}
-		}
+
 		if ((tpl_align[i] == 'arrowleft') || (tpl_align[i] == 'arrowright')) {
 			//determine to check first or last character
 			if (tpl_align[i] == 'arrowleft') {
@@ -495,6 +488,13 @@ function redraw_drip() {
 				}
 			}
 		}
+		if ((tpl_align[i] == 'block') || (((tpl_align[i] == 'arrowleft') || (tpl_align[i] == 'arrowright')) && (i != arrow_line))) {
+			block_width = Math.max(block_width, line_info[i]["width"]);
+			//set if there is a block alignment with a right-aligned second image
+			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+				block_left_of_image = true;
+			}
+		}
 	}
 	//draw text lines
 	for (var i = 0; i < tpl_lines.length; i++) {
@@ -521,11 +521,11 @@ function redraw_drip() {
 				start = 0;
 			}
 			//if arrow alignment and line does not start with arrow, add calculated arrow_width to start
-			if ((tpl_align[i] == 'arrowleft') && (typeof line_info[i]["ids"][0] !== 'undefined') && !((line_info[i]["ids"][0].substr(0,6) == 'symbol') && (parseInt(line_info[i]["ids"][0].split('_').pop()) >= 10) && (parseInt(line_info[i]["ids"][0].split('_').pop()) < 100))) {
-				start += arrow_width;
+			if ((tpl_align[i] == 'arrowleft') && (i != arrow_line)) {
+				start = Math.max(start, start + Math.min(arrow_width, (tpl_size[0] - start - block_width)));
 			}
 		}
-		else if ((tpl_align[i] == 'block') || (tpl_align[i] == 'arrowright')) {
+		else if (tpl_align[i] == 'block') {
 			//there is a picto to the right
 			if (block_left_of_image == true) {
 				start = tpl_size[0] - block_width - picto_width2 - 2;
@@ -534,10 +534,18 @@ function redraw_drip() {
 			else {
 				start = tpl_size[0] - block_width;
 			}
-			if (tpl_align[i] == 'arrowright') {
-				if (width > line_info[arrow_line]["width"] - arrow_width) {
-					start = Math.max(0, start - Math.min(arrow_width, (width - line_info[arrow_line]["width"] + arrow_width)));
-				}
+		}
+		else if (tpl_align[i] == 'arrowright') {
+			//there is a picto to the right
+			if (block_left_of_image == true) {
+				start = tpl_size[0] - Math.max(block_width, line_info[arrow_line]["width"]) - picto_width2 - 2;
+			}
+			//there is no picto to the right
+			else {
+				start = tpl_size[0] - Math.max(block_width, line_info[arrow_line]["width"]);
+			}
+			if (block_width > line_info[arrow_line]["width"] - arrow_width) {
+				start = Math.max(0, start - (block_width - line_info[arrow_line]["width"] + arrow_width));
 			}
 		}
 		else { //align center
