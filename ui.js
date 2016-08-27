@@ -59,13 +59,19 @@ $(document).ready(function () {
 				showhistory(currentpage);
 				//history navigation
 				$('#history_first_a').click(function() {
-					showhistory(0);
+					if (!$(this).parent().hasClass('ui-state-disabled')) {
+						showhistory(0);
+					}
 				});
 				$('#history_newer_a').click(function() {
-					showhistory(prevpage);
+					if (!$(this).parent().hasClass('ui-state-disabled')) {
+						showhistory(prevpage);
+					}
 				});
 				$('#history_older_a').click(function() {
-					showhistory(nextpage);
+					if (!$(this).parent().hasClass('ui-state-disabled')) {
+						showhistory(nextpage);
+					}
 				});
 			}
 		});
@@ -387,15 +393,15 @@ function showhistory(num_start) {
 		$('#historycontainer').html(htmlstring);
 		//display and update navigation buttons
 		if (prevpage < 0) {
-			$('#history_newer_li').hide();
-			$('#history_first_li').hide();
+			$('#history_newer_li').addClass('ui-state-disabled');
+			$('#history_first_li').addClass('ui-state-disabled');
 		}
 		else {
-			$('#history_newer_li').show();
-			$('#history_first_li').show();
+			$('#history_newer_li').removeClass('ui-state-disabled');
+			$('#history_first_li').removeClass('ui-state-disabled');
 		}
-		if (nextpage == 0) $('#history_older_li').hide();
-		else $('#history_older_li').show();
+		if (nextpage == 0) $('#history_older_li').addClass('ui-state-disabled');
+		else $('#history_older_li').removeClass('ui-state-disabled');
 		//update title
 		$('#dialog').dialog({
 			title: 'Historielijst: ' + (num_start + 1) + '-' + (num_start + data.length) + ' van ' + totalcount
