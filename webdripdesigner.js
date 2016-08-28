@@ -345,26 +345,9 @@ function draw_text(ids, start, top, context) {
 			}
 			else if (ids[i] == 'tile_detour_top_close') {
 				//format [x0, y0, length]
-				var tiledetourwidth = (start - tile_start - 7);
 				var linecoords = [
-					//bottom
-					[0, 33, start - tile_start - 7],
-					//top, drawn as separate horizontal lines to avoid anti-aliasing of shape or scaled image
-					[Math.floor(tiledetourwidth * 0.4), -1 , Math.ceil(tiledetourwidth * 0.2)],
-					[Math.floor(tiledetourwidth * 0.35), 0 , Math.ceil(tiledetourwidth * 0.3)],
-					[Math.floor(tiledetourwidth * 0.3), 1 , Math.ceil(tiledetourwidth * 0.4)],
-					[Math.floor(tiledetourwidth * 0.25), 2 , Math.ceil(tiledetourwidth * 0.5)],
-					[Math.floor(tiledetourwidth * 0.2), 3 , Math.ceil(tiledetourwidth * 0.6)],
-					[Math.floor(tiledetourwidth * 0.15), 4 , Math.floor(tiledetourwidth * 0.3)],
-					[Math.floor(tiledetourwidth * 0.1), 5 , Math.floor(tiledetourwidth * 0.25)],
-					[Math.floor(tiledetourwidth * 0.05), 6 , Math.floor(tiledetourwidth * 0.2)],
-					[0, 7 , Math.floor(tiledetourwidth * 0.15)],
-					[0, 8 , Math.floor(tiledetourwidth * 0.05)],
-					[tiledetourwidth - Math.floor(tiledetourwidth * 0.45), 4 , Math.floor(tiledetourwidth * 0.3)],
-					[tiledetourwidth - Math.floor(tiledetourwidth * 0.35), 5 , Math.floor(tiledetourwidth * 0.25)],
-					[tiledetourwidth - Math.floor(tiledetourwidth * 0.25), 6 , Math.floor(tiledetourwidth * 0.2)],
-					[tiledetourwidth - Math.floor(tiledetourwidth * 0.15), 7 , Math.floor(tiledetourwidth * 0.15)],
-					[tiledetourwidth - Math.floor(tiledetourwidth * 0.05), 8 , Math.floor(tiledetourwidth * 0.05)],
+					//bottom, top is handled separately below
+					[0, 33, start - tile_start - 7]
 				];
 			}
 			else { //if (ids[i] == 'tile_s_close')
@@ -395,6 +378,46 @@ function draw_text(ids, start, top, context) {
 				context.strokeStyle = "#FFF";
 				context.stroke();
 			}
+			
+			if (ids[i] == 'tile_detour_top_close') {
+				var tiledetourwidth = (start - tile_start - 7);
+				var tempcanvas = document.createElement('canvas');
+				tempcanvas.width = Math.ceil(tiledetourwidth / 2);
+            	tempcanvas.height = 10;
+            	var tempctx = tempcanvas.getContext('2d');
+				var linecoords = [
+					//top, drawn as separate horizontal lines to avoid anti-aliasing of shape or scaled image
+					[Math.floor(tiledetourwidth * 0.4), 0 , Math.ceil(tiledetourwidth * 0.1) + 1],
+					[Math.floor(tiledetourwidth * 0.35), 1 , Math.ceil(tiledetourwidth * 0.15) + 1],
+					[Math.floor(tiledetourwidth * 0.3), 2 , Math.ceil(tiledetourwidth * 0.2) + 1],
+					[Math.floor(tiledetourwidth * 0.25), 3 , Math.ceil(tiledetourwidth * 0.25) + 1],
+					[Math.floor(tiledetourwidth * 0.2), 4 , Math.ceil(tiledetourwidth * 0.3) + 1],
+					[Math.floor(tiledetourwidth * 0.15), 5 , Math.floor(tiledetourwidth * 0.3)],
+					[Math.floor(tiledetourwidth * 0.1), 6 , Math.floor(tiledetourwidth * 0.25)],
+					[Math.floor(tiledetourwidth * 0.05), 7 , Math.floor(tiledetourwidth * 0.2)],
+					[0, 8 , Math.floor(tiledetourwidth * 0.15)],
+					[0, 9 , Math.floor(tiledetourwidth * 0.05)],
+				];
+				//draw lines
+				for (var t = 0; t < linecoords.length; t++) {
+					tempctx.beginPath();
+					tempctx.moveTo(linecoords[t][0], 0.5 + linecoords[t][1]);
+					tempctx.lineTo(linecoords[t][0] + linecoords[t][2], 0.5 + linecoords[t][1]);
+					tempctx.strokeStyle = "#FFF";
+					tempctx.stroke();
+				}
+				//draw to canvas
+				context.drawImage(tempcanvas, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2, down, Math.ceil(tiledetourwidth / 2), 10);
+				var tempcanvas2 = document.createElement('canvas');
+				tempcanvas2.width = Math.ceil(tiledetourwidth / 2);
+            	tempcanvas2.height = 10;
+            	var tempctx2 = tempcanvas2.getContext('2d');
+				tempctx2.scale(-1, 1);
+				tempctx2.drawImage(tempcanvas, -1 * Math.ceil(tiledetourwidth / 2), 0, Math.ceil(tiledetourwidth / 2), 10); // draw the image
+				context.drawImage(tempcanvas2, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2 + Math.floor(tiledetourwidth / 2), down, Math.ceil(tiledetourwidth / 2), 10);
+				
+			}
+			
 			//start = start + 3;
 		}
 		//single char tile helper
