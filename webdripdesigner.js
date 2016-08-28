@@ -132,6 +132,9 @@ function prepare_text(str) {
 				else if (tilestr.match(/^\^[A-Z0-9]\^/) != null) { //^X^
 					tilematch = 14;
 				}
+				else if (tilestr.match(/^\^[A-Z0-9][A-Za-z0-9]\^/) != null) { //^Xy^
+					tilematch = 3;
+				}
 				//multi-character tile
 				if ((tilematch >= 3) && (tilematch <= 10)) {
 					//open
@@ -143,6 +146,9 @@ function prepare_text(str) {
 					}
 					else if (str[i] == '<') {
 						ids.push('tile_detour_left_open');
+					}
+					else if (str[i] == '^') {
+						ids.push('tile_detour_top_open');
 					}
 					else { // if (str[i] == '{')
 						ids.push('tile_s_open');
@@ -166,6 +172,9 @@ function prepare_text(str) {
 					}
 					else if (str[i] == '<') {
 						ids.push('tile_detour_left_close');
+					}
+					else if (str[i] == '^') {
+						ids.push('tile_detour_top_close');
 					}
 					else { // if (str[i] == '{')
 						ids.push('tile_s_close');
@@ -244,7 +253,7 @@ function draw_text(ids, start, top, context) {
 	for (var i = 0; i < ids.length; i++) {
 
 		//multi-char tile helper
-		if ((ids[i] == 'tile_open') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open')) {
+		if ((ids[i] == 'tile_open') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
 			if (tpl_font == 'CdmsBdType2') tile_down = 1;
 			tile_start = start;
 		}
@@ -305,7 +314,7 @@ function draw_text(ids, start, top, context) {
 		start = start + width + tpl_charspacing;
 		//if (ids[i+1]) start = start + 3;
 		//multi-char tile helper
-		if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close')) {
+		if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close')) {
 			tile_down = 0;
 			if (ids[i] == 'tile_close') {
 				//format [x0, y0, length]
@@ -332,6 +341,30 @@ function draw_text(ids, start, top, context) {
 					[8, 0, start - tile_start - 15],
 					//bottom
 					[8, 21, start - tile_start - 15]
+				];
+			}
+			else if (ids[i] == 'tile_detour_top_close') {
+				//format [x0, y0, length]
+				var tiledetourwidth = (start - tile_start - 7);
+				var linecoords = [
+					//bottom
+					[0, 33, start - tile_start - 7],
+					//top, drawn as separate horizontal lines to avoid anti-aliasing of shape or scaled image
+					[Math.floor(tiledetourwidth * 0.4), -1 , Math.ceil(tiledetourwidth * 0.2)],
+					[Math.floor(tiledetourwidth * 0.35), 0 , Math.ceil(tiledetourwidth * 0.3)],
+					[Math.floor(tiledetourwidth * 0.3), 1 , Math.ceil(tiledetourwidth * 0.4)],
+					[Math.floor(tiledetourwidth * 0.25), 2 , Math.ceil(tiledetourwidth * 0.5)],
+					[Math.floor(tiledetourwidth * 0.2), 3 , Math.ceil(tiledetourwidth * 0.6)],
+					[Math.floor(tiledetourwidth * 0.15), 4 , Math.floor(tiledetourwidth * 0.3)],
+					[Math.floor(tiledetourwidth * 0.1), 5 , Math.floor(tiledetourwidth * 0.25)],
+					[Math.floor(tiledetourwidth * 0.05), 6 , Math.floor(tiledetourwidth * 0.2)],
+					[0, 7 , Math.floor(tiledetourwidth * 0.15)],
+					[0, 8 , Math.floor(tiledetourwidth * 0.05)],
+					[tiledetourwidth - Math.floor(tiledetourwidth * 0.45), 4 , Math.floor(tiledetourwidth * 0.3)],
+					[tiledetourwidth - Math.floor(tiledetourwidth * 0.35), 5 , Math.floor(tiledetourwidth * 0.25)],
+					[tiledetourwidth - Math.floor(tiledetourwidth * 0.25), 6 , Math.floor(tiledetourwidth * 0.2)],
+					[tiledetourwidth - Math.floor(tiledetourwidth * 0.15), 7 , Math.floor(tiledetourwidth * 0.15)],
+					[tiledetourwidth - Math.floor(tiledetourwidth * 0.05), 8 , Math.floor(tiledetourwidth * 0.05)],
 				];
 			}
 			else { //if (ids[i] == 'tile_s_close')

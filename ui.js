@@ -224,7 +224,7 @@ $(document).ready(function () {
 				}
 				break;
 			case 'omlb':
-				if (value.match(/^[A-Z0-9]{1}$/) != null) {
+				if ((value.match(/^[A-Z0-9]{1}$/) != null) || (value.match(/^[A-Z0-9][A-Za-z-0-9]$/) != null)) {
 					valuematch = true;
 					value = '^' + value + '^';
 				}
