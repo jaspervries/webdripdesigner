@@ -112,7 +112,7 @@ else {
 <input type="text" id="ins_tile_sroute" maxlength="3">
 <input type="text" id="ins_tile_omll" maxlength="2">
 <input type="text" id="ins_tile_omlr" maxlength="2">
-<input type="text" id="ins_tile_omlb" maxlength="1">
+<input type="text" id="ins_tile_omlb" maxlength="2">
 <span class="button" id="ins_tile_button">tegeltje invoegen</span>
 </fieldset>
 </div>
