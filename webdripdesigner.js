@@ -93,13 +93,13 @@ function prepare_text(str) {
 				//OR
 				//next character must be a capital OR a number, followed by closing square bracket
 				var tilematch = 0;
-				if (tilestr.match(/^\[[ANsUaE][0-9]]/) != null) { //[Xx]
+				if (tilestr.match(/^\[[ANUaE][0-9]]/) != null) { //[Xx]
 					tilematch = 3;
 				}
-				else if ((tilestr.match(/^\[[ANsUaE][0-9]{2}]/) != null) || (tilestr.match(/^\[a[0-9]{1}[a-z]{1}]/) != null)) { //[Xxx] or [axy]
+				else if ((tilestr.match(/^\[[ANUaE][0-9]{2}]/) != null) || (tilestr.match(/^\[a[0-9]{1}[a-z]{1}]/) != null)) { //[Xxx] or [axy]
 					tilematch = 4;
 				}
-				else if ((tilestr.match(/^\[[ANsUaE][0-9]{3}]/) != null) || (tilestr.match(/^\[a[0-9]{2}[a-z]{1}]/) != null) || (tilestr.match(/^\{s[0-9]{3}}/) != null)) { //[Xxxx] or [axxy] or {sxxx}
+				else if ((tilestr.match(/^\[[ANsSUaE][0-9]{3}]/) != null) || (tilestr.match(/^\[a[0-9]{2}[a-z]{1}]/) != null) || (tilestr.match(/^\{[sS][0-9]{3}}/) != null)) { //[Xxxx] or [axxy] or {sxxx}
 					tilematch = 5;
 				}
 				else if (tilestr.match(/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/) != null) { //[XX]
@@ -160,6 +160,7 @@ function prepare_text(str) {
 						}
 						else {
 							var char = str[i+t];
+							if ((tilematch == 5) && (char == 'S')) char = 's';
 							ids.push( 'text_CdmsBdType2_' + char.charCodeAt(0) );
 						}
 					}
