@@ -6,7 +6,7 @@ De WebDRIP Designer is een webgebaseerde ontwerptool voor DRIP-teksten.
 Er is ondersteuning voor de meest voorkomende typen beeldstanden met 
 een pictogram en een of meerdere tekstregels, welke voldoen aan de 
 "Richtlijn informatievoorziening op dynamische informatiepanelen" van 
-het CROW (artikelnummer D1073). De functionaliteit is gebaseerd op de 
+CROW (artikelnummer D1073). De functionaliteit is gebaseerd op de 
 BermDRIP Designer van Rijkswaterstaat en kent vele nieuwe mogelijkheden.
 
 
@@ -20,6 +20,7 @@ BermDRIP Designer van Rijkswaterstaat en kent vele nieuwe mogelijkheden.
     2.2 Pictogrammen
     2.3 Regelsymbolen
     2.4 Spritetabel genereren
+    2.5 FAQ
 3. Installatie
 4. Genereren van release
 5. API functionaliteit
@@ -66,7 +67,7 @@ imagebmp + imagecreatefrombmp: http://www.phpclasses.org/package/5991-PHP-Load-a
 
 Vanwege auteursrecht bevat de broncode van de WebDRIP Designer geen 
 lettertypen, pictogrammen en regelsymbolen. Deze dienen te worden 
-gedownload van de website van het CROW en te worden voorbereid voor 
+gedownload van de website van CROW en te worden voorbereid voor 
 gebruik met de WebDRIP Designer. De lettertypen, pictogrammen en 
 regelsymbolen behorend bij uitgave D1073 zijn gratis te downloaden via
 http://www.crow.nl/publicaties/richtlijn-informatievoorziening-op-dynamische-info
@@ -98,7 +99,7 @@ bestanden worden gebruikt als identifiers, dus dienen geen spaties of
 speciale tekens te bevatten.
 
 *) Is identiek aan CdmsBdType3.png, maar dan met de witte letters geel 
-gemaakt (RGB 255,255,0).
+(RGB 255,255,0) gemaakt (in een grafisch programma naar keuze).
 
 ----------------
 2.2 Pictogrammen
@@ -106,10 +107,16 @@ gemaakt (RGB 255,255,0).
 
 Converteer de pictogrammen naar PNG formaat en sla deze per grootte op 
 in een submap van resources/images/. De namen van de submappen worden 
-gebruikt als identifiers, dus dienen geen spaties of speciale tekens te 
-bevatten. De namen van de pictogrammen dienen een underscore te 
-bevatten. Het deel voor de underscore wordt gebruikt als identifier en 
-dient uniform te zijn over de verschillende groottes van pictogrammen. 
+gebruikt als identifiers voor de pictogramgrootte, dus dienen geen 
+spaties of speciale tekens te bevatten. 
+De namen van de pictogrammen dienen een underscore te bevatten. Het deel 
+voor de underscore wordt gebruikt als identifier voor het pictogramen.
+Deze idenitifier dient uniek te zijn voor de pictogrammen van dezelfde 
+grootte (alle bestanden in dezelfde map hebben een andere identifier). 
+De identifier is bij voorkeur uniform over de verschillende groottes van 
+pictogrammen (in alle mappen wordt dezelfde identifier gebruikt voor 
+hetzelfde verkeersbord). Hierdoor kunnen pictogrammen worden behouden 
+bij het wisselen van templates.
 Het deel na de underscore dient als omschrijving en wordt niet door het 
 programma gebruikt.
 
@@ -121,6 +128,17 @@ De standaard mapnamen zijn:
 - resources/images/Picto_70/
 - resources/images/Picto_92/
 
+Voorbeeld van bestanden in iedere bovengenoemde map:
+- J33_file.png
+- J34_ongeval.png
+- J35_slechtzicht.png
+- RJ16_werk.png
+- RJ33_file.png
+- ...
+
+Bestanden met dezelfde identifier binnen een map worden overschreven, 
+bijvoorbeeld J33_file.png en J33_file2.png levert maar één pictogram op.
+
 -----------------
 2.3 Regelsymbolen
 -----------------
@@ -128,19 +146,41 @@ De standaard mapnamen zijn:
 Converteer de regelpictogrammen naar PNG formaat en sla deze per 
 grootte op in een submap van resources/symbols/. De namen van de 
 submappen worden gebruikt als identifiers, dus dienen geen spaties of 
-speciale tekens te bevatten. De namen van de regelsymbolen dienen twee 
-underscores te bevatten. Het deel voor de eerste underscore is 
-aanwezig om historische redenen en wordt gebruikt om de grootte van het 
-regelsymbool aan te geven. Het gedeelte tussen de underscores wordt 
-gebruikt als identifier en dient uniform te zijn over de verschillende 
-groottes van pictogrammen. Het deel na de tweede underscore dient 
-als omschrijving en wordt niet door het programma gebruikt.
+speciale tekens te bevatten. 
+De namen van de regelsymbolen dienen twee underscores te bevatten. Het 
+deel voor de eerste underscore is aanwezig om historische redenen en 
+werd gebruikt om de grootte van het regelsymbool aan te geven. Het 
+programma gebruikt de mapnaam als identifier voor de grootte van de 
+regelsymbolen. Het gedeelte tussen de twee underscores wordt 
+gebruikt als identifier voor het regelsymbool. Deze idenitifier dient 
+uniek te zijn voor de regelsymbolen van dezelfde grootte (alle bestanden 
+in dezelfde map hebben een andere identifier). De identifier is bij 
+voorkeur uniform over de verschillende groottes van regelsymbolen (in 
+alle mappen wordt dezelfde identifier gebruikt voor hetzelfde symbool). 
+Hierdoor kunnen symbolen worden behouden bij wisselen tussen 
+(tekst)groottes. De identifier bestaat uit exact drie cijfers. Dit is 
+tevens het getal wat de gebruiker ziet na een dollarteken in de invoer-
+regels (bijvoorbeeld $036).
+Het deel na de tweede underscore dient als omschrijving en wordt niet 
+door het programma gebruikt.
 
 De standaard mapnamen zijn:
 - resources/symbols/Regel_15/
 - resources/symbols/Regel_15_geel/
 - resources/symbols/Regel_19/
 - resources/symbols/Regel_22/
+
+Voorbeeld van bestanden in iedere bovengenoemde map:
+- 19_041_Centrico_op.png
+- 19_042_Centrico_links.png
+- 19_043_Centrico_rechts.png
+- 19_050_Redesign_op.png
+- 19_051_Redesign_links.png
+- ...
+
+Bestanden met dezelfde identifier binnen een map worden overschreven, 
+bijvoorbeeld 19_041_Centrico_op.png en 19_041_Centrico_op_nieuw.png 
+levert maar één pictogram op.
 
 -------------------------
 2.4 Spritetabel genereren
@@ -151,8 +191,29 @@ spritetabel gegenereerd te worden. Voer hiervoor het script
 resources/generatespritesheet.php uit vanuit een opdrachtregel:
 php -f generatespritesheet.php
 
-De spritetabel wordt in de vorm van een PNG-afbeelding en JavaScript 
-bestand naar de root van het repository geschreven.
+De spritetabel wordt in de vorm van een PNG-afbeelding (sprites.png) en 
+JavaScript bestand (sprites.js) naar de root van het repository 
+geschreven. De spritetabel automatisch gegenereerd bij het genereren van
+een release (zie hoofdstuk 4) en hoeft in dat geval niet apart 
+uitgevoerd te worden.
+
+-------
+2.5 FAQ
+-------
+
+Q: Waarom heb je niet gemaakt dat de BMP-afbeeldingen direct worden 
+   ingelezen?
+A: GD heeft geen ondersteuning voor BMP-afbeeldingen. Vrij beschikbare 
+   externe bibliotheken blijken nogal moeite te hebben met het correct 
+   inlezen van BMP-afbeeldingen in bepaalde bitdiepten. Aangezien het 
+   converteren naar PNG een eenmalige actie is en in batch kan worden 
+   uitgevoerd door de betere grafische pakketten is besloten geen tijd 
+   te investeren in een geautomatiseerde oplossing.
+
+Q: Waarom moet ik alle bestandsnamen van de CROW-download hernoemen?
+A: De CROW-download bestond nog niet toen met ontwikkeling van de 
+   WebDRIP Designer is gestart. Daarnaast beschikken niet alle 
+   bestandsnamen in de download over geschikte unieke identifiers.
 
 
 ========================================================================
@@ -169,6 +230,9 @@ mappenstructuur aan te maken.
 
 De WebDRIP Designer kan nu gebruikt worden vanuit het working 
 repository.
+
+Met beperkte aanpassingen is het mogelijk om de WebDRIP Designer zonder
+historiefunctie en dus zonder database te gebruiken.
 
 
 ========================================================================
@@ -201,7 +265,7 @@ De WebDRIP Designer is voorzien van API functionaliteit om de WebDRIP
 Designer aan te roepen vanuit andere programma's. In plaats van de 
 gemaakte beeldstand ter download aan te bieden wordt de gebruiker 
 teruggestuurd naar het programma die de WebDRIP Designer heeft 
-aangeroepen. Dit programma handeld vervolgens de verwerking van de 
+aangeroepen. Dit programma handelt vervolgens de verwerking van de 
 gegenereerde afbeelding af. Via de API kunnen alleen beeldstanden in
 PNG-formaat worden verkregen.
 
@@ -255,7 +319,7 @@ volledige licentietekst in license.txt.
 
 
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2017 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -276,7 +340,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 WebDRIP Designer maakt gebruik van de PHP klasse 
 "imagebmp + imagecreatefrombmp" door "de77" voor het genereren van 
 bitmapafbeeldingen. Deze klasse is vrijgegeven onder de MIT licentie en 
-is gebundeld met de broncode van de WebDRIP Designer. 
+is gebundeld met de broncode van de WebDRIP Designer als BMP.php. 
 Voor de oorspronkelijke bron van "imagebmp + imagecreatefrombmp" zie: 
 http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html
 
