@@ -1,6 +1,6 @@
 /*
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2017 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -507,7 +507,7 @@ function redraw_drip() {
 	var line_info = [];
 	var block_width = 0;
 	var arrow_width = 0;
-	var arrow_line = 0;
+	var arrow_line = -1; //cannot be 0 to allow arrowright on first line
 	var block_left_of_image = false;
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var str = $('#drip_t'+i).val();
@@ -552,6 +552,10 @@ function redraw_drip() {
 			}
 		}
 	}
+	//arrow_line must be a real line
+	if (arrow_line == -1) {
+		arrow_line = 0;
+	}
 	//draw text lines
 	for (var i = 0; i < tpl_lines.length; i++) {
 		var ids = line_info[i]["ids"];
@@ -594,13 +598,14 @@ function redraw_drip() {
 		else if (tpl_align[i] == 'arrowright') {
 			//there is a picto to the right
 			if (block_left_of_image == true) {
-				start = tpl_size[0] - Math.max(block_width, line_info[arrow_line]["width"]) - picto_width2 - 2;
+				
+				start = tpl_size[0] - line_info[arrow_line]["width"] - picto_width2 - 2;
 			}
 			//there is no picto to the right
 			else {
-				start = tpl_size[0] - Math.max(block_width, line_info[arrow_line]["width"]);
+				start = tpl_size[0] - line_info[arrow_line]["width"];
 			}
-			if (block_width > line_info[arrow_line]["width"] - arrow_width) {
+			if (block_width > (line_info[arrow_line]["width"] - arrow_width)) {
 				start = Math.max(0, start - (block_width - line_info[arrow_line]["width"] + arrow_width));
 			}
 		}
