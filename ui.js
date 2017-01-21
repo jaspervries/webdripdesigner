@@ -427,7 +427,10 @@ function load_symbols(size) {
 function load_picto(size) {
 	$('#drip_picto').html('');
 	if (sprites.picto[size]) {
-		var preferred_picto = ['E12', 'E4C1', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34', 'RJ34', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
+		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34', 'RJ34', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
+		if (active_template_class.substr(0, 3) == 'gdh') { //hide old accident picto when gdh template is selected
+			preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
+		}
 		$.each(sprites.picto[size], function(i, val) {
 			$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="Pictogram ' + i + ' invoegen"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
 		});
