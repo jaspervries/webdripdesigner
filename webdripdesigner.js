@@ -912,7 +912,7 @@ $(document).ready(function () {
 		//set first class for use
 		if (typeof active_template_class === 'undefined') active_template_class = template_classes[i].id;
 		//select last used template from cookie
-		if (((template_classes[i].id == templateclass_from_cookie) && (templateclass_from_url != null)) || (template_classes[i].name == templateclass_from_url)) {
+		if (((template_classes[i].id == templateclass_from_cookie) && (templateclass_from_url == null)) || (template_classes[i].name == templateclass_from_url)) {
 			$('#drip_template_class option').last().attr('selected', 'selected');
 			active_template_class = template_classes[i].id;
 		}

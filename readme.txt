@@ -300,8 +300,7 @@ de pagina automatisch geselecteerd. Voeg hiervoor de parameter
 "template" toe aan de URL en geef als waarde de naam van de template 
 klasse. Dit zijn dezelfde namen als in de eerste template-dropdown in de
 interface. Wanneer de opgegeven naam niet wordt aangetroffen, wordt de 
-laatstgebruikte template klasse (wanneer de gebruiker cookies heeft 
-ingeschakeld) of de eerste klasse uit de lijst geselecteerd.
+eerste klasse uit de lijst geselecteerd.
 Deze functionaliteit is ook beschikbaar wanneer geen gebruik wordt 
 gemaakt van de overige API-functionaliteit.
 
