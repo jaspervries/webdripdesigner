@@ -466,3 +466,23 @@ function load_picto(size) {
 		$('.picto_pref').show();
 	});
 }
+/*
+ * cookie functions
+*/
+function setCookie(name, val) {
+	var expires = new Date();
+	expires.setTime(expires.getTime() + 365*24*60*60*1000);
+    expires = "expires="+ expires.toUTCString();
+    document.cookie = name + "=" + val + ";" + expires + ";path=/";
+}
+function getCookie(name) {
+	var cookie = decodeURIComponent(document.cookie);
+	cookie = cookie.split(';');
+	for (var i = 0; i < cookie.length; i++) {
+		cookie[i] = cookie[i].trim();
+		if (cookie[i].indexOf(name + '=') == 0) {
+			return cookie[i].substr(name.length + 1);
+		}
+	}
+	return null;
+}
