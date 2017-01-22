@@ -369,7 +369,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
@@ -380,7 +380,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
@@ -391,7 +391,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
@@ -402,7 +402,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
@@ -413,7 +413,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
@@ -424,7 +424,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	num_picto: 2,
 	symbol: 'Regel_15_geel'
 });
@@ -487,7 +487,7 @@ tpl.push({
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40',
+	picto: 'Picto_40_yellow',
 	symbol: 'Regel_15_geel'
 });
 /*
