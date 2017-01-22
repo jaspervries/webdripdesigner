@@ -906,12 +906,13 @@ function set_align_button_state() {
 $(document).ready(function () {
 	//load template classes
 	var templateclass_from_cookie = getCookie('tc');
+	var templateclass_from_url = getParameter('template');
 	for (var i = 0; i < template_classes.length; i++) {
 		$('#drip_template_class').append('<option value="'+template_classes[i].id+'">'+template_classes[i].name+'</option>');
 		//set first class for use
 		if (typeof active_template_class === 'undefined') active_template_class = template_classes[i].id;
 		//select last used template from cookie
-		if (template_classes[i].id == templateclass_from_cookie) {
+		if (((template_classes[i].id == templateclass_from_cookie) && (templateclass_from_url != null)) || (template_classes[i].name == templateclass_from_url)) {
 			$('#drip_template_class option').last().attr('selected', 'selected');
 			active_template_class = template_classes[i].id;
 		}

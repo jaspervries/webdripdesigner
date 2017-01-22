@@ -467,7 +467,7 @@ function load_picto(size) {
 	});
 }
 /*
- * cookie functions
+ * cookie and URL param functions
 */
 function setCookie(name, val) {
 	var expires = new Date();
@@ -476,12 +476,20 @@ function setCookie(name, val) {
     document.cookie = name + "=" + val + ";" + expires + ";path=/";
 }
 function getCookie(name) {
-	var cookie = decodeURIComponent(document.cookie);
-	cookie = cookie.split(';');
+	var cookie = decodeURIComponent(document.cookie).split(';');
 	for (var i = 0; i < cookie.length; i++) {
 		cookie[i] = cookie[i].trim();
 		if (cookie[i].indexOf(name + '=') == 0) {
 			return cookie[i].substr(name.length + 1);
+		}
+	}
+	return null;
+}
+function getParameter(name) {
+    var params = document.location.search.substr(1).split('&');
+    for (var i = 0; i < params.length; i++) {
+		if (params[i].indexOf(name + '=') == 0) {
+			return decodeURIComponent(params[i].substr(name.length + 1));
 		}
 	}
 	return null;
