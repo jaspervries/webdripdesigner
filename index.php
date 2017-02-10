@@ -20,7 +20,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>WebDRIP Designer <?php echo $version; ?></title>
-<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="//code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
