@@ -840,7 +840,7 @@ function load_drip(md5) {
 			//set template selection
 			$('#drip_template').hide();
 			if ($('#template_class_select_from_history').length == 0) {
-				$('#drip_template_class').prepend('<option id="template_class_select_from_history" value="" disabled="disabled" selected="selected">(van geladen historie)</option>');
+				$('#drip_template_class').append('<option id="template_class_select_from_history" value="" disabled="disabled" selected="selected">(van geladen historie)</option>');
 			}
 			//set alignment button state
 			set_align_button_state();
