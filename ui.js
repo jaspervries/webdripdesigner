@@ -418,8 +418,32 @@ function load_history(md5) {
 //load symbols
 function load_symbols(size) {
 	$('#drip_symbol').html('');
+	var preferred_symbol = [0, 20, 21, 22, 23, 24, 30, 31, 32, 33, 34, 35, 36, 37, 100, 110, 120, 130, 200, 210, 300, 310, 320, 330, 500, 520, 530, 550, 570, 600, 601, 610, 611, 620, 630, 631, 910];
 	$.each(sprites.symbol[size], function(i, val) {
-		$('#drip_symbol').append('<span onclick="insert_text(\'$' + ('000' + i).substring(i.length) + '\')" class="drip_s" title="$' + ('000' + i).substring(i.length) + ((typeof val[4] !== 'undefined') ? ' ' + val[4] : '') + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+		$('#drip_symbol').append('<span onclick="insert_text(\'$' + ('000' + i).substring(i.length) + '\')" class="drip_s' + ( ($.inArray(parseInt(i), preferred_symbol) >= 0) ? ' symbol_pref' : '' ) + '" title="$' + ('000' + i).substring(i.length) + ((typeof val[4] !== 'undefined') ? ' ' + val[4] : '') + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+	});
+	//preferred symbol
+	if (symbol_show_all == false) {
+		$('#symbol_show_pref').hide();
+		$('.drip_s').hide();
+		$('.symbol_pref').show();
+	}
+	else {
+		$('#symbol_show_pref').hide();
+	}
+	//change picto
+	$('#symbol_show_all').click( function() {
+		picto_show_all = true;
+		$('#symbol_show_all').hide();
+		$('#symbol_show_pref').show();
+		$('.drip_s').show();
+	});
+	$('#symbol_show_pref').click( function() {
+		picto_show_all = false;
+		$('#symbol_show_pref').hide();
+		$('#symbol_show_all').show();
+		$('.drip_s').hide();
+		$('.symbol_pref').show();
 	});
 }
 

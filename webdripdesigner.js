@@ -23,6 +23,7 @@ var drip_changed = false;
 var active_template_class;
 var picto_show_all = false;
 var picto_active = 1;
+var symbol_show_all = false;
 var drip_line_active = 0;
 //template
 var tpl_name;

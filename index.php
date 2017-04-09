@@ -103,6 +103,7 @@ else {
 <fieldset>
 <legend>Regelsymbolen</legend>
 <div id="drip_symbol"></div>
+<div id="symbol_tools"><span class="button" id="symbol_show_all"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle regelsymbolen</span> <span id="symbol_show_pref" class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeursregelsymbolen</span></div>
 </fieldset>
 
 <fieldset id="fieldset_tiles">
