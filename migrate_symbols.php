@@ -99,18 +99,18 @@ $fromto = array(
 '181' => '709'
 );
 
-$qry = "UPDATE `history` SET `image_raw` = REPLACE(`image_raw`, '$', '$#')";
+$qry = "UPDATE `history` SET `timestamp` = `timestamp`, `image_raw` = REPLACE(`image_raw`, '$', '$#')";
 mysqli_query($db['link'], $qry);
 echo mysqli_error($db['link']) . PHP_EOL;
 
 foreach ($fromto as $from => $to) {
 	echo $from . ' => ' . $to . PHP_EOL;
-	$qry = "UPDATE `history` SET `image_raw` = REPLACE(`image_raw`, '$#".$from."', '$".$to."')";
+	$qry = "UPDATE `history` SET `timestamp` = `timestamp`, `image_raw` = REPLACE(`image_raw`, '$#".$from."', '$".$to."')";
 	mysqli_query($db['link'], $qry);
 	echo mysqli_error($db['link']) . PHP_EOL;
 }
 
-$qry = "UPDATE `history` SET `image_raw` = REPLACE(`image_raw`, '$#', '$')";
+$qry = "UPDATE `history` SET `timestamp` = `timestamp`, `image_raw` = REPLACE(`image_raw`, '$#', '$')";
 mysqli_query($db['link'], $qry);
 echo mysqli_error($db['link']) . PHP_EOL;
 ?>

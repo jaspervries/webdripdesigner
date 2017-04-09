@@ -117,6 +117,11 @@ De identifier is bij voorkeur uniform over de verschillende groottes van
 pictogrammen (in alle mappen wordt dezelfde identifier gebruikt voor 
 hetzelfde verkeersbord). Hierdoor kunnen pictogrammen worden behouden 
 bij het wisselen van templates.
+Zie het bestand resources/names.php voor de standaardidentifiers van
+WebDRIP Designer. Wanneer een andere naamgeving wordt gebruikt, verdient 
+het de aanbeveling dit bestand aan te passen en/of uit te breiden. De 
+hier opgegeven omschrijvingen worden getoond als tooltip van het 
+betreffende pictogram in de interface.
 Het deel na de underscore dient als omschrijving en wordt niet door het 
 programma gebruikt.
 
