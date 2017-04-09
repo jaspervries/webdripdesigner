@@ -122,6 +122,7 @@ img.alignmentactive, .buttonactive, #picto_tools span.buttonactive, #addl_tools 
 	float: right;
 	font-size: small;
 	color: #999;
+	cursor: pointer;
 }
 
 input.template_editor_val {

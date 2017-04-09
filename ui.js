@@ -104,7 +104,7 @@ $(document).ready(function () {
 		width: 300,
 		height: 'auto',
 		position: { my: "right top", at: "right top", of: window },
-		title: 'LiveEditor'}
+		title: 'Template Editor'}
 	);
 	$('#drip_template_info').click(function() {
 		//open dialog

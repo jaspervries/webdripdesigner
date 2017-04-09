@@ -47,7 +47,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 
 <fieldset class="condensed">
 <legend>Template</legend>
-<p><select id="drip_template_class"></select> <select id="drip_template"></select> <span style="display:none"><input type="checkbox" id="drip_fullcolor"><label for="drip_fullcolor">Full color</label></span> <span id="drip_template_info"></span></p>
+<p><select id="drip_template_class"></select> <select id="drip_template"></select> <span style="display:none"><input type="checkbox" id="drip_fullcolor"><label for="drip_fullcolor">Full color</label></span> <span id="drip_template_info" title="Open Template Editor"></span></p>
 </fieldset>
 
 <fieldset id="fieldset_picto">
