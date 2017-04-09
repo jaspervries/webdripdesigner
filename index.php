@@ -1,7 +1,7 @@
-<?php $version = '0.13' ?>
+<?php $version = '0.14' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2017 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -72,7 +72,7 @@ for ($i = 0; $i < 5; $i++) {
     <img class="alignment" id="alignment_arrowright_<?php echo $i; ?>" src="icon/align-arrow-right.png" width="16" height="16" alt="pijlrechts" title="Pijl rechts" onClick="set_alignment(<?php echo $i; ?>, 'arrowright')">
     <img class="alignment" id="alignment_block_<?php echo $i; ?>" src="icon/align-block.png" width="16" height="16" alt="blok" title="Blok" onClick="set_alignment(<?php echo $i; ?>, 'block')"> 
     <img class="alignment" id="alignment_right_<?php echo $i; ?>" src="icon/align-right.png" width="16" height="16" alt="rechts" title="Rechts" onClick="set_alignment(<?php echo $i; ?>, 'right')">
-    <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen" onClick="move_line(<?php echo $i; ?>, 'down')">
+    <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen boven deze regel" onClick="move_line(<?php echo $i; ?>, 'down')">
     <img class="button" src="icon/line_remove.png" width="16" height="16" alt="regel verwijderen" title="Deze regel verwijderen" onClick="move_line(<?php echo $i; ?>, 'up')">
     <img class="button" src="icon/line_clear.png" width="16" height="16" alt="regel leeg maken" title="Deze regel leeg maken" onClick="clear_line(<?php echo $i; ?>)">
 </div>

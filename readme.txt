@@ -161,6 +161,11 @@ Hierdoor kunnen symbolen worden behouden bij wisselen tussen
 (tekst)groottes. De identifier bestaat uit exact drie cijfers. Dit is 
 tevens het getal wat de gebruiker ziet na een dollarteken in de invoer-
 regels (bijvoorbeeld $036).
+Zie het bestand resources/names.php voor de standaardidentifiers van
+WebDRIP Designer. Wanneer een andere nummering wordt gebruikt, verdient 
+het de aanbeveling dit bestand aan te passen en/of uit te breiden. De 
+hier opgegeven omschrijvingen worden getoond als tooltip van het 
+betreffende symbool in de interface.
 Het deel na de tweede underscore dient als omschrijving en wordt niet 
 door het programma gebruikt.
 
@@ -171,11 +176,11 @@ De standaard mapnamen zijn:
 - resources/symbols/Regel_22/
 
 Voorbeeld van bestanden in iedere bovengenoemde map:
-- 19_041_Centrico_op.png
-- 19_042_Centrico_links.png
-- 19_043_Centrico_rechts.png
-- 19_050_Redesign_op.png
-- 19_051_Redesign_links.png
+- 19_030_pijl_op.png
+- 19_031_pijl_links.png
+- 19_032_pijl_rechts.png
+- 19_100_file.png
+- 19_110_ongeval.png
 - ...
 
 Bestanden met dezelfde identifier binnen een map worden overschreven, 

@@ -25,6 +25,8 @@ $s_w = 800;
 $s_h = 16;
 $x = 8;
 $y = 8;
+//include names
+require('names.php');
 //create output image
 $spritesheet = imagecreate($s_w, $s_h);
 imagefill($spritesheet, 0, 0, imagecolorallocate($spritesheet, 255, 255, 255));
@@ -183,8 +185,11 @@ $dirs = scandir($resourcedir);
 					//copy picto to sprite sheet
 					imagecopy($spritesheet, $png, $x, $y, 0, 0, $png_w, $png_h);
 					//add to table
-					//format: [xpos, ypos, xlen, ylen]
+					//format: [xpos, ypos, xlen, ylen, $descr] $descr optional from $names
 					$spritearray[$type_name][$var_name][$item_name] = array($x, $y, $png_w, $png_h);
+					if (array_key_exists($item_name, $names[$type_name])) {
+						$spritearray[$type_name][$var_name][$item_name][] = $names[$type_name][$item_name];
+					}
 					//increase x
 					$x += $png_w + 8;
 				}
@@ -199,8 +204,8 @@ imagecolorset($spritesheet, imagecolorclosest($spritesheet, 0, 0, 255), 0, 0, 0,
 imagepng($spritesheet, '../sprites.png', 9);
 //write js
 $h = fopen('../sprites.js', 'wb');
-$js = 'var sprites=' . json_encode($spritearray).';';
-$js = str_replace('"', '', $js);
+$js = 'var sprites=\'' . str_replace('\'', '\\\'', json_encode($spritearray)).'\';' . PHP_EOL;
+$js .= 'sprites = JSON.parse(sprites);';
 if (fwrite($h, $js)) {
 	echo 'Spritetabel geschreven'.PHP_EOL;
 }

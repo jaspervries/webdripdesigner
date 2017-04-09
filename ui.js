@@ -419,7 +419,7 @@ function load_history(md5) {
 function load_symbols(size) {
 	$('#drip_symbol').html('');
 	$.each(sprites.symbol[size], function(i, val) {
-		$('#drip_symbol').append('<span onclick="insert_text(\'$' + ('000' + i).substring(i.length) + '\')" class="drip_s" title="Regelsymbool ' + ('000' + i).substring(i.length) + ' invoegen"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+		$('#drip_symbol').append('<span onclick="insert_text(\'$' + ('000' + i).substring(i.length) + '\')" class="drip_s" title="$' + ('000' + i).substring(i.length) + ((typeof val[4] !== 'undefined') ? ' ' + val[4] : '') + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
 	});
 }
 
@@ -432,7 +432,7 @@ function load_picto(size) {
 			preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
 		}
 		$.each(sprites.picto[size], function(i, val) {
-			$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="Pictogram ' + i + ' invoegen"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+			$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="' + ((typeof val[4] !== 'undefined') ? val[4] : i) + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
 		});
 	}
 	//show-hide picto gui
