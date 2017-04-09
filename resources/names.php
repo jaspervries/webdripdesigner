@@ -108,7 +108,11 @@ $names['symbol'] = array(
 //serie 9: overige
 900 => 'File plus',
 901 => 'File min',
-910 => 'RING in CdmsBdType2'
+910 => 'RING in CdmsBdType2',
+950 => 'België',
+951 => 'Duitsland',
+952 => 'Groot-Brittannië',
+953 => 'Nederland'
 );
 
 //omschrijvingen van pictogrammen
