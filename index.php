@@ -22,6 +22,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <title>WebDRIP Designer <?php echo $version; ?></title>
 <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png">
 <script src="//code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 <script src="//rawgit.com/timdown/rangyinputs/1.2.0/rangyinputs-jquery.js" type="text/javascript"></script>
