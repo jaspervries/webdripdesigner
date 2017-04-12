@@ -429,17 +429,17 @@ function load_symbols(size) {
 		$('.symbol_pref').show();
 	}
 	else {
-		$('#symbol_show_pref').hide();
+		$('#symbol_show_all').hide();
 	}
-	//change picto
+	//change symbol
 	$('#symbol_show_all').click( function() {
-		picto_show_all = true;
+		symbol_show_all = true;
 		$('#symbol_show_all').hide();
 		$('#symbol_show_pref').show();
 		$('.drip_s').show();
 	});
 	$('#symbol_show_pref').click( function() {
-		picto_show_all = false;
+		symbol_show_all = false;
 		$('#symbol_show_pref').hide();
 		$('#symbol_show_all').show();
 		$('.drip_s').hide();
