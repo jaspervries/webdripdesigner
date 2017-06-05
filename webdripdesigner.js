@@ -644,6 +644,8 @@ function redraw_drip() {
 		context.strokeStyle = "#FFF";
 		context.stroke();
 	}
+	//hook to conformity check, remove line below to disable conformity checks
+	conformity_check();
 }
 
 function redraw_drip_onchange() {

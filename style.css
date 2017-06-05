@@ -149,6 +149,11 @@ input.template_editor_val {
 	width: 240px
 }
 
+.drip_input_error {
+	font-size: small;
+	color: #C00;
+}
+
 #drip_sprites {
 	margin: 0;
 	visibility: hidden;

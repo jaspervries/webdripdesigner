@@ -81,7 +81,7 @@ echo mysqli_error($db['link']).PHP_EOL;
 //create store
 if (!is_dir('store')) {
 	mkdir('store');
-	$subdirs = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F');
+	$subdirs = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 	foreach ($subdirs as $subdir) {
 		mkdir('store/'.$subdir);
 	}

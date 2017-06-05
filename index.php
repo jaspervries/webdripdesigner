@@ -30,6 +30,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <script src="sprites.js" type="text/javascript"></script>
 <script src="webdripdesigner.js" type="text/javascript"></script>
 <script src="ui.js" type="text/javascript"></script>
+<script src="conformity.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -76,6 +77,7 @@ for ($i = 0; $i < 5; $i++) {
     <img class="button" src="icon/line_insert.png" width="16" height="16" alt="regel invoegen" title="Nieuwe regel invoegen boven deze regel" onClick="move_line(<?php echo $i; ?>, 'down')">
     <img class="button" src="icon/line_remove.png" width="16" height="16" alt="regel verwijderen" title="Deze regel verwijderen" onClick="move_line(<?php echo $i; ?>, 'up')">
     <img class="button" src="icon/line_clear.png" width="16" height="16" alt="regel leeg maken" title="Deze regel leeg maken" onClick="clear_line(<?php echo $i; ?>)">
+    <span class="drip_input_error" id="drip_input_error<?php echo $i; ?>"></span>
 </div>
 <?php
 }
