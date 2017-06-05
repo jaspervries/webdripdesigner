@@ -274,6 +274,9 @@ $(document).ready(function () {
 	});
 
 	//load examples
+	if (getCookie('examples') == 'user') {
+		$('#example_select').val('user');
+	}
 	function loadexamples() {
 		var windowheight = $(window).height();
 		$.get( "examples.php", { h: windowheight, l:$('#example_select').val() }, function( data ) {
@@ -292,7 +295,11 @@ $(document).ready(function () {
 	//example selection limiting change
 	$('#example_select').change( function () {
 		loadexamples();
-		$('#dialog').dialog('close');
+		if ($("#dialog").hasClass('ui-dialog-content')) {
+			$('#dialog').dialog('close');
+		}
+		//set cookie
+		setCookie('examples', $(this).val());
 	});
 	
 	/*
