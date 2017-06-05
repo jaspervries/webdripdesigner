@@ -425,7 +425,7 @@ function load_history(md5) {
 //load symbols
 function load_symbols(size) {
 	$('#drip_symbol').html('');
-	var preferred_symbol = [0, 20, 21, 22, 23, 24, 30, 31, 32, 33, 34, 35, 36, 37, 100, 110, 120, 130, 200, 210, 300, 310, 320, 330, 500, 520, 530, 550, 570, 600, 601, 610, 611, 620, 630, 631, 910, 950, 951, 952];
+	var preferred_symbol = [0, 20, 21, 22, 23, 24, 30, 31, 32, 33, 34, 35, 36, 37, 100, 110, 120, 130, 200, 210, 300, 310, 320, 330, 500, 530, 540, 550, 570, 600, 601, 610, 611, 620, 630, 910, 950, 951, 952];
 	$.each(sprites.symbol[size], function(i, val) {
 		$('#drip_symbol').append('<span onclick="insert_text(\'$' + ('000' + i).substring(i.length) + '\')" class="drip_s' + ( ($.inArray(parseInt(i), preferred_symbol) >= 0) ? ' symbol_pref' : '' ) + '" title="$' + ('000' + i).substring(i.length) + ((typeof val[4] !== 'undefined') ? ' ' + val[4] : '') + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
 	});
@@ -458,10 +458,7 @@ function load_symbols(size) {
 function load_picto(size) {
 	$('#drip_picto').html('');
 	if (sprites.picto[size]) {
-		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34', 'RJ34', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
-		if (active_template_class.substr(0, 3) == 'gdh') { //hide old accident picto when gdh template is selected
-			preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
-		}
+		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
 		$.each(sprites.picto[size], function(i, val) {
 			$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="' + ((typeof val[4] !== 'undefined') ? val[4] : i) + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
 		});
