@@ -148,6 +148,9 @@ $(document).ready(function () {
 		if (tpl_font == 'CdmsBdType1') {
 			tpl_symbol = 'Regel_22';
 		}
+		else if (tpl_font == 'CdmsBdType1Yellow') {
+			tpl_symbol = 'Regel_22_geel';
+		}
 		else if (tpl_font == 'CdmsBdType2') {
 			tpl_symbol = 'Regel_19';
 		}

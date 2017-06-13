@@ -165,6 +165,7 @@ foreach ($special_chars as $char_this) {
 </select></td></tr>
 <tr><td>Lettertype:</td><td><select class="template_editor_val" id="template_editor_font">
 <option value="CdmsBdType1">CdmsBdType1</option>
+<option value="CdmsBdType1Yellow">CdmsBdType1 Geel</option>
 <option value="CdmsBdType2">CdmsBdType2</option>
 <option value="CdmsBdType3">CdmsBdType3</option>
 <option value="CdmsBdType3Yellow">CdmsBdType3 Geel</option>
