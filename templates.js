@@ -770,3 +770,19 @@ tpl.push({
 	picto: 'Picto_0',
 	symbol: 'Regel_15_geel'
 });
+
+template_classes.push({
+	id: 'pzh_vaarweg',
+	name: 'PZH VaarwegDRIP'
+});
+tpl.push({
+	name: '2-regel',
+	class: 'pzh_vaarweg',
+	size: [207, 54],
+	lines: [3, 27],
+	lineheight: 24,
+	line: 0,
+	font: 'CdmsBdType1Yellow',
+	picto: 'Picto_40',
+	symbol: 'Regel_22_geel'
+});
