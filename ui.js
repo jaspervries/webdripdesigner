@@ -462,8 +462,11 @@ function load_picto(size) {
 	$('#drip_picto').html('');
 	if (sprites.picto[size]) {
 		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
+		var gdh_hidden_picto = ['J34', 'RJ34', 'RL13J34', 'RJ15C1'];
 		$.each(sprites.picto[size], function(i, val) {
-			$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="' + ((typeof val[4] !== 'undefined') ? val[4] : i) + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+			if ((active_template_class.substr(0, 3) != 'gdh') || ($.inArray(i, gdh_hidden_picto) == -1)) { //verberg pictogrammen die in Den Haag niet beschikbaar zijn
+				$('#drip_picto').append('<span onclick="set_image(\'picto' + i + '\')" class="drip_i' + ( ($.inArray(i, preferred_picto) >= 0) ? ' picto_pref' : '' ) + '" title="' + ((typeof val[4] !== 'undefined') ? val[4] : i) + '"><span style="display: block; width: ' + val[2] + 'px; height: ' + val[3] + 'px; background: url(\'sprites.png\') -' + val[0] + 'px -' + val[1] + 'px;"></span></span>');
+			}
 		});
 	}
 	//show-hide picto gui
