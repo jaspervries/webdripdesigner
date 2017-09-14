@@ -47,7 +47,7 @@ chdir('..');
 $files = scandir('.');
 $filetypes = array('.html', '.php', '.png', '.css', '.txt', '.htaccess');
 if ($jshrink === FALSE) $filetypes[] = '.js';
-$ignore = array('config.cfg.php', 'release.php');
+$ignore = array('config.cfg.php', 'release.php', 'migrate_symbols.php');
 $js = array();
 foreach ($files as $file) {
 	if (is_file($file) && !in_array($file, $ignore) && in_array(substr($file, strrpos($file, '.')), $filetypes)) {
