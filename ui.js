@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2017 Jasper Vries
+Copyright (C) 2013-2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -279,6 +279,9 @@ $(document).ready(function () {
 	//load examples
 	if (getCookie('examples') == 'user') {
 		$('#example_select').val('user');
+	}
+	else if (getCookie('examples') == 'cookie') {
+		$('#example_select').val('cookie');
 	}
 	function loadexamples() {
 		var windowheight = $(window).height();

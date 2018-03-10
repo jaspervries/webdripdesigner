@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2016, 2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -52,9 +52,19 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 			}
 		}
 	}
+	//get cookie unique id
+	$cookie = $_COOKIE[$cfg_cookie['history']];
+	//if empty, set a cookie
+	if (strlen($cookie) != 32) {
+		$cookie = md5($ip . microtime());
+	}
+	//set or update cookie (expiring in one year from now)
+	setcookie($cfg_cookie['history'], $cookie, time()+60*60*24*365 ,'/');
+	//get or store user information from the db
 	$qry = "SELECT `id` FROM `users`
 	WHERE `ip` = '".mysqli_real_escape_string($db['link'], $ip)."'
-	AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."'";
+	AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."'
+	AND `cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
 	$res = mysqli_query($db['link'], $qry);
 	if (!mysqli_num_rows($res)) {
 		//create one
@@ -62,7 +72,8 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 		`id` = NULL,
 		`ip` = '".mysqli_real_escape_string($db['link'], $ip)."',
 		`hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."',
-		`ripe_descr` = '".mysqli_real_escape_string($db['link'], $ripe_descr)."'";
+		`ripe_descr` = '".mysqli_real_escape_string($db['link'], $ripe_descr)."',
+		`cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
 		mysqli_query($db['link'], $qry);
 		$id = mysqli_insert_id($db['link']);
 	}

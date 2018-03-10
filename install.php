@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2014-2016 Jasper Vries
+Copyright (C) 2014-2016, 2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -28,6 +28,8 @@ $cfg_db[\'host\'] = \'localhost\';
 $cfg_db[\'user\'] = \'root\';
 $cfg_db[\'pass\'] = \'\';
 $cfg_db[\'db\'] = \'wdd\';
+
+$cfg_cookie[\'history\'] = \'wdd_unique_id\';
 ?>
 ';
 	file_put_contents('config.cfg.php', $config);
@@ -69,13 +71,20 @@ $qry = "CREATE TABLE IF NOT EXISTS `users`
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`ip` varchar(39),
 	`hostname` varchar(255),
-	`ripe_descr` varchar(255)
+	`ripe_descr` varchar(255),
+	`cookie` varchar(32)
 )
 ENGINE `MyISAM`,
 CHARACTER SET 'latin1', 
 COLLATE 'latin1_general_ci'";
 if (mysqli_query($db['link'], $qry)) echo 'table `users` created or exists';
 else echo 'did not create table `users`'.PHP_EOL;
+echo mysqli_error($db['link']).PHP_EOL;
+
+//add cookie column
+$qry = "ALTER TABLE `users` ADD `cookie` VARCHAR(32) NULL DEFAULT NULL";
+if (mysqli_query($db['link'], $qry)) echo 'table `users` altered';
+else echo 'did not alter table `users`'.PHP_EOL;
 echo mysqli_error($db['link']).PHP_EOL;
 
 //create store

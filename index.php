@@ -1,7 +1,7 @@
-<?php $version = '0.15' ?>
+<?php $version = '0.16' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2017 Jasper Vries
+Copyright (C) 2013-2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -131,6 +131,7 @@ else {
 <select name="example_select" id="example_select">
 	<option value="all" selected="selected">alle beeldstanden</option>
     <option value="user">van dit ip-adres</option>
+    <option value="cookie">van deze browser</option>
 </select>
 <div id="examples"></div>
 </div>

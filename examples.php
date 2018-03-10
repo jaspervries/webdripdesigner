@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2016, 2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -28,13 +28,22 @@ if (is_numeric($_GET['s'])) {
 	$db['link'] = mysqli_connect($cfg_db['host'], $cfg_db['user'], $cfg_db['pass'], $cfg_db['db']);
 	//get number of items
 	$qry = "SELECT `image_md5` FROM `history`";
-	if ($_GET['l'] == 'user') {
+	//limit by ip or cookie
+	if (($_GET['l'] == 'user') || ($_GET['l'] == 'cookie')) {
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$hostname = gethostbyaddr($ip);
 		$qry .= " WHERE `user_id` IN (SELECT `id` FROM `users`
 			WHERE `ip` = '".mysqli_real_escape_string($db['link'], $ip)."'
-			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."')";
+			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."'";
+		//limit by cookie
+		if ($_GET['l'] == 'cookie') {
+			//get cookie unique id
+			$cookie = $_COOKIE[$cfg_cookie['history']];
+			$qry .= " AND `cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
+		}
+		$qry .= ")";
 	}
+	
 	$res = mysqli_query($db['link'], $qry);
 	$num_entries = mysqli_num_rows($res);
 	//decide next page
@@ -44,11 +53,18 @@ if (is_numeric($_GET['s'])) {
 	$prevpage = $_GET['s'] - $num;
 	//select from database
 	$qry = "SELECT `history`.`image_md5`, `users`.`ripe_descr` FROM `history` LEFT JOIN `users` ON `history`.`user_id` = `users`.`id`";
-	if ($_GET['l'] == 'user') {
+	//limit by ip or cookie
+	if (($_GET['l'] == 'user') || ($_GET['l'] == 'cookie')) {
 		$qry .= " WHERE `user_id` IN (SELECT `id` FROM `users`
 			WHERE `ip` = '".mysqli_real_escape_string($db['link'], $ip)."'
-			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."')";
+			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."'";
+		//limit by cookie
+		if ($_GET['l'] == 'cookie') {
+			$qry .= " AND `cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
+		}
+		$qry .= ")";
 	}
+	
 	$qry .= " ORDER BY `timestamp` DESC LIMIT ".$_GET['s'].",".$num;
 	$res = mysqli_query($db['link'], $qry);
 	//create result array
@@ -75,12 +91,19 @@ else {
 	$db['link'] = mysqli_connect($cfg_db['host'], $cfg_db['user'], $cfg_db['pass'], $cfg_db['db']);
 	//select from database
 	$qry = "SELECT `image_md5`, `image_raw` FROM `history`";
-	if ($_GET['l'] == 'user') {
+	if (($_GET['l'] == 'user') || ($_GET['l'] == 'cookie')) {
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$hostname = gethostbyaddr($ip);
 		$qry .= " WHERE `user_id` IN (SELECT `id` FROM `users`
 			WHERE `ip` = '".mysqli_real_escape_string($db['link'], $ip)."'
-			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."')";
+			AND `hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."'";
+		//limit by cookie
+		if ($_GET['l'] == 'cookie') {
+			//get cookie unique id
+			$cookie = $_COOKIE[$cfg_cookie['history']];
+			$qry .= " AND `cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
+		}
+		$qry .= ")";
 	}
 	$qry .= " ORDER BY `timestamp` DESC LIMIT ".$num;
 	$res = mysqli_query($db['link'], $qry);
