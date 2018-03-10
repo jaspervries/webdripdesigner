@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2016 Jasper Vries
+Copyright (C) 2013-2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -770,7 +770,9 @@ tpl.push({
 	picto: 'Picto_0',
 	symbol: 'Regel_15_geel'
 });
-
+/*
+ * PZH VaarwegDRIP
+*/
 template_classes.push({
 	id: 'pzh_vaarweg',
 	name: 'PZH VaarwegDRIP'
@@ -785,4 +787,22 @@ tpl.push({
 	font: 'CdmsBdType1Yellow',
 	picto: 'Picto_40',
 	symbol: 'Regel_22_geel'
+});
+/*
+ * StadsDRIP Halfhoog 60x216
+*/
+template_classes.push({
+	id: 'ly_216_60',
+	name: 'StadsDRIP Halfhoog 216x60'
+});
+tpl.push({
+	name: '3-regel',
+	class: 'ly_216_60',
+	size: [216, 60],
+	lines: [0, 20, 40],
+	lineheight: 20,
+	line: -1,
+	font: 'CdmsBdType3',
+	picto: 'Picto_0',
+	symbol: 'Regel_15'
 });
