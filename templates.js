@@ -306,7 +306,7 @@ tpl.push({
 */
 template_classes.push({
 	id: 'rws_dplus',
-	name: 'RWS DRIP+'
+	name: 'RWS DRIP+ (Type 5A)'
 });
 tpl.push({
 	name: 'Large',
@@ -347,6 +347,59 @@ tpl.push({
 	name: 'Small Links 1+1',
 	class: 'rws_dplus',
 	size: [512, 88],
+	lines: [14, 60],
+	lineheight: 22,
+	line: 0,
+	font: 'CdmsBdType1',
+	picto: 'Picto_44',
+	symbol: 'Regel_22'
+});
+/*
+ * RWS DRIP+ (smal)
+*/
+template_classes.push({
+	id: 'rws_dplus6a',
+	name: 'RWS DRIP+ smal (Type 6A)'
+});
+tpl.push({
+	name: 'Large',
+	class: 'rws_dplus6a',
+	size: [256, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_70',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium Midden',
+	class: 'rws_dplus6a',
+	size: [256, 88],
+	lines: [66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium Dubbel',
+	class: 'rws_dplus6a',
+	size: [256, 88],
+	lines: [66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Small Links 1+1',
+	class: 'rws_dplus6a',
+	size: [256, 88],
 	lines: [14, 60],
 	lineheight: 22,
 	line: 0,
