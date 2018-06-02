@@ -397,11 +397,10 @@ function showhistory(num_start) {
 		nextpage = data['o'];
 		prevpage = data['n'];
 		totalcount = data['t'];
-		creator = data['c'];
 		data = data['i'];
 		var htmlstring = '';
 		for (var i = 0; i < data.length; i++) {
-			htmlstring += '<a onclick="load_history(\'' + data[i] + '\')" class="drip-history" title="' + creator[i] + '"><img src="store/' + data[i].substr(0,1) + '/' + data[i] + '.png" alt="' + creator[i] + '"></a>';
+			htmlstring += '<a onclick="load_history(\'' + data[i] + '\')" class="drip-history"><img src="store/' + data[i].substr(0,1) + '/' + data[i] + '.png"></a>';
 		}
 		$('#historycontainer').html(htmlstring);
 		//display and update navigation buttons

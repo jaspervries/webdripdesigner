@@ -52,7 +52,7 @@ if (is_numeric($_GET['s'])) {
 	//decide previous page
 	$prevpage = $_GET['s'] - $num;
 	//select from database
-	$qry = "SELECT `history`.`image_md5`, `users`.`ripe_descr` FROM `history` LEFT JOIN `users` ON `history`.`user_id` = `users`.`id`";
+	$qry = "SELECT `history`.`image_md5` FROM `history` LEFT JOIN `users` ON `history`.`user_id` = `users`.`id`";
 	//limit by ip or cookie
 	if (($_GET['l'] == 'user') || ($_GET['l'] == 'cookie')) {
 		$qry .= " WHERE `user_id` IN (SELECT `id` FROM `users`
@@ -71,10 +71,9 @@ if (is_numeric($_GET['s'])) {
 	$result = array();
 	while ($row = mysqli_fetch_row($res)) {
 		$result[] = $row[0];
-		$creator[] = empty($row[1]) ? '(ongedefinieerd)' : $row[1];
 	}
 	//output to browser
-	echo json_encode(array('i' => $result, 'c' => $creator, 'o' => $nextpage, 'n' => $prevpage, 't' => $num_entries));
+	echo json_encode(array('i' => $result, 'o' => $nextpage, 'n' => $prevpage, 't' => $num_entries));
 }
 //examples
 else {

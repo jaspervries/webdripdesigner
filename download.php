@@ -33,25 +33,6 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 	//get user id or create one
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$hostname = gethostbyaddr($ip);
-	//get IP owner from RIPE
-	$ripe_url = 'http://rest.db.ripe.net/search.json?query-string='.$ip.'&amp;flags=resource';
-	$json = file_get_contents($ripe_url);
-	$json = json_decode($json, TRUE);
-	$ripe_descr = '';
-	if (is_array($json['objects']['object'])) {
-		foreach($json['objects']['object'] as $object) {
-			if ($object['type'] = 'inetnum') {
-				if (is_array($object['attributes']['attribute'])) {
-					foreach($object['attributes']['attribute'] as $attribute) {
-						if ($attribute['name'] == 'descr') {
-							$ripe_descr = $attribute['value'];
-							break 2;
-						}
-					}
-				}
-			}
-		}
-	}
 	//get cookie unique id
 	$cookie = $_COOKIE[$cfg_cookie['history']];
 	//if empty, set a cookie
@@ -72,7 +53,6 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 		`id` = NULL,
 		`ip` = '".mysqli_real_escape_string($db['link'], $ip)."',
 		`hostname` = '".mysqli_real_escape_string($db['link'], $hostname)."',
-		`ripe_descr` = '".mysqli_real_escape_string($db['link'], $ripe_descr)."',
 		`cookie` = '".mysqli_real_escape_string($db['link'], $cookie)."'";
 		mysqli_query($db['link'], $qry);
 		$id = mysqli_insert_id($db['link']);

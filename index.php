@@ -1,4 +1,4 @@
-<?php $version = '0.16' ?>
+<?php $version = '0.17' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
 Copyright (C) 2013-2018 Jasper Vries

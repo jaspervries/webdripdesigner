@@ -71,7 +71,6 @@ $qry = "CREATE TABLE IF NOT EXISTS `users`
 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`ip` varchar(39),
 	`hostname` varchar(255),
-	`ripe_descr` varchar(255),
 	`cookie` varchar(32)
 )
 ENGINE `MyISAM`,
