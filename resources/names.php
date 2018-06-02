@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2017 Jasper Vries
+Copyright (C) 2017-2018 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -166,6 +166,7 @@ $names['picto'] = array(
 'RJ34' => 'Pictogram ter nagedachtenis aan de Costa Concordia, R.I.P',
 'RJ34v2' => 'Ongeval verder verwijderd van deze DRIP, er is op dit moment geen actie van de weggebruiker vereist',
 'RJ36' => 'IJzel of sneeuw verder verwijderd van deze DRIP, er is op dit moment geen actie van de weggebruiker vereist',
+'RL13' => 'Tunnel',
 'RL13C1' => 'Tunnel dicht, gebruik altijd in combinatie met de tekst \'dicht\' in verband met kleurenblinden',
 'RL13J29' => 'Tegenverkeer in tunnel',
 'RL13J34' => 'Schip van trailer gevallen in tunnel',
