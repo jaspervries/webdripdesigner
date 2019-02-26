@@ -83,7 +83,7 @@ if ($jshrink === TRUE) {
     //add copyright notice
     $minifiedCode = '/*
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2017 Jasper Vries
+Copyright (C) 2013-2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -98,16 +98,20 @@ You should have received a copy of the GNU General Public License
 along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 */
 '. $minifiedCode;
-    //write to file
-	file_put_contents($release_dir.'/webdripdesigner.min.js', $minifiedCode);
+	//get md5
+	$js_md5 = md5($minifiedCode);
+	$js_filename = 'webdripdesigner-' . $js_md5 . '.min.js';
+	//write to file
+	file_put_contents($release_dir . '/' . $js_filename, $minifiedCode);
 	
 	//replace script tags
 	$html = file_get_contents('index.php');
 	$html = preg_replace_callback('#<script.*src="(.*)".*</script>\v+?#U', 
 		function($matches) use ($js) {
+			global $js_filename;
 			if (in_array($matches[1], $js)) {
 				if ($matches[1] == 'webdripdesigner.js') {
-					return '<script src="webdripdesigner.min.js" type="text/javascript"></script>';
+					return '<script src="' . $js_filename . '" type="text/javascript"></script>';
 				}
 				else {
 					return '';
