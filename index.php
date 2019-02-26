@@ -1,7 +1,7 @@
-<?php $version = '0.17' ?>
+<?php $version = '17' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2018 Jasper Vries
+Copyright (C) 2013-2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 

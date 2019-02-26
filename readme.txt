@@ -340,7 +340,7 @@ volledige licentietekst in license.txt.
 
 
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2017 Jasper Vries
+Copyright (C) 2013-2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 

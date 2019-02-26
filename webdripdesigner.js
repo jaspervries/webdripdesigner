@@ -1,6 +1,6 @@
 /*
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2017 Jasper Vries
+Copyright (C) 2013-2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -89,7 +89,7 @@ function prepare_text(str) {
 					if (str[i+t]) tilestr = tilestr + str[i+t];
 					else break;
 				}
-				//next character must be A, N, s, U or a
+				//next character must be A, N, s, U, a, RA or NA
 				//subsequent one to three characters must be a number, followed by a closing square bracket
 				//OR
 				//next character must be a capital OR a number, followed by closing square bracket
@@ -97,11 +97,14 @@ function prepare_text(str) {
 				if (tilestr.match(/^\[[ANUaE][0-9]]/) != null) { //[Xx]
 					tilematch = 3;
 				}
-				else if ((tilestr.match(/^\[[ANUaE][0-9]{2}]/) != null) || (tilestr.match(/^\[a[0-9]{1}[a-z]{1}]/) != null)) { //[Xxx] or [axy]
+				else if ((tilestr.match(/^\[[ANUaE][0-9]{2}]/) != null) || (tilestr.match(/^\[a[0-9]{1}[a-z]{1}]/) != null) || (tilestr.match(/^\[R[AN][0-9]{1}]/) != null)) { //[Xxx] or [axy] or [RXx]
 					tilematch = 4;
 				}
-				else if ((tilestr.match(/^\[[ANsSUaE][0-9]{3}]/) != null) || (tilestr.match(/^\[a[0-9]{2}[a-z]{1}]/) != null) || (tilestr.match(/^\{[sS][0-9]{3}}/) != null)) { //[Xxxx] or [axxy] or {sxxx}
+				else if ((tilestr.match(/^\[[ANsSUaE][0-9]{3}]/) != null) || (tilestr.match(/^\[a[0-9]{2}[a-z]{1}]/) != null) || (tilestr.match(/^\{[sS][0-9]{3}}/) != null) || (tilestr.match(/^\[R[AN][0-9]{2}]/) != null)) { //[Xxxx] or [axxy] or {sxxx} or [RXxx]
 					tilematch = 5;
+				}
+				else if (tilestr.match(/^\[R[AN][0-9]{3}]/) != null) { //[RXxxx]
+					tilematch = 6;
 				}
 				else if (tilestr.match(/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/) != null) { //[XX]
 					tilematch = 3;
@@ -140,7 +143,13 @@ function prepare_text(str) {
 				if ((tilematch >= 3) && (tilematch <= 10)) {
 					//open
 					if (str[i] == '[') {
-						ids.push('tile_open');
+						if (str[i+1] == 'R') {
+							ids.push('tile_ring');
+							t = t+1;
+						}
+						else {
+							ids.push('tile_open');
+						}
 					}
 					else if (str[i] == '>') {
 						ids.push('tile_detour_right_open');
@@ -159,7 +168,12 @@ function prepare_text(str) {
 							//exit symbol
 							ids.push('tile_afrit');
 						}
+						else if ((tilematch > 2) && (t == 1) && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
+							//exit symbol
+							
+						}
 						else {
+							//characters
 							var char = str[i+t];
 							if ((tilematch == 5) && (char == 'S')) char = 's';
 							ids.push( 'text_CdmsBdType2_' + char.charCodeAt(0) );
@@ -255,7 +269,7 @@ function draw_text(ids, start, top, context) {
 	for (var i = 0; i < ids.length; i++) {
 
 		//multi-char tile helper
-		if ((ids[i] == 'tile_open') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
+		if ((ids[i] == 'tile_open') || (ids[i] == 'tile_ring') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
 			if (tpl_font == 'CdmsBdType2') tile_down = 1;
 			tile_start = start;
 		}
