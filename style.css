@@ -22,6 +22,11 @@ div#content {
 	margin-right: 196px;
 }
 
+div#footer {
+	font-size: x-small;
+	color: #333;
+}
+
 div#examplescontainer {
 	position: fixed;
 	top: 0;

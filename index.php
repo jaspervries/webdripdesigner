@@ -1,4 +1,3 @@
-<?php $version = '17' ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
 Copyright (C) 2013-2019 Jasper Vries
@@ -19,7 +18,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>WebDRIP Designer <?php echo $version; ?></title>
+<title>WebDRIP Designer</title>
 <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -38,14 +37,14 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 
 <div id="menu">
 <ul>
-	<li><a id="menu-manual" href="#">Handleiding</a></li>
+    <li><a id="menu-manual" href="#">Handleiding</a></li>
 	<li><a id="menu-changelog" href="#">Versiehistorie</a></li>
     <li><a id="menu-about" href="#">Over de WebDRIP Designer</a></li>
     <li><a id="menu-history" href="#"><strong>Historie</strong></a></li>
 </ul>
 </div>
 
-<h1>WebDRIP Designer <?php echo $version; ?></h1>
+<h1>WebDRIP Designer</h1>
 
 <fieldset class="condensed">
 <legend>Template</legend>
@@ -190,6 +189,8 @@ for ($i = 0; $i < 5; $i++) {
 </select></td></tr>
 </table>
 </div>
+
+<div id="footer">WebDRIP Designer {{BUILD}}</div>
 
 <?php if (strlen($_GET['md5']) == 32) {
 ?>

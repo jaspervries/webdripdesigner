@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2016-2017 Jasper Vries
+Copyright (C) 2016-2017, 2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -120,4 +120,17 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 		$html);
 	file_put_contents($release_dir.'/index.php', $html);
 }
+
+//get hg version
+$hg_ver = exec('hg id -i');
+$build = 'build ' . $hg_ver . ' ' . date('Y-m-d');
+$hg_tag = exec('hg id -t');
+if ($hg_tag !== 'tip') {
+	$build = 'versie ' . $hg_tag . ' ' . $build;
+}
+//insert version into file
+$html = file_get_contents($release_dir.'/index.php');
+$html = str_replace('{{BUILD}}', $build, $html);
+file_put_contents($release_dir.'/index.php', $html);
+
 ?>
