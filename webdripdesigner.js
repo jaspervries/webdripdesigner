@@ -118,6 +118,9 @@ function prepare_text(str) {
 				else if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
 					tilematch = 10;
 				}
+				else if (tilestr.match(/^\[A[0-9]{1,3}a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy]
+					tilematch = 15;
+				}
 				else if (tilestr.match(/^\[[A-Z0-9]]/) != null) { //[X]
 					tilematch = 11;
 				}
@@ -169,8 +172,8 @@ function prepare_text(str) {
 							ids.push('tile_afrit');
 						}
 						else if ((tilematch > 2) && (t == 1) && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
-							//exit symbol
-							
+							//do not draw R
+							continue;
 						}
 						else {
 							//characters
@@ -204,6 +207,7 @@ function prepare_text(str) {
 					ids.push( 'text_CdmsBdType2_' + str[i+1].charCodeAt(0) );
 					i = i+2;
 				}
+				//detour tiles
 				else if ((tilematch >= 12) && (tilematch <= 14)) {
 					switch (tilematch) {
 						case 12: var tile_id = 'tile1_detour_right'; break;
@@ -218,6 +222,33 @@ function prepare_text(str) {
 					ids.push(tile_id);
 					ids.push( 'text_' + tile_font + '_' + str[i+1].charCodeAt(0) );
 					i = i+2;
+				}
+				//combined road number and exit tile
+				else if (tilematch == 15) {
+					ids.push('tile_open');
+					i = i+1;
+					//characters
+					while(true) {
+						var char = str[i];
+						if (char == 'a') {
+							break;
+						}
+						ids.push( 'text_CdmsBdType2Black_' + char.charCodeAt(0) );
+						i = i+1;
+					}
+					ids.push('tile_middle');
+					ids.push('tile_afrit');
+					i = i+1;
+					while(true) {
+						var char = str[i];
+						if (char == ']') {
+							break;
+						}
+						ids.push( 'text_CdmsBdType2_' + char.charCodeAt(0) );
+						i = i+1;
+					}
+					ids.push('tile_close');
+					i = i+1;
 				}
 				//no match
 				else {
@@ -330,8 +361,10 @@ function draw_text(ids, start, top, context) {
 		start = start + width + tpl_charspacing;
 		//if (ids[i+1]) start = start + 3;
 		//multi-char tile helper
-		if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close')) {
-			tile_down = 0;
+		if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close') || (ids[i] == 'tile_middle')) {
+			if (ids[i] != 'tile_middle') {
+				tile_down = 0;
+			}
 			if (ids[i] == 'tile_close') {
 				//format [x0, y0, length]
 				var linecoords = [
@@ -339,6 +372,31 @@ function draw_text(ids, start, top, context) {
 					[0, 0, start - tile_start - 7],
 					//bottom
 					[0, 19, start - tile_start - 7]
+				];
+			}
+			else if (ids[i] == 'tile_middle') {
+				//format [x0, y0, length]
+				var linecoords = [
+					//top
+					[0, 0, start - tile_start - 6],
+					[-1, 1, start - tile_start - 6],
+					[-1, 2, start - tile_start - 6],
+					[-1, 3, start - tile_start - 6],
+					[-1, 4, start - tile_start - 6],
+					[-1, 5, start - tile_start - 6],
+					[-1, 6, start - tile_start - 6],
+					[-1, 7, start - tile_start - 6],
+					[-1, 8, start - tile_start - 6],
+					[-1, 9, start - tile_start - 6],
+					[-1, 10, start - tile_start - 6],
+					[-1, 11, start - tile_start - 6],
+					[-1, 12, start - tile_start - 6],
+					[-1, 13, start - tile_start - 6],
+					[-1, 14, start - tile_start - 6],
+					[-1, 15, start - tile_start - 6],
+					[-1, 16, start - tile_start - 6],
+					[-1, 17, start - tile_start - 6],
+					[0, 18, start - tile_start - 6]
 				];
 			}
 			else if (ids[i] == 'tile_detour_right_close') {

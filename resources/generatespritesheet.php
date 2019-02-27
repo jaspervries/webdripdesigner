@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2016 Jasper Vries
+Copyright (C) 2016, 2019 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -55,8 +55,13 @@ foreach ($files as $file) {
 		$png_w = imagesx($png);
 		$png_h = imagesy($png);
 		$magicpink = imagecolorat($png, 0, 0);
-		//replace black with blue for transparency later on
-		imagecolorset($png, imagecolorclosest($png, 0, 0, 0), 0, 0, 255);
+		//replace black with blue for transparency later on, unless black text, then replace white with blue
+		if (substr($file, -9, 5) !== 'Black') {
+			imagecolorset($png, imagecolorclosest($png, 0, 0, 0), 0, 0, 255);
+		}
+		else {
+			imagecolorset($png, imagecolorclosest($png, 255, 255, 255), 0, 0, 255);
+		}
 		//start id and height
 		$glyph_id = 32;
 		$glyph_h = 0;
