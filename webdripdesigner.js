@@ -248,7 +248,6 @@ function prepare_text(str) {
 						i = i+1;
 					}
 					ids.push('tile_close');
-					i = i+1;
 				}
 				//no match
 				else {
@@ -292,223 +291,231 @@ function prepare_text(str) {
 	return return_value;
 }
 
-function draw_text(ids, start, top, context) {
-	var tile_down = 0;
-	var tile_start = 0;
-	var tile_single = 0;
+function draw_text(ids, initial_start, initial_top, context) {
 	var image = document.getElementById('sprites');
-	for (var i = 0; i < ids.length; i++) {
+	//two-pass
+	//first pass draws tiles
+	//second pass draws text and symbols
+	for (var pass = 1; pass <= 2; pass++) {
+		var tile_down = 0;
+		var tile_start = 0;
+		var tile_single = 0;
+		var start = initial_start;
+		var top = initial_top;
+		for (var i = 0; i < ids.length; i++) {
 
-		//multi-char tile helper
-		if ((ids[i] == 'tile_open') || (ids[i] == 'tile_ring') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
-			if (tpl_font == 'CdmsBdType2') tile_down = 1;
-			tile_start = start;
-		}
-		//single char tile helper
-		if (ids[i].substr(0,5) == 'tile1') {
-			if (tpl_font == 'CdmsBdType2') tile_down = 1;
-		}
-		
-		//draw text
-		if (ids[i].substr(0,4) == 'text') {
-			var id = ids[i].substr(ids[i].indexOf('_',6)+1);
-			var font = ids[i].substr(5, ids[i].indexOf('_',6)-5);
-			//single tile helper
-			if (tile_single > 0) {
+			//multi-char tile helper
+			if ((ids[i] == 'tile_open') || (ids[i] == 'tile_ring') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
+				if (tpl_font == 'CdmsBdType2') tile_down = 1;
 				tile_start = start;
-				//move start to left
-				switch (tile_single) {
-					case 11: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3; break;
-					case 12: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 11; break;
-					case 13: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 3; break;
-					case 14: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3; break;
-					case 15: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 12; break;
-					case 16: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 4; break;
-					case 17: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 3; break;
-				}
 			}
-			//calculate vertical position
-			var down = top + Math.round((tpl_lineheight - sprites.font[font][id][3]) / 2) + tile_down;
-			var width = sprites.font[font][id][2];
+			//single char tile helper
+			if (ids[i].substr(0,5) == 'tile1') {
+				if (tpl_font == 'CdmsBdType2') tile_down = 1;
+			}
+			
 			//draw text
-			if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) {
-				down = down + 1;
+			if (ids[i].substr(0,4) == 'text') {
+				var id = ids[i].substr(ids[i].indexOf('_',6)+1);
+				var font = ids[i].substr(5, ids[i].indexOf('_',6)-5);
+				//single tile helper
+				if (tile_single > 0) {
+					tile_start = start;
+					//move start to left
+					switch (tile_single) {
+						case 11: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3; break;
+						case 12: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 11; break;
+						case 13: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 3; break;
+						case 14: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3; break;
+						case 15: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 12; break;
+						case 16: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 4; break;
+						case 17: start = start - sprites.font[font][id][2] - Math.floor((22 - sprites.font[font][id][2]) / 2) - 3 - 3; break;
+					}
+				}
+				//calculate vertical position
+				var down = top + Math.round((tpl_lineheight - sprites.font[font][id][3]) / 2) + tile_down;
+				var width = sprites.font[font][id][2];
+				//draw text
+				if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) {
+					down = down + 1;
+				}
+				else {
+					down = down + 2;
+				}
+				//draw text to canvas
+				context.drawImage(image, sprites.font[font][id][0], sprites.font[font][id][1], sprites.font[font][id][2], sprites.font[font][id][3], start, down, sprites.font[font][id][2], sprites.font[font][id][3]);
 			}
+			//draw symbol
+			else if (ids[i].substr(0,6) == 'symbol') {
+				var id = ids[i].substr(ids[i].indexOf('_',6)+1);
+				var down = top + Math.round((tpl_lineheight - sprites.symbol[tpl_symbol][id][3]) / 2) + tile_down;
+				var width = sprites.symbol[tpl_symbol][id][2];
+				context.drawImage(image, sprites.symbol[tpl_symbol][id][0], sprites.symbol[tpl_symbol][id][1], sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3], start, down, sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3]);
+			}
+			//draw tiles
 			else {
-				down = down + 2;
+				//calculate vertical position
+				var id = ids[i];
+				var down = top + Math.round((tpl_lineheight - sprites.tiles[id][3]) / 2) + tile_down;
+				var width = sprites.tiles[id][2];
+				//context.drawImage(image, start, down);
+				context.drawImage(image, sprites.tiles[id][0], sprites.tiles[id][1], sprites.tiles[id][2], sprites.tiles[id][3], start, down, sprites.tiles[id][2], sprites.tiles[id][3]);
 			}
-			//draw text to canvas
-			context.drawImage(image, sprites.font[font][id][0], sprites.font[font][id][1], sprites.font[font][id][2], sprites.font[font][id][3], start, down, sprites.font[font][id][2], sprites.font[font][id][3]);
-		}
-		//draw symbol
-		else if (ids[i].substr(0,6) == 'symbol') {
-			var id = ids[i].substr(ids[i].indexOf('_',6)+1);
-			var down = top + Math.round((tpl_lineheight - sprites.symbol[tpl_symbol][id][3]) / 2) + tile_down;
-			var width = sprites.symbol[tpl_symbol][id][2];
-			context.drawImage(image, sprites.symbol[tpl_symbol][id][0], sprites.symbol[tpl_symbol][id][1], sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3], start, down, sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3]);
-		}
-		//draw tiles
-		else {
-			//calculate vertical position
-			var id = ids[i];
-			var down = top + Math.round((tpl_lineheight - sprites.tiles[id][3]) / 2) + tile_down;
-			var width = sprites.tiles[id][2];
-			//context.drawImage(image, start, down);
-			context.drawImage(image, sprites.tiles[id][0], sprites.tiles[id][1], sprites.tiles[id][2], sprites.tiles[id][3], start, down, sprites.tiles[id][2], sprites.tiles[id][3]);
-		}
-		
-		//set new left
-		start = start + width + tpl_charspacing;
-		//if (ids[i+1]) start = start + 3;
-		//multi-char tile helper
-		if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close') || (ids[i] == 'tile_middle')) {
-			if (ids[i] != 'tile_middle') {
+			
+			//set new left
+			start = start + width + tpl_charspacing;
+			//if (ids[i+1]) start = start + 3;
+			//reset tile_down
+			if ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close')) {
 				tile_down = 0;
 			}
-			if (ids[i] == 'tile_close') {
-				//format [x0, y0, length]
-				var linecoords = [
-					//top
-					[0, 0, start - tile_start - 7],
-					//bottom
-					[0, 19, start - tile_start - 7]
-				];
-			}
-			else if (ids[i] == 'tile_middle') {
-				//format [x0, y0, length]
-				var linecoords = [
-					//top
-					[0, 0, start - tile_start - 6],
-					[-1, 1, start - tile_start - 6],
-					[-1, 2, start - tile_start - 6],
-					[-1, 3, start - tile_start - 6],
-					[-1, 4, start - tile_start - 6],
-					[-1, 5, start - tile_start - 6],
-					[-1, 6, start - tile_start - 6],
-					[-1, 7, start - tile_start - 6],
-					[-1, 8, start - tile_start - 6],
-					[-1, 9, start - tile_start - 6],
-					[-1, 10, start - tile_start - 6],
-					[-1, 11, start - tile_start - 6],
-					[-1, 12, start - tile_start - 6],
-					[-1, 13, start - tile_start - 6],
-					[-1, 14, start - tile_start - 6],
-					[-1, 15, start - tile_start - 6],
-					[-1, 16, start - tile_start - 6],
-					[-1, 17, start - tile_start - 6],
-					[0, 18, start - tile_start - 6]
-				];
-			}
-			else if (ids[i] == 'tile_detour_right_close') {
-				//format [x0, y0, length]
-				var linecoords = [
-					//top
-					[0, 0, start - tile_start - 15],
-					//bottom
-					[0, 21, start - tile_start - 15]
-				];
-			}
-			else if (ids[i] == 'tile_detour_left_close') {
-				//format [x0, y0, length]
-				var linecoords = [
-					//top
-					[8, 0, start - tile_start - 15],
-					//bottom
-					[8, 21, start - tile_start - 15]
-				];
-			}
-			else if (ids[i] == 'tile_detour_top_close') {
-				//format [x0, y0, length]
-				var linecoords = [
-					//bottom, top is handled separately below
-					[0, 33, start - tile_start - 7]
-				];
-			}
-			else { //if (ids[i] == 'tile_s_close')
-				//format [x0, y0, length]
-				var linecoords = [
-					//top
-					[0, 3, 3],
-					[3, 2, 5],
-					[8, 1, 6],
-					[14, 0, start - tile_start - 35],
-					[start - tile_start - 21, 1, 6],
-					[start - tile_start - 15, 2, 5],
-					[start - tile_start - 10, 3, 3],
-					//bottom
-					[0, 20, 3],
-					[3, 21, 5],
-					[8, 22, 6],
-					[14, 23, start - tile_start - 35],
-					[start - tile_start - 21, 22, 6],
-					[start - tile_start - 15, 21, 5],
-					[start - tile_start - 10, 20, 3]
-				];
-			}
-			for (var t = 0; t < linecoords.length; t++) {
-				context.beginPath();
-				context.moveTo(tile_start + 2 + linecoords[t][0], down + 0.5 + linecoords[t][1]);
-				context.lineTo(tile_start + 2 + linecoords[t][0] + linecoords[t][2], down + 0.5 + linecoords[t][1]);
-				context.strokeStyle = "#FFF";
-				context.stroke();
-			}
-			
-			if (ids[i] == 'tile_detour_top_close') {
-				var tiledetourwidth = (start - tile_start - 7);
-				var tempcanvas = document.createElement('canvas');
-				tempcanvas.width = Math.ceil(tiledetourwidth / 2);
-            	tempcanvas.height = 10;
-            	var tempctx = tempcanvas.getContext('2d');
-				var linecoords = [
-					//top, drawn as separate horizontal lines to avoid anti-aliasing of shape or scaled image
-					[Math.floor(tiledetourwidth * 0.4), 0 , Math.ceil(tiledetourwidth * 0.1) + 1],
-					[Math.floor(tiledetourwidth * 0.35), 1 , Math.ceil(tiledetourwidth * 0.15) + 1],
-					[Math.floor(tiledetourwidth * 0.3), 2 , Math.ceil(tiledetourwidth * 0.2) + 1],
-					[Math.floor(tiledetourwidth * 0.25), 3 , Math.ceil(tiledetourwidth * 0.25) + 1],
-					[Math.floor(tiledetourwidth * 0.2), 4 , Math.ceil(tiledetourwidth * 0.3) + 1],
-					[Math.floor(tiledetourwidth * 0.15), 5 , Math.floor(tiledetourwidth * 0.3)],
-					[Math.floor(tiledetourwidth * 0.1), 6 , Math.floor(tiledetourwidth * 0.25)],
-					[Math.floor(tiledetourwidth * 0.05), 7 , Math.floor(tiledetourwidth * 0.2)],
-					[0, 8 , Math.floor(tiledetourwidth * 0.15)],
-					[0, 9 , Math.floor(tiledetourwidth * 0.05)],
-				];
-				//draw lines
-				for (var t = 0; t < linecoords.length; t++) {
-					tempctx.beginPath();
-					tempctx.moveTo(linecoords[t][0], 0.5 + linecoords[t][1]);
-					tempctx.lineTo(linecoords[t][0] + linecoords[t][2], 0.5 + linecoords[t][1]);
-					tempctx.strokeStyle = "#FFF";
-					tempctx.stroke();
+			//multi-char tile helper/rendered tiles
+			if ((pass == 1) && ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close') || (ids[i] == 'tile_middle'))) {
+				if (ids[i] == 'tile_close') {
+					//format [x0, y0, length]
+					var linecoords = [
+						//top
+						[0, 0, start - tile_start - 7],
+						//bottom
+						[0, 19, start - tile_start - 7]
+					];
 				}
-				//draw to canvas
-				context.drawImage(tempcanvas, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2, down, Math.ceil(tiledetourwidth / 2), 10);
-				var tempcanvas2 = document.createElement('canvas');
-				tempcanvas2.width = Math.ceil(tiledetourwidth / 2);
-            	tempcanvas2.height = 10;
-            	var tempctx2 = tempcanvas2.getContext('2d');
-				tempctx2.scale(-1, 1);
-				tempctx2.drawImage(tempcanvas, -1 * Math.ceil(tiledetourwidth / 2), 0, Math.ceil(tiledetourwidth / 2), 10); // draw the image
-				context.drawImage(tempcanvas2, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2 + Math.floor(tiledetourwidth / 2), down, Math.ceil(tiledetourwidth / 2), 10);
+				else if (ids[i] == 'tile_middle') {
+					//format [x0, y0, length]
+					var linecoords = [
+						//top
+						[0, 0, start - tile_start - 6],
+						[-1, 1, start - tile_start - 6],
+						[-1, 2, start - tile_start - 6],
+						[-1, 3, start - tile_start - 6],
+						[-1, 4, start - tile_start - 6],
+						[-1, 5, start - tile_start - 6],
+						[-1, 6, start - tile_start - 6],
+						[-1, 7, start - tile_start - 6],
+						[-1, 8, start - tile_start - 6],
+						[-1, 9, start - tile_start - 6],
+						[-1, 10, start - tile_start - 6],
+						[-1, 11, start - tile_start - 6],
+						[-1, 12, start - tile_start - 6],
+						[-1, 13, start - tile_start - 6],
+						[-1, 14, start - tile_start - 6],
+						[-1, 15, start - tile_start - 6],
+						[-1, 16, start - tile_start - 6],
+						[-1, 17, start - tile_start - 6],
+						[0, 18, start - tile_start - 6]
+					];
+				}
+				else if (ids[i] == 'tile_detour_right_close') {
+					//format [x0, y0, length]
+					var linecoords = [
+						//top
+						[0, 0, start - tile_start - 15],
+						//bottom
+						[0, 21, start - tile_start - 15]
+					];
+				}
+				else if (ids[i] == 'tile_detour_left_close') {
+					//format [x0, y0, length]
+					var linecoords = [
+						//top
+						[8, 0, start - tile_start - 15],
+						//bottom
+						[8, 21, start - tile_start - 15]
+					];
+				}
+				else if (ids[i] == 'tile_detour_top_close') {
+					//format [x0, y0, length]
+					var linecoords = [
+						//bottom, top is handled separately below
+						[0, 33, start - tile_start - 7]
+					];
+				}
+				else { //if (ids[i] == 'tile_s_close')
+					//format [x0, y0, length]
+					var linecoords = [
+						//top
+						[0, 3, 3],
+						[3, 2, 5],
+						[8, 1, 6],
+						[14, 0, start - tile_start - 35],
+						[start - tile_start - 21, 1, 6],
+						[start - tile_start - 15, 2, 5],
+						[start - tile_start - 10, 3, 3],
+						//bottom
+						[0, 20, 3],
+						[3, 21, 5],
+						[8, 22, 6],
+						[14, 23, start - tile_start - 35],
+						[start - tile_start - 21, 22, 6],
+						[start - tile_start - 15, 21, 5],
+						[start - tile_start - 10, 20, 3]
+					];
+				}
+				for (var t = 0; t < linecoords.length; t++) {
+					context.beginPath();
+					context.moveTo(tile_start + 2 + linecoords[t][0], down + 0.5 + linecoords[t][1]);
+					context.lineTo(tile_start + 2 + linecoords[t][0] + linecoords[t][2], down + 0.5 + linecoords[t][1]);
+					context.strokeStyle = "#FFF";
+					context.stroke();
+				}
 				
+				if (ids[i] == 'tile_detour_top_close') {
+					var tiledetourwidth = (start - tile_start - 7);
+					var tempcanvas = document.createElement('canvas');
+					tempcanvas.width = Math.ceil(tiledetourwidth / 2);
+								tempcanvas.height = 10;
+								var tempctx = tempcanvas.getContext('2d');
+					var linecoords = [
+						//top, drawn as separate horizontal lines to avoid anti-aliasing of shape or scaled image
+						[Math.floor(tiledetourwidth * 0.4), 0 , Math.ceil(tiledetourwidth * 0.1) + 1],
+						[Math.floor(tiledetourwidth * 0.35), 1 , Math.ceil(tiledetourwidth * 0.15) + 1],
+						[Math.floor(tiledetourwidth * 0.3), 2 , Math.ceil(tiledetourwidth * 0.2) + 1],
+						[Math.floor(tiledetourwidth * 0.25), 3 , Math.ceil(tiledetourwidth * 0.25) + 1],
+						[Math.floor(tiledetourwidth * 0.2), 4 , Math.ceil(tiledetourwidth * 0.3) + 1],
+						[Math.floor(tiledetourwidth * 0.15), 5 , Math.floor(tiledetourwidth * 0.3)],
+						[Math.floor(tiledetourwidth * 0.1), 6 , Math.floor(tiledetourwidth * 0.25)],
+						[Math.floor(tiledetourwidth * 0.05), 7 , Math.floor(tiledetourwidth * 0.2)],
+						[0, 8 , Math.floor(tiledetourwidth * 0.15)],
+						[0, 9 , Math.floor(tiledetourwidth * 0.05)],
+					];
+					//draw lines
+					for (var t = 0; t < linecoords.length; t++) {
+						tempctx.beginPath();
+						tempctx.moveTo(linecoords[t][0], 0.5 + linecoords[t][1]);
+						tempctx.lineTo(linecoords[t][0] + linecoords[t][2], 0.5 + linecoords[t][1]);
+						tempctx.strokeStyle = "#FFF";
+						tempctx.stroke();
+					}
+					//draw to canvas
+					context.drawImage(tempcanvas, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2, down, Math.ceil(tiledetourwidth / 2), 10);
+					var tempcanvas2 = document.createElement('canvas');
+					tempcanvas2.width = Math.ceil(tiledetourwidth / 2);
+								tempcanvas2.height = 10;
+								var tempctx2 = tempcanvas2.getContext('2d');
+					tempctx2.scale(-1, 1);
+					tempctx2.drawImage(tempcanvas, -1 * Math.ceil(tiledetourwidth / 2), 0, Math.ceil(tiledetourwidth / 2), 10); // draw the image
+					context.drawImage(tempcanvas2, 0, 0, Math.ceil(tiledetourwidth / 2), 10, tile_start + 2 + Math.floor(tiledetourwidth / 2), down, Math.ceil(tiledetourwidth / 2), 10);
+					
+				}
+				
+				//start = start + 3;
 			}
-			
-			//start = start + 3;
+			//single char tile helper
+			if (tile_single > 0) {
+				tile_down = 0;
+				//if (tile_single >= 15) tile_down = 2;
+				start = tile_start
+				//start = tile_start + 3;
+				tile_single = 0;
+			}
+			if (ids[i] == 'tile1_square') tile_single = 11;
+			else if (ids[i] == 'tile1_detour_right') tile_single = 12;
+			else if (ids[i] == 'tile1_detour_left') tile_single = 13;
+			else if (ids[i] == 'tile1_detour_top') tile_single = 14;
+			else if (ids[i] == 'tile1_detour_right_fc') tile_single = 15;
+			else if (ids[i] == 'tile1_detour_left_fc') tile_single = 16;
+			else if (ids[i] == 'tile1_detour_top_fc') tile_single = 17;
 		}
-		//single char tile helper
-		if (tile_single > 0) {
-			tile_down = 0;
-			//if (tile_single >= 15) tile_down = 2;
-			start = tile_start
-			//start = tile_start + 3;
-			tile_single = 0;
-		}
-		if (ids[i] == 'tile1_square') tile_single = 11;
-		else if (ids[i] == 'tile1_detour_right') tile_single = 12;
-		else if (ids[i] == 'tile1_detour_left') tile_single = 13;
-		else if (ids[i] == 'tile1_detour_top') tile_single = 14;
-		else if (ids[i] == 'tile1_detour_right_fc') tile_single = 15;
-		else if (ids[i] == 'tile1_detour_left_fc') tile_single = 16;
-		else if (ids[i] == 'tile1_detour_top_fc') tile_single = 17;
 	}
 
 }
