@@ -27,6 +27,20 @@ else {
 	$jshrink = FALSE;
 }
 
+//function to clean directory
+function rm_r($dir) {
+	$files = scandir($dir);
+	foreach ($files as $file) {
+		$path = $dir . '/' . $file;
+		if (is_dir($path) && ($file != '.') && ($file != '..')) {
+			rm_r($path);
+		}
+		elseif (is_file($path)) {
+			unlink($path);
+		}
+	}
+}
+
 //check if release dir exists, if not create it
 if (!is_dir($release_dir)) {
 	mkdir($release_dir);
@@ -34,6 +48,8 @@ if (!is_dir($release_dir)) {
 }
 else {
 	echo 'NOTICE: directory '.$release_dir.' already exists'.PHP_EOL;
+	//clean release directory
+	rm_r($release_dir);
 }
 
 //run spritesheet generator
