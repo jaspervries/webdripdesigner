@@ -343,14 +343,18 @@ function draw_text(ids, initial_start, initial_top, context) {
 					down = down + 2;
 				}
 				//draw text to canvas
-				context.drawImage(image, sprites.font[font][id][0], sprites.font[font][id][1], sprites.font[font][id][2], sprites.font[font][id][3], start, down, sprites.font[font][id][2], sprites.font[font][id][3]);
+				if (pass == 2) {
+					context.drawImage(image, sprites.font[font][id][0], sprites.font[font][id][1], sprites.font[font][id][2], sprites.font[font][id][3], start, down, sprites.font[font][id][2], sprites.font[font][id][3]);
+				}
 			}
 			//draw symbol
 			else if (ids[i].substr(0,6) == 'symbol') {
 				var id = ids[i].substr(ids[i].indexOf('_',6)+1);
 				var down = top + Math.round((tpl_lineheight - sprites.symbol[tpl_symbol][id][3]) / 2) + tile_down;
 				var width = sprites.symbol[tpl_symbol][id][2];
-				context.drawImage(image, sprites.symbol[tpl_symbol][id][0], sprites.symbol[tpl_symbol][id][1], sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3], start, down, sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3]);
+				if (pass == 2) {
+					context.drawImage(image, sprites.symbol[tpl_symbol][id][0], sprites.symbol[tpl_symbol][id][1], sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3], start, down, sprites.symbol[tpl_symbol][id][2], sprites.symbol[tpl_symbol][id][3]);
+				}
 			}
 			//draw tiles
 			else {
@@ -359,7 +363,9 @@ function draw_text(ids, initial_start, initial_top, context) {
 				var down = top + Math.round((tpl_lineheight - sprites.tiles[id][3]) / 2) + tile_down;
 				var width = sprites.tiles[id][2];
 				//context.drawImage(image, start, down);
-				context.drawImage(image, sprites.tiles[id][0], sprites.tiles[id][1], sprites.tiles[id][2], sprites.tiles[id][3], start, down, sprites.tiles[id][2], sprites.tiles[id][3]);
+				if (pass == 1) {
+					context.drawImage(image, sprites.tiles[id][0], sprites.tiles[id][1], sprites.tiles[id][2], sprites.tiles[id][3], start, down, sprites.tiles[id][2], sprites.tiles[id][3]);
+				}
 			}
 			
 			//set new left
