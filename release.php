@@ -64,10 +64,20 @@ $files = scandir('.');
 $filetypes = array('.html', '.php', '.png', '.css', '.txt', '.htaccess');
 if ($jshrink === FALSE) $filetypes[] = '.js';
 $ignore = array('config.cfg.php', 'release.php', 'migrate_symbols.php');
+$md5ify = array('sprites.png', 'style.css');
+$md5ify = array_flip($md5ify);
 $js = array();
 foreach ($files as $file) {
 	if (is_file($file) && !in_array($file, $ignore) && in_array(substr($file, strrpos($file, '.')), $filetypes)) {
-		copy($file, $release_dir.'/'.$file);
+		$target_file = $file;
+		//check if md5ify
+		if (array_key_exists($file, $md5ify)) {
+			$md5 = md5_file($file);
+			$target_file = explode('.', $file);
+			$target_file = $target_file[0] . '-' . $md5 . '.' . $target_file[1];
+			$md5ify[$file] = $target_file;
+		}
+		copy($file, $release_dir.'/'.$target_file);
 	}
 	elseif (is_file($file) && (substr($file, strrpos($file, '.')) == '.js')) {
 		//get list of js files to minify
@@ -117,6 +127,8 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 	//get md5
 	$js_md5 = md5($minifiedCode);
 	$js_filename = 'webdripdesigner-' . $js_md5 . '.min.js';
+	//replace md5ified filenames
+	$minifiedCode = str_replace(array_keys($md5ify), $md5ify, $minifiedCode);
 	//write to file
 	file_put_contents($release_dir . '/' . $js_filename, $minifiedCode);
 	
@@ -138,6 +150,8 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 			}
 		},
 		$html);
+	//replace md5ified filenames
+	$html = str_replace(array_keys($md5ify), $md5ify, $html);
 	file_put_contents($release_dir.'/index.php', $html);
 }
 
