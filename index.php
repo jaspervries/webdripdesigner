@@ -54,7 +54,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 <fieldset id="fieldset_picto">
 <legend>Pictogram</legend>
 <div id="drip_picto"></div>
-<div id="picto_tools"><span class="button" id="picto_show_all"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span> <span id="picto_show_pref" class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span> <span class="button" id="picto_select_1">pictogram 1</span> <span class="button" id="picto_select_2">pictogram 2</span> <span id="unset_image" onclick="unset_image()" class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></div>
+<div id="picto_tools"><span class="button" id="picto_show_all"><img src="icon/line_down.png" width="16" height="16" alt="uitvouwen"> toon alle pictogrammen</span> <span id="picto_show_pref" class="button"><img src="icon/line_up.png" width="16" height="16" alt="invouwen"> toon voorkeurspictogrammen</span> <span class="button" id="picto_select_1">pictogram 1</span> <span class="button" id="picto_select_2">pictogram 2</span> <span class="button" id="picto_2_align_left">links</span> <span class="button" id="picto_2_align_right">rechts</span> <span id="unset_image" onclick="unset_image()" class="button"><img src="icon/line_clear.png" width="16" height="16" alt="pictogram wissen"> pictogram wissen</span></div>
 </fieldset>
 
 <fieldset>

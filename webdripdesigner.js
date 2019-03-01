@@ -19,6 +19,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 var active_textarea = '#drip_t1';
 var drip_i1 = null;
 var drip_i2 = null;
+var drip_i2_align = 'right';
 var drip_changed = false;
 var active_template_class;
 var picto_show_all = false;
@@ -578,15 +579,24 @@ function redraw_drip() {
 			var picto_left = Math.round(tpl_size[0] * 0.75 - picto_width2 / 2);
 			var picto_top = 0;
 		}
-		//if there can be no text under the image, draw image right center
-		else if (picto_height > tpl_size[1] - tpl_lineheight) {
-			var picto_left = tpl_size[0] - picto_width2;
-			var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
-		}
-		//otherwise draw image top right
+		//otherwise draw image to the left or to the right
 		else {
-			var picto_left = tpl_size[0] - picto_width2;
-			var picto_top = 0;
+			//if there can be no text under the image, draw vertically centered
+			if (picto_height > tpl_size[1] - tpl_lineheight) {
+				var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
+			}
+			//otherwise draw vertically to the top
+			else {
+				var picto_top = 0;
+			}
+			//draw image left next to other one
+			if (drip_i2_align == 'left') {
+				var picto_left = picto_width + 4;
+			}
+			//draw image to the right
+			else {
+				var picto_left = tpl_size[0] - picto_width2;
+			}
 		}
 		context.drawImage(image, sprites.picto[tpl_picto][id][0], sprites.picto[tpl_picto][id][1], sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3], picto_left, picto_top, sprites.picto[tpl_picto][id][2], sprites.picto[tpl_picto][id][3]);
 	}
@@ -651,7 +661,7 @@ function redraw_drip() {
 		var start = 0;
 		if ((tpl_align[i] == 'right') || ((tpl_align[i] == 'arrowright') && (i == arrow_line))) {
 			//there is a picto to the right
-			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
 				start = tpl_size[0] - width - picto_width2 - 2;
 			}
 			//there is no picto to the right
@@ -660,8 +670,12 @@ function redraw_drip() {
 			}
 		}
 		else if ((tpl_align[i] == 'left') || (tpl_align[i] == 'arrowleft')) {
-			//there is a picto to the left
-			if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
+			//there are two picto to the left
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (tpl_lines[i] < picto_height) && (picto_width > 0)) {
+				start = picto_width + 2 + ((picto_width2 > 0) ? 4 + picto_width2 : 0);
+			}
+			//there is one picto to the left
+			else if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
 				start = picto_width + 2;
 			}
 			else {
@@ -674,7 +688,7 @@ function redraw_drip() {
 		}
 		else if (tpl_align[i] == 'block') {
 			//there is a picto to the right
-			if (block_left_of_image == true) {
+			if ((block_left_of_image == true) && (drip_i2_align == 'right')) {
 				start = tpl_size[0] - block_width - picto_width2 - 2;
 			}
 			//there is no picto to the right
@@ -684,7 +698,7 @@ function redraw_drip() {
 		}
 		else if (tpl_align[i] == 'arrowright') {
 			//there is a picto to the right
-			if (block_left_of_image == true) {
+			if ((block_left_of_image == true) && (drip_i2_align == 'right')) {
 				
 				start = tpl_size[0] - line_info[arrow_line]["width"] - picto_width2 - 2;
 			}
@@ -698,8 +712,12 @@ function redraw_drip() {
 		}
 		else { //align center
 			//there is a picto on both sides
-			if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
 				start = Math.round((tpl_size[0] - picto_width - picto_width2 - 4 - width) / 2) + picto_width + 2;
+			}
+			//there are two picto to the left
+			else if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
+				start = Math.round((tpl_size[0] - picto_width - picto_width2 - 4 - 4 - width) / 2) + picto_width + 4 + picto_width2 + 2;
 			}
 			//there is a picto only to the right
 			else if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {

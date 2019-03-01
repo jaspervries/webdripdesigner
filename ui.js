@@ -335,6 +335,16 @@ $(document).ready(function () {
 		picto_active = 2;
 		set_active_picto_buttons();
 	});
+	$('#picto_2_align_left').click( function() {
+		drip_i2_align = 'left';
+		set_active_picto_buttons();
+		set_drip_changed();
+	});
+	$('#picto_2_align_right').click( function() {
+		drip_i2_align = 'right';
+		set_active_picto_buttons();
+		set_drip_changed();
+	});
 	/*
 	* drip line gui
 	*/
@@ -374,11 +384,15 @@ function set_active_picto_buttons() {
 	if (tpl_num_picto > 1) {
 		$('#picto_select_1').show();
 		$('#picto_select_2').show();
+		$('#picto_2_align_left').show();
+		$('#picto_2_align_right').show();
 	}
 	else {
 		picto_active = 1;
 		$('#picto_select_1').hide();
 		$('#picto_select_2').hide();
+		$('#picto_2_align_left').hide();
+		$('#picto_2_align_right').hide();
 	}
 	if (picto_active == 2) {
 		$('#picto_select_1').removeClass('buttonactive');
@@ -387,6 +401,14 @@ function set_active_picto_buttons() {
 	else { //picto 1 active
 		$('#picto_select_1').addClass('buttonactive');
 		$('#picto_select_2').removeClass('buttonactive');
+	}
+	if (drip_i2_align == 'left') {
+		$('#picto_2_align_right').removeClass('buttonactive');
+		$('#picto_2_align_left').addClass('buttonactive');
+	}
+	else { //picto 1 active
+		$('#picto_2_align_right').addClass('buttonactive');
+		$('#picto_2_align_left').removeClass('buttonactive');
 	}
 }
 
