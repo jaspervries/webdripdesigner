@@ -149,7 +149,7 @@ function prepare_text(str) {
 					if (str[i] == '[') {
 						if (str[i+1] == 'R') {
 							ids.push('tile_ring');
-							t = t+1;
+							//t = t+1;
 						}
 						else {
 							ids.push('tile_open');
@@ -172,7 +172,7 @@ function prepare_text(str) {
 							//exit symbol
 							ids.push('tile_afrit');
 						}
-						else if ((tilematch > 2) && (t == 1) && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
+						else if ((tilematch > 2) && (t == 1) && (str[i] == '[') && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
 							//do not draw R
 							continue;
 						}
