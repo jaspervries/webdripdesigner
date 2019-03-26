@@ -143,11 +143,12 @@ function prepare_text(str) {
 				else if (tilestr.match(/^\^[A-Z0-9][A-Za-z0-9]\^/) != null) { //^Xy^
 					tilematch = 3;
 				}
+				console.log(tilematch);
 				//multi-character tile
 				if ((tilematch >= 3) && (tilematch <= 10)) {
 					//open
 					if (str[i] == '[') {
-						if (str[i+1] == 'R') {
+						if ((str[i+1] == 'R') && (tilematch > 3)) {
 							ids.push('tile_ring');
 							//t = t+1;
 						}
@@ -172,7 +173,7 @@ function prepare_text(str) {
 							//exit symbol
 							ids.push('tile_afrit');
 						}
-						else if ((tilematch > 2) && (t == 1) && (str[i] == '[') && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
+						else if ((tilematch > 3) && (t == 1) && (str[i] == '[') && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
 							//do not draw R
 							continue;
 						}
