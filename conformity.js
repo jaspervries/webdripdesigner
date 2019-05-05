@@ -19,6 +19,7 @@ var conformity_err = [];
 var conformity_txt = {
 	i_J34:		'Overweeg het gebruik van nieuw ongeval-pictogram',
 	i_Goomba:	'Overweeg een Italiaanse loodgieter te bellen',
+	i_J37:		'Gebruik RVV-bord J37 enkel bij aanduiding van gevaar en niet als er geen ander geschikt pictogram is',
 	t_slash:	'Gebruik geen schuine streep tussen wegnummers die een te volgen route aangeven',
 	t_max:		'Gebruik maximaal twee wegnummer achter elkaar in routeadvies',
 	t_doel:		'Plaats wegnummer gebruikt als doel/bestemming niet in tegeltje',
@@ -107,6 +108,11 @@ function conformity_line(line) {
 		|| ((str_fulltext.match(/brug(\b|\d)/) != null) && (str.match(/(\b|\d)dicht(\b|\d)/i) != null))
 		|| ((str_fulltext.match(/(^|[^\$])(\$\$)*\$130/) != null) && (str.match(/(\b|\d)dicht(\b|\d)/i) != null)) ) {
 		conformity_err[line].push('t_brugdicht');
+	}
+	if ( ((drip_i1 == 'pictoJ37') || (drip_i2 == 'pictoJ37')) && ((str.match(/dicht/i) != null)
+		|| (str_fulltext.match(/gestremd/i) != null) || (str.match(/VOL/) != null)
+		|| (str_fulltext.match(/niet bereikbaar/i) != null)) ) {
+		conformity_err[0].push('i_J37');
 	}
 	//match on all lines individually
 	if (str.match(/[a-z][^\$]*(\$\$)*\$0[0-9][1357]$/i) != null) {

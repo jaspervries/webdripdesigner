@@ -488,7 +488,7 @@ function load_symbols(size) {
 function load_picto(size) {
 	$('#drip_picto').html('');
 	if (sprites.picto[size]) {
-		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'J37', 'RL13C1'];
+		var preferred_picto = ['E12', 'E4', 'J15', 'J16', 'RJ16', 'J33', 'RJ33', 'J34v2', 'RJ34v2', 'RL13C1'];
 		var hidden_picto = ['J34', 'RJ34', 'RL13J34'];
 		$.each(sprites.picto[size], function(i, val) {
 			if ($.inArray(i, hidden_picto) == -1) { //verberg legacy pictogrammen
