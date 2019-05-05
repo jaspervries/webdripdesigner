@@ -215,6 +215,20 @@ fieldset.condensed {
 	clear: both;
 }
 
+ul.changelog {
+	margin-left: 0;
+	padding-left: 0;
+}
+ul.changelog li {
+	list-style-type:  none;
+}
+ul.changelog li ul {
+	margin-bottom: 8px;
+}
+ul.changelog li li {
+	list-style-type: disc;
+}
+
 a {
 	cursor: pointer;
 	color: #000;
