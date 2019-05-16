@@ -119,7 +119,7 @@ function prepare_text(str) {
 				else if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
 					tilematch = 10;
 				}
-				else if (tilestr.match(/^\[A[0-9]{1,3}a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy]
+				else if (tilestr.match(/^\[[AN][0-9]{1,3}a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy] or [Nxxxaxxy]
 					tilematch = 15;
 				}
 				else if (tilestr.match(/^\[[A-Z0-9]]/) != null) { //[X]
