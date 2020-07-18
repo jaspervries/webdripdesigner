@@ -35,8 +35,7 @@ BermDRIP Designer van Rijkswaterstaat en kent vele nieuwe mogelijkheden.
 
 Voor de basisfunctionaliteit is een recente webbrowser met 
 ondersteuning voor HTML5 nodig. Primaire ontwikkeling vindt plaats 
-voor Mozilla Firefox en releases worden getest in Chromium en Firefox 
-Mobile.
+voor Mozilla Firefox en releases worden getest in Chromium.
 
 Voor de historie- en downloadfunctie is een webserver met PHP (5.3+) en 
 MySQL (5+) of MariaDB (5+) nodig. Daarnaast wordt PHP gebruikt voor het 
@@ -225,6 +224,12 @@ A: De CROW-download bestond nog niet toen met ontwikkeling van de
    WebDRIP Designer is gestart. Daarnaast beschikken niet alle 
    bestandsnamen in de download over geschikte unieke identifiers.
 
+Q: Je hebt alle lettertypen en pictogrammen al eens geconverteerd,
+   waarom worden deze niet gewoon bijgeleverd?
+A: Bij de CROW-download is geen toestemming verleend om deze 
+   verder te verspreiden, al dan niet in afgeleide vorm. Hierdoor 
+   blijft de auteurswet van toepassing.
+
 
 ========================================================================
 3. Installatie
@@ -265,6 +270,9 @@ genereren. Standaard wordt hiervoor een map release/ aangemaakt in de
 root van het repository. De inhoud van deze map is gereed voor gebruik 
 op de productieomgeving. Op de productieomgeving dient dan nog wel 
 install.php uitgevoerd te worden. Zie hiervoor het vorige hoofdstuk.
+
+Het script release.php maakt gebruik van git om de actuele hash op te 
+vragen. Hiervoor moet git via de opdrachtregel beschikbaar zijn.
 
 
 ========================================================================
@@ -340,7 +348,7 @@ volledige licentietekst in license.txt.
 
 
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2019 Jasper Vries
+Copyright (C) 2013-2020 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
