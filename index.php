@@ -158,7 +158,9 @@ foreach ($special_chars as $char_this) {
 <option value="Picto_60">Picto 60</option>
 <option value="Picto_70">Picto 70</option>
 <option value="Picto_92">Picto 92</option>
-</select></td></tr>
+</select><br>
+<input type="checkbox" class="template_editor_val" id="template_editor_textunderpicto"> <label for="template_editor_textunderpicto">Tekst onder pictogram toestaan</label>
+</td></tr>
 <tr><td>Aantal:</td><td><select class="template_editor_val" id="template_editor_num_picto">
 <option value="1">1</option>
 <option value="2">2</option>

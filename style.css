@@ -134,6 +134,9 @@ img.alignmentactive, .buttonactive, #picto_tools span.buttonactive, #addl_tools 
 input.template_editor_val {
 	width: 48px;	
 }
+input.template_editor_val[type=checkbox] {
+	width: auto;
+}
 
 #drip, #drip_text {
 	float: left;

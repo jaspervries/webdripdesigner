@@ -113,6 +113,12 @@ $(document).ready(function () {
 		$('#template_editor_width').val(tpl_size[0]);
 		$('#template_editor_height').val(tpl_size[1]);
 		$('#template_editor_picto').val(tpl_picto);
+		if (tpl_textunderpicto == 1) {
+			$('#template_editor_textunderpicto').prop('checked', true);
+		}
+		else {
+			$('#template_editor_textunderpicto').prop('checked', false);
+		}
 		$('#template_editor_num_picto').val(tpl_num_picto);
 		$('#template_editor_font').val(tpl_font);
 		$('#template_editor_charspacing').val(tpl_charspacing);
@@ -144,6 +150,12 @@ $(document).ready(function () {
 		}
 		tpl_picto = $('#template_editor_picto').val();
 		tpl_num_picto = $('#template_editor_num_picto').val();
+		if ($('#template_editor_textunderpicto').prop('checked') == true) {
+			tpl_textunderpicto = 1;
+		}
+		else {
+			tpl_textunderpicto = 0;
+		}
 		tpl_font = $('#template_editor_font').val();
 		if (tpl_font == 'CdmsBdType1') {
 			tpl_symbol = 'Regel_22';
@@ -534,7 +546,7 @@ function setCookie(name, val) {
 	var expires = new Date();
 	expires.setTime(expires.getTime() + 365*24*60*60*1000);
     expires = "expires="+ expires.toUTCString();
-    document.cookie = name + "=" + val + ";" + expires + ";path=/";
+    document.cookie = name + "=" + val + ";" + expires + ";path=/;SameSite=Strict";
 }
 function getCookie(name) {
 	var cookie = decodeURIComponent(document.cookie).split(';');

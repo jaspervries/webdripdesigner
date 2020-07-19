@@ -38,6 +38,7 @@ var tpl_picto;
 var tpl_num_picto = 1;
 var tpl_symbol;
 var tpl_charspacing = 3;
+var tpl_textunderpicto = 1;
 //content
 var ctn_fullcolor = false;
 
@@ -553,7 +554,7 @@ function redraw_drip() {
 			var picto_top = 0;
 		}
 		//if there can be no text under the image, draw image left center
-		else if (picto_height > tpl_size[1] - tpl_lineheight) {
+		else if ((picto_height > tpl_size[1] - tpl_lineheight)  || (tpl_textunderpicto == 0)) {
 			var picto_left = 0;
 			var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
 		}
@@ -583,7 +584,7 @@ function redraw_drip() {
 		//otherwise draw image to the left or to the right
 		else {
 			//if there can be no text under the image, draw vertically centered
-			if (picto_height > tpl_size[1] - tpl_lineheight) {
+			if ((picto_height > tpl_size[1] - tpl_lineheight) || (tpl_textunderpicto == 0)) {
 				var picto_top = Math.round((tpl_size[1] - picto_height) / 2);
 			}
 			//otherwise draw vertically to the top
@@ -662,7 +663,7 @@ function redraw_drip() {
 		var start = 0;
 		if ((tpl_align[i] == 'right') || ((tpl_align[i] == 'arrowright') && (i == arrow_line))) {
 			//there is a picto to the right
-			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (picto_width2 > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = tpl_size[0] - width - picto_width2 - 2;
 			}
 			//there is no picto to the right
@@ -672,11 +673,11 @@ function redraw_drip() {
 		}
 		else if ((tpl_align[i] == 'left') || (tpl_align[i] == 'arrowleft')) {
 			//there are two picto to the left
-			if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (tpl_lines[i] < picto_height) && (picto_width > 0)) {
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (picto_width > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = picto_width + 2 + ((picto_width2 > 0) ? 4 + picto_width2 : 0);
 			}
 			//there is one picto to the left
-			else if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
+			else if ((picto_width > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = picto_width + 2;
 			}
 			else {
@@ -713,19 +714,19 @@ function redraw_drip() {
 		}
 		else { //align center
 			//there is a picto on both sides
-			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
+			if ((tpl_num_picto == 2) && (drip_i2_align == 'right') && (picto_width > 0) && (picto_width2 > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = Math.round((tpl_size[0] - picto_width - picto_width2 - 4 - width) / 2) + picto_width + 2;
 			}
 			//there are two picto to the left
-			else if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (tpl_lines[i] < picto_height) && (picto_width > 0) && (picto_width2 > 0)) {
+			else if ((tpl_num_picto == 2) && (drip_i2_align == 'left') && (picto_width > 0) && (picto_width2 > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = Math.round((tpl_size[0] - picto_width - picto_width2 - 4 - 4 - width) / 2) + picto_width + 4 + picto_width2 + 2;
 			}
 			//there is a picto only to the right
-			else if ((tpl_num_picto == 2) && (tpl_lines[i] < picto_height) && (picto_width2 > 0)) {
+			else if ((tpl_num_picto == 2) && (picto_width2 > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = Math.round((tpl_size[0] - picto_width2 - 2 - width) / 2);
 			}
 			//there is a picto only to the left
-			else if ((tpl_lines[i] < picto_height) && (picto_width > 0)) {
+			else if ((picto_width > 0) && ((tpl_lines[i] < picto_height) || (tpl_textunderpicto == 0))) {
 				start = Math.round((tpl_size[0] - picto_width - 2 - width) / 2) + picto_width + 2;
 			}
 			//there is no picto
@@ -842,6 +843,10 @@ function set_template(i) {
 	tpl_line = tpl[i].line;
 	tpl_font = tpl[i].font;
 	tpl_picto = tpl[i].picto;
+	tpl_textunderpicto = tpl[i].textunderpicto;
+	if (!tpl_textunderpicto) { //backward compatibility for templates without textunderpicto definition
+		tpl_textunderpicto = 1;
+	}
 	tpl_num_picto = tpl[i].num_picto;
 	if (!tpl_num_picto) { //backward compatibility for templates without num picto definition
 		tpl_num_picto = 1;
@@ -893,6 +898,7 @@ function save_drip() {
 			l: tpl_line,
 			f: tpl_font,
 			p: tpl_picto,
+			t: tpl_textunderpicto,
 			q: tpl_num_picto,
 			s: tpl_symbol
 		},
@@ -916,22 +922,34 @@ function load_drip(md5) {
 		if (save.v == 1) {
 			//template
 			tpl_lines = save.t.n;
+			if (typeof save.t.c === "undefined") { //backward compatibility for saves without size definition
+				tpl_size = [192, 128];
+			}
+			else {
+				tpl_size = save.t.c;
+			}
 			tpl_size = save.t.c;
 			tpl_align = save.t.a;
 			tpl_lineheight = save.t.h;
 			tpl_line = save.t.l;
 			tpl_font = save.t.f;
 			tpl_picto = save.t.p;
+			if (typeof save.t.t === "undefined") { //backward compatibility for saves without textunderpicto definition
+				tpl_textunderpicto = 1;
+			}
+			else {
+				tpl_textunderpicto = save.t.t;
+			}
+			if (typeof save.t.q === "undefined") { //backward compatibility for saves without num picto definition
+				tpl_num_picto = 1;
+			}
+			else {
+				tpl_num_picto = save.t.q;
+			}
 			tpl_num_picto = save.t.q;
 			tpl_symbol = save.t.s;
 			if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) tpl_charspacing = 2;
 			else tpl_charspacing = 3;
-			if (!tpl_size) { //backward compatibility for saves without size definition
-				tpl_size = [192, 128];
-			}
-			if (!tpl_num_picto) { //backward compatibility for saves without num picto definition
-				tpl_num_picto = 1;
-			}
 			//set content
 			for (var i = 0; i < tpl_lines.length; i++) {
 				$('#drip_t'+i).val(save.c.t[i]);
