@@ -157,7 +157,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 
 //get git version
 $git_ver = exec('git log -1 --pretty=format:%H');
-$build = 'build ' . $git_ver . ' ' . date('Y-m-d');
+$build = 'build <a href="https://github.com/jaspervries/webdripdesigner/commit/' . $git_ver . '">' . $git_ver . '</a> ' . date('Y-m-d');
 //insert version into file
 $html = file_get_contents($release_dir.'/index.php');
 $html = str_replace('{{BUILD}}', $build, $html);

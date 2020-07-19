@@ -22,9 +22,10 @@ div#content {
 	margin-right: 196px;
 }
 
-div#footer {
+div#footer, div#footer a {
 	font-size: x-small;
 	color: #333;
+	text-decoration: none;
 }
 
 div#examplescontainer {
