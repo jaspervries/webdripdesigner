@@ -321,6 +321,18 @@ tpl.push({
 	symbol: 'Regel_22'
 });
 tpl.push({
+	name: 'Medium',
+	class: 'rws_dplus',
+	size: [512, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
 	name: 'Medium Midden',
 	class: 'rws_dplus',
 	size: [512, 88],
@@ -370,6 +382,18 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType1',
 	picto: 'Picto_70',
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium',
+	class: 'rws_dplus6a',
+	size: [256, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
 	num_picto: 2,
 	symbol: 'Regel_22'
 });
