@@ -329,6 +329,7 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType1',
 	picto: 'Picto_60',
+	textunderpicto: 0,
 	num_picto: 2,
 	symbol: 'Regel_22'
 });
@@ -394,6 +395,7 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType1',
 	picto: 'Picto_60',
+	textunderpicto: 0,
 	num_picto: 2,
 	symbol: 'Regel_22'
 });

@@ -144,7 +144,6 @@ function prepare_text(str) {
 				else if (tilestr.match(/^\^[A-Z0-9][A-Za-z0-9]\^/) != null) { //^Xy^
 					tilematch = 3;
 				}
-				console.log(tilematch);
 				//multi-character tile
 				if ((tilematch >= 3) && (tilematch <= 10)) {
 					//open
@@ -843,13 +842,17 @@ function set_template(i) {
 	tpl_line = tpl[i].line;
 	tpl_font = tpl[i].font;
 	tpl_picto = tpl[i].picto;
-	tpl_textunderpicto = tpl[i].textunderpicto;
-	if (!tpl_textunderpicto) { //backward compatibility for templates without textunderpicto definition
+	if (typeof tpl[i].textunderpicto === "undefined") { //backward compatibility for templates without textunderpicto definition
 		tpl_textunderpicto = 1;
 	}
-	tpl_num_picto = tpl[i].num_picto;
-	if (!tpl_num_picto) { //backward compatibility for templates without num picto definition
+	else {
+		tpl_textunderpicto = tpl[i].textunderpicto;
+	}
+	if (typeof tpl[i].num_picto === "undefined") { //backward compatibility for templates without num picto definition
 		tpl_num_picto = 1;
+	}
+	else {
+		tpl_num_picto = tpl[i].num_picto;
 	}
 	tpl_symbol = tpl[i].symbol;
 	if ((tpl_font == 'CdmsBdType3') || (tpl_font == 'CdmsBdType3Yellow')) tpl_charspacing = 2;
