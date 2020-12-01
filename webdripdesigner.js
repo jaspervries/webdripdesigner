@@ -126,23 +126,26 @@ function prepare_text(str) {
 					}
 				}
 				//special tiles
-				if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
-					tilematch = 10;
-				}
-				else if (tilestr.match(/^\[[AN][0-9]{1,3}a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy] or [Nxxxaxxy]
+				if (tilestr.match(/^\[[AN][0-9]{1,3}(\]\[)?a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy] or [Nxxxaxxy]
 					tilematch = 15;
-				}
-				else if (tilestr.match(/^\[[A-Z0-9]]/) != null) { //[X]
-					tilematch = 11;
-				}
-				else if (tilestr.match(/^>[A-Z0-9]>/) != null) { //>X>
-					tilematch = 12;
-				}
-				else if (tilestr.match(/^<[A-Z0-9]</) != null) { //<X<
-					tilematch = 13;
-				}
-				else if (tilestr.match(/^\^[A-Z0-9]\^/) != null) { //^X^
-					tilematch = 14;
+					//note; this is outside the block below, because it overwrites two combined regular tiles
+				}	
+				if (tilematch == 0) {
+					if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
+						tilematch = 10;
+					}
+					else if (tilestr.match(/^\[[A-Z0-9]]/) != null) { //[X]
+						tilematch = 11;
+					}
+					else if (tilestr.match(/^>[A-Z0-9]>/) != null) { //>X>
+						tilematch = 12;
+					}
+					else if (tilestr.match(/^<[A-Z0-9]</) != null) { //<X<
+						tilematch = 13;
+					}
+					else if (tilestr.match(/^\^[A-Z0-9]\^/) != null) { //^X^
+						tilematch = 14;
+					}
 				}
 				//multi-character tile
 				if ((tilematch >= 3) && (tilematch <= 10)) {
@@ -235,7 +238,10 @@ function prepare_text(str) {
 						if (char == 'a') {
 							break;
 						}
-						ids.push( 'text_CdmsBdType2Black_' + char.charCodeAt(0) );
+						if ((char != ']') && (char != '[')) {
+							ids.push( 'text_CdmsBdType2_' + char.charCodeAt(0) );
+							console.log(char);
+						}
 						i = i+1;
 					}
 					ids.push('tile_middle');
@@ -378,7 +384,7 @@ function draw_text(ids, initial_start, initial_top, context) {
 				tile_down = 0;
 			}
 			//multi-char tile helper/rendered tiles
-			if ((pass == 1) && ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close') || (ids[i] == 'tile_middle'))) {
+			if ((pass == 1) && ((ids[i] == 'tile_close') || (ids[i] == 'tile_s_close') || (ids[i] == 'tile_detour_right_close') || (ids[i] == 'tile_detour_left_close') || (ids[i] == 'tile_detour_top_close'))) {
 				if (ids[i] == 'tile_close') {
 					//format [x0, y0, length]
 					var linecoords = [
@@ -386,31 +392,6 @@ function draw_text(ids, initial_start, initial_top, context) {
 						[0, 0, start - tile_start - 7],
 						//bottom
 						[0, 19, start - tile_start - 7]
-					];
-				}
-				else if (ids[i] == 'tile_middle') {
-					//format [x0, y0, length]
-					var linecoords = [
-						//top
-						[0, 0, start - tile_start - 6],
-						[-1, 1, start - tile_start - 6],
-						[-1, 2, start - tile_start - 6],
-						[-1, 3, start - tile_start - 6],
-						[-1, 4, start - tile_start - 6],
-						[-1, 5, start - tile_start - 6],
-						[-1, 6, start - tile_start - 6],
-						[-1, 7, start - tile_start - 6],
-						[-1, 8, start - tile_start - 6],
-						[-1, 9, start - tile_start - 6],
-						[-1, 10, start - tile_start - 6],
-						[-1, 11, start - tile_start - 6],
-						[-1, 12, start - tile_start - 6],
-						[-1, 13, start - tile_start - 6],
-						[-1, 14, start - tile_start - 6],
-						[-1, 15, start - tile_start - 6],
-						[-1, 16, start - tile_start - 6],
-						[-1, 17, start - tile_start - 6],
-						[0, 18, start - tile_start - 6]
 					];
 				}
 				else if (ids[i] == 'tile_detour_right_close') {
