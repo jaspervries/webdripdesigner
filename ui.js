@@ -215,7 +215,7 @@ $(document).ready(function () {
 				}
 				break;
 			case 'afrit':
-				if (value.match(/^[0-9]{1,2}[0-9a-z]{0,1}$/) != null) {
+				if (value.match(/^[0-9]{1,2}[0-9a-z]{0,1}(\+[0-9]{1,2}[a-z]?)?$/) != null) {
 					valuematch = true;
 					value = '[a' + value + ']';
 				}

@@ -91,33 +91,42 @@ function prepare_text(str) {
 					if (str[i+t]) tilestr = tilestr + str[i+t];
 					else break;
 				}
-				//next character must be A, N, s, U, a, RA or NA
+				//next character must be A, N, s, U, a, RA or RN
 				//subsequent one to three characters must be a number, followed by a closing square bracket
 				//OR
 				//next character must be a capital OR a number, followed by closing square bracket
 				var tilematch = 0;
-				if (tilestr.match(/^\[[ANUaE][0-9]]/) != null) { //[Xx]
-					tilematch = 3;
+				//regular tiles
+ 				let regexarray = [
+					/^\[[ANUaE][0-9]]/, //[Xx]
+					/^\[[ANUaE][0-9]{2}]/, //[Xxx]
+					/^\[a[0-9]{1}[a-z]{1}]/, //[axy]
+					/^\[R[AN][0-9]{1}]/, //[RXx]
+					/^\[[ANsSUaE][0-9]{3}]/, //[Xxxx]
+					/^\[a[0-9]{2}[a-z]{1}]/, //[axxy]
+					/^\{[sS][0-9]{3}}/, //{sxxx}
+					/^\[R[AN][0-9]{2}]/, //[RXxx]
+					/^\[R[AN][0-9]{3}]/, //[RXxxx]
+					/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/, //[XX]
+					/^\[afrit [0-9]{1}]/, //[afrit x]
+					/^\[afrit [0-9]{2}]/, //[afrit xx]
+					/^\[afrit [0-9]{1}[a-z]{1}]/, //[afrit xy]
+					/^\[afrit [0-9]{3}]/, //[afrit xxx]
+					/^\[afrit [0-9]{2}[a-z]{1}]/, //[afrit xxy]
+					/^>[A-Z0-9][A-Za-z0-9]>/, //>Xy>
+					/^<[A-Z0-9][A-Za-z0-9]</, //<Xy<
+					/^\^[A-Z0-9][A-Za-z0-9]\^/, //^Xy^
+					/^\[a[0-9]{1,2}[a-z]?\+[0-9]{1,2}[a-z]?]/ //[ax+xy]
+				];
+				for (r=0; r<regexarray.length; r++) {
+					regexmatch = tilestr.match(regexarray[r]);
+					if (regexmatch != null) {
+						tilematch = regexmatch[0].length - 1;
+						break;
+					}
 				}
-				else if ((tilestr.match(/^\[[ANUaE][0-9]{2}]/) != null) || (tilestr.match(/^\[a[0-9]{1}[a-z]{1}]/) != null) || (tilestr.match(/^\[R[AN][0-9]{1}]/) != null)) { //[Xxx] or [axy] or [RXx]
-					tilematch = 4;
-				}
-				else if ((tilestr.match(/^\[[ANsSUaE][0-9]{3}]/) != null) || (tilestr.match(/^\[a[0-9]{2}[a-z]{1}]/) != null) || (tilestr.match(/^\{[sS][0-9]{3}}/) != null) || (tilestr.match(/^\[R[AN][0-9]{2}]/) != null)) { //[Xxxx] or [axxy] or {sxxx} or [RXxx]
-					tilematch = 5;
-				}
-				else if (tilestr.match(/^\[R[AN][0-9]{3}]/) != null) { //[RXxxx]
-					tilematch = 6;
-				}
-				else if (tilestr.match(/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/) != null) { //[XX]
-					tilematch = 3;
-				}
-				else if (tilestr.match(/^\[afrit [0-9]{1}]/) != null) { //[afrit x]
-					tilematch = 8;
-				}
-				else if ((tilestr.match(/^\[afrit [0-9]{2}]/) != null) || (tilestr.match(/^\[afrit [0-9]{1}[a-z]{1}]/) != null)) { //[afrit xx] or [afrit xy]
-					tilematch = 9;
-				}
-				else if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
+				//special tiles
+				if ((tilestr.match(/^\[afrit [0-9]{3}]/) != null) || (tilestr.match(/^\[afrit [0-9]{2}[a-z]{1}]/) != null)) { //[afrit xxx] or [afrit xxy]
 					tilematch = 10;
 				}
 				else if (tilestr.match(/^\[[AN][0-9]{1,3}a[0-9]{1,2}[a-z]{0,1}]/) != null) { //[Axxxaxxy] or [Nxxxaxxy]
@@ -129,20 +138,11 @@ function prepare_text(str) {
 				else if (tilestr.match(/^>[A-Z0-9]>/) != null) { //>X>
 					tilematch = 12;
 				}
-				else if (tilestr.match(/^>[A-Z0-9][A-Za-z0-9]>/) != null) { //>Xy>
-					tilematch = 3;
-				}
 				else if (tilestr.match(/^<[A-Z0-9]</) != null) { //<X<
 					tilematch = 13;
 				}
-				else if (tilestr.match(/^<[A-Z0-9][A-Za-z0-9]</) != null) { //<Xy<
-					tilematch = 3;
-				}
 				else if (tilestr.match(/^\^[A-Z0-9]\^/) != null) { //^X^
 					tilematch = 14;
-				}
-				else if (tilestr.match(/^\^[A-Z0-9][A-Za-z0-9]\^/) != null) { //^Xy^
-					tilematch = 3;
 				}
 				//multi-character tile
 				if ((tilematch >= 3) && (tilematch <= 10)) {
