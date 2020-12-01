@@ -552,7 +552,7 @@ function setCookie(name, val) {
 	var expires = new Date();
 	expires.setTime(expires.getTime() + 365*24*60*60*1000);
     expires = "expires="+ expires.toUTCString();
-    document.cookie = name + "=" + val + ";" + expires + ";path=/;SameSite=Strict";
+    document.cookie = name + "=" + val + ";" + expires + ";path=/;SameSite=Lax";
 }
 function getCookie(name) {
 	var cookie = decodeURIComponent(document.cookie).split(';');
