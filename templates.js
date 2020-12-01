@@ -124,6 +124,28 @@ tpl.push({
 	symbol: 'Regel_22'
 });
 tpl.push({
+	name: 'SmallPlus',
+	class: 'rws_type1',
+	size: [192, 128],
+	lines: [0, 28, 78, 106],
+	lineheight: 22,
+	line: 0,
+	font: 'CdmsBdType1',
+	picto: 'Picto_44',
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium Links / Tekst 2+2',
+	class: 'rws_type1',
+	size: [192, 128],
+	lines: [0, 29, 77, 106],
+	lineheight: 22,
+	line: 1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_70',
+	symbol: 'Regel_22'
+});
+tpl.push({
 	name: 'Tekst 1+3',
 	class: 'rws_type1',
 	size: [192, 128],
@@ -135,21 +157,10 @@ tpl.push({
 	symbol: 'Regel_22'
 });
 tpl.push({
-	name: 'Tekst 2+2 / Medium Links',
-	class: 'rws_type1',
-	size: [192, 128],
-	lines: [0, 30, 77, 106],
-	lineheight: 22,
-	line: 1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_70',
-	symbol: 'Regel_22'
-});
-tpl.push({
 	name: 'Tekst 3+1',
 	class: 'rws_type1',
 	size: [192, 128],
-	lines: [0, 30, 59, 106],
+	lines: [0, 29, 59, 106],
 	lineheight: 22,
 	line: 2,
 	font: 'CdmsBdType1',
@@ -190,20 +201,34 @@ tpl.push({
 	num_picto: 2,
 	symbol: 'Regel_22'
 });
-tpl.push({
-	name: 'Large',
-	class: 'rws_type1',
-	size: [192, 128],
-	lines: [106],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_92',
-	symbol: 'Regel_22'
-});
+/*
+ * RWS BermDRIP Type 2
+*/
 template_classes.push({
 	id: 'rws_type2',
 	name: 'RWS BermDRIP Type 2'
+});
+tpl.push({
+	name: 'Small',
+	class: 'rws_type2',
+	size: [144, 96],
+	lines: [0, 24, 53, 77],
+	lineheight: 18,
+	line: 0,
+	font: 'CdmsBdType2',
+	picto: 'Picto_44',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Links / Tekst 2+2',
+	class: 'rws_type2',
+	size: [144, 96],
+	lines: [0, 24, 53, 77],
+	lineheight: 18,
+	line: 1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
 });
 tpl.push({
 	name: 'Tekst 1+3',
@@ -217,21 +242,10 @@ tpl.push({
 	symbol: 'Regel_19'
 });
 tpl.push({
-	name: 'Tekst 2+2 / Medium Links',
-	class: 'rws_type2',
-	size: [144, 96],
-	lines: [0, 25, 53, 77],
-	lineheight: 18,
-	line: 1,
-	font: 'CdmsBdType2',
-	picto: 'Picto_48',
-	symbol: 'Regel_19'
-});
-tpl.push({
 	name: 'Tekst 3+1',
 	class: 'rws_type2',
 	size: [144, 96],
-	lines: [0, 25, 49, 77],
+	lines: [0, 24, 49, 77],
 	lineheight: 18,
 	line: 2,
 	font: 'CdmsBdType2',
@@ -272,167 +286,6 @@ tpl.push({
 	num_picto: 2,
 	symbol: 'Regel_19'
 });
-tpl.push({
-	name: 'Large',
-	class: 'rws_type2',
-	size: [144, 96],
-	lines: [77],
-	lineheight: 18,
-	line: -1,
-	font: 'CdmsBdType2',
-	picto: 'Picto_70',
-	symbol: 'Regel_19'
-});
-/*
- * RWS rijbaanbreed Templates
-*/
-template_classes.push({
-	id: 'rws_drip',
-	name: 'RWS DRIP rijbaanbreed'
-});
-tpl.push({
-	name: 'Drieregel (onoffici&euml;el)',
-	class: 'rws_drip',
-	size: [384, 90],
-	lines: [4, 34, 64],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_0',
-	symbol: 'Regel_22'
-});
-/*
- * RWS DRIP+
-*/
-template_classes.push({
-	id: 'rws_dplus',
-	name: 'RWS DRIP+ (Type 5A)'
-});
-tpl.push({
-	name: 'Large',
-	class: 'rws_dplus',
-	size: [512, 88],
-	lines: [0, 33, 66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_70',
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium',
-	class: 'rws_dplus',
-	size: [512, 88],
-	lines: [0, 33, 66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	textunderpicto: 0,
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium Midden',
-	class: 'rws_dplus',
-	size: [512, 88],
-	lines: [66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium Dubbel',
-	class: 'rws_dplus',
-	size: [512, 88],
-	lines: [66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Small Links 1+1',
-	class: 'rws_dplus',
-	size: [512, 88],
-	lines: [14, 60],
-	lineheight: 22,
-	line: 0,
-	font: 'CdmsBdType1',
-	picto: 'Picto_44',
-	symbol: 'Regel_22'
-});
-/*
- * RWS DRIP+ (smal)
-*/
-template_classes.push({
-	id: 'rws_dplus6a',
-	name: 'RWS DRIP+ smal (Type 6A)'
-});
-tpl.push({
-	name: 'Large',
-	class: 'rws_dplus6a',
-	size: [256, 88],
-	lines: [0, 33, 66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_70',
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium',
-	class: 'rws_dplus6a',
-	size: [256, 88],
-	lines: [0, 33, 66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	textunderpicto: 0,
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium Midden',
-	class: 'rws_dplus6a',
-	size: [256, 88],
-	lines: [66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Medium Dubbel',
-	class: 'rws_dplus6a',
-	size: [256, 88],
-	lines: [66],
-	lineheight: 22,
-	line: -1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_60',
-	num_picto: 2,
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Small Links 1+1',
-	class: 'rws_dplus6a',
-	size: [256, 88],
-	lines: [14, 60],
-	lineheight: 22,
-	line: 0,
-	font: 'CdmsBdType1',
-	picto: 'Picto_44',
-	symbol: 'Regel_22'
-});
 /*
  * RWS BermDRIP Type 3A Breed Geel
 */
@@ -441,10 +294,10 @@ template_classes.push({
 	name: 'RWS BermDRIP Type 3A'
 });
 tpl.push({
-	name: 'Tekst 1+3',
+	name: 'Medium Links / Tekst 2+2',
 	class: 'rws_type3a',
 	size: [112, 80],
-	lines: [0, 25, 45, 65],
+	lines: [0, 20, 45, 65],
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
@@ -452,10 +305,10 @@ tpl.push({
 	symbol: 'Regel_15_geel'
 });
 tpl.push({
-	name: 'Tekst 2+2 / Medium Links',
+	name: 'Tekst 1+3',
 	class: 'rws_type3a',
 	size: [112, 80],
-	lines: [0, 20, 45, 65],
+	lines: [0, 25, 45, 65],
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3Yellow',
@@ -493,18 +346,6 @@ tpl.push({
 	line: -1,
 	font: 'CdmsBdType3Yellow',
 	picto: 'Picto_40_yellow',
-	symbol: 'Regel_15_geel'
-});
-tpl.push({
-	name: 'Medium Dubbel',
-	class: 'rws_type3a',
-	size: [112, 80],
-	lines: [45, 65],
-	lineheight: 14,
-	line: -1,
-	font: 'CdmsBdType3Yellow',
-	picto: 'Picto_40_yellow',
-	num_picto: 2,
 	symbol: 'Regel_15_geel'
 });
 /*
@@ -577,23 +418,23 @@ template_classes.push({
 	name: 'RWS BermDRIP Type 3C'
 });
 tpl.push({
+	name: 'Medium Links / Tekst 2+2',
+	class: 'rws_type3c',
+	size: [112, 80],
+	lines: [0, 20, 45, 65],
+	lineheight: 14,
+	line: 1,
+	font: 'CdmsBdType3',
+	picto: 'Picto_40',
+	symbol: 'Regel_15'
+});
+tpl.push({
 	name: 'Tekst 1+3',
 	class: 'rws_type3c',
 	size: [112, 80],
 	lines: [0, 25, 45, 65],
 	lineheight: 14,
 	line: 0,
-	font: 'CdmsBdType3',
-	picto: 'Picto_40',
-	symbol: 'Regel_15'
-});
-tpl.push({
-	name: 'Tekst 2+2 / Medium Links',
-	class: 'rws_type3c',
-	size: [112, 80],
-	lines: [0, 20, 45, 65],
-	lineheight: 14,
-	line: 1,
 	font: 'CdmsBdType3',
 	picto: 'Picto_40',
 	symbol: 'Regel_15'
@@ -641,17 +482,6 @@ tpl.push({
 	font: 'CdmsBdType3',
 	picto: 'Picto_40',
 	num_picto: 2,
-	symbol: 'Regel_15'
-});
-tpl.push({
-	name: 'Large',
-	class: 'rws_type3c',
-	size: [112, 80],
-	lines: [65],
-	lineheight: 14,
-	line: -1,
-	font: 'CdmsBdType3',
-	picto: 'Picto_60',
 	symbol: 'Regel_15'
 });
 /*
@@ -716,54 +546,126 @@ tpl.push({
 	picto: 'Picto_40',
 	symbol: 'Regel_15'
 });
+/*
+ * RWS Type 4
+*/
+template_classes.push({
+	id: 'rws_type4',
+	name: 'RWS BermDRIP Type 4'
+});
 tpl.push({
-	name: 'Large',
-	class: 'rws_type3d',
-	size: [80, 80],
-	lines: [65],
+	name: 'Small',
+	class: 'rws_type4',
+	size: [160, 96],
+	lines: [0, 24, 53, 77],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_44',
+	textunderpicto: 0,
+	num_picto: 1,
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Links',
+	class: 'rws_type4',
+	size: [160, 96],
+	lines: [0, 24, 53, 77],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	textunderpicto: 0,
+	num_picto: 1,
+	symbol: 'Regel_19'
+});
+/*
+ * RWS DRIP+
+*/
+template_classes.push({
+	id: 'rws_type5a',
+	name: 'RWS BermDRIP Type 5A (DRIP+)'
+});
+tpl.push({
+	name: 'Medium Links / Tekst',
+	class: 'rws_type5a',
+	size: [512, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	textunderpicto: 1,
+	num_picto: 1,
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium Dubbel  / Medium Rechts',
+	class: 'rws_type5a',
+	size: [512, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	textunderpicto: 1,
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+/*
+ * RWS DRIP+ (smal)
+*/
+template_classes.push({
+	id: 'rws_type6a',
+	name: 'RWS BermDRIP Type 6A (DRIP+ smal)'
+});
+tpl.push({
+	name: 'Medium Links / Tekst',
+	class: 'rws_type6a',
+	size: [256, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	textunderpicto: 1,
+	num_picto: 1,
+	symbol: 'Regel_22'
+});
+tpl.push({
+	name: 'Medium Dubbel / Medium Rechts',
+	class: 'rws_type6a',
+	size: [256, 88],
+	lines: [0, 33, 66],
+	lineheight: 22,
+	line: -1,
+	font: 'CdmsBdType1',
+	picto: 'Picto_60',
+	textunderpicto: 1,
+	num_picto: 2,
+	symbol: 'Regel_22'
+});
+/*
+ * RWS rijbaanbreed Templates
+*/
+template_classes.push({
+	id: 'rws_drip',
+	name: 'RWS tekstDRIP rijbaanbreed'
+});
+tpl.push({
+	name: 'Tekst',
+	class: 'rws_drip',
+	size: [450, 100],
+	lines: [10, 45, 80],
 	lineheight: 14,
 	line: -1,
 	font: 'CdmsBdType3',
-	picto: 'Picto_60',
+	picto: 'Picto_0',
 	symbol: 'Regel_15'
 });
-
 /*
  * Weinig gebruikte templates
 */
-tpl.push({
-	name: 'Small 1+2',
-	class: 'gdh_bermdrip',
-	size: [192, 128],
-	lines: [12, 74, 104],
-	lineheight: 26,
-	line: 0,
-	font: 'CdmsBdType1',
-	picto: 'Picto_44',
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Small 1+3',
-	class: 'gdh_bermdrip',
-	size: [192, 128],
-	lines: [12, 48, 76, 104],
-	lineheight: 26,
-	line: 0,
-	font: 'CdmsBdType1',
-	picto: 'Picto_44',
-	symbol: 'Regel_22'
-});
-tpl.push({
-	name: 'Small 2+2',
-	class: 'gdh_bermdrip',
-	size: [192, 128],
-	lines: [0, 30, 74, 104],
-	lineheight: 26,
-	line: 1,
-	font: 'CdmsBdType1',
-	picto: 'Picto_44',
-	symbol: 'Regel_22'
-});
 tpl.push({
 	name: 'X-Small 1+2',
 	class: 'gdh_stadsdrip',
@@ -868,7 +770,7 @@ tpl.push({
 	symbol: 'Regel_22_geel'
 });
 /*
- * StadsDRIP Halfhoog 60x216
+ * StadsDRIP Halfhoog 216x60
 */
 template_classes.push({
 	id: 'ly_216_60',

@@ -53,6 +53,7 @@ $names['symbol'] = array(
 130 => 'Brug open',
 140 => 'Voertuig met pech',
 141 => 'Voertuig wordt geborgen',
+142 => 'Afgevallen lading',
 //serie 2: locaties
 200 => 'Knooppunt',
 210 => 'Afrit',
@@ -65,6 +66,7 @@ $names['symbol'] = array(
 320 => 'Vrachtauto',
 330 => 'Bus',
 340 => 'Tram',
+350 => 'Motorfiets',
 //serie 4: (gereserveerd)
 //serie 5: doelen
 500 => 'Centrum, gebruik dit symbool alleen wanneer dit ook op de bewegwijzering voorkomt, bij voorkeur met het woord Centrum toegevoegd',
@@ -108,6 +110,7 @@ $names['symbol'] = array(
 //serie 9: overige
 900 => 'File plus',
 901 => 'File min',
+902 => 'Uitroepteken',
 910 => 'RING in CdmsBdType2',
 950 => 'België',
 951 => 'Duitsland',
