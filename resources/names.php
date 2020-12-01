@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2017-2018 Jasper Vries
+Copyright (C) 2017-2020 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
