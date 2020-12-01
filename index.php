@@ -112,6 +112,7 @@ else {
 <legend>Tegeltjes</legend>
 <input type="text" id="ins_tile_regular" maxlength="4">
 <input type="text" id="ins_tile_afrit" maxlength="4">
+<input type="text" id="ins_tile_ring" maxlength="4">
 <input type="text" id="ins_tile_sroute" maxlength="3">
 <input type="text" id="ins_tile_omll" maxlength="2">
 <input type="text" id="ins_tile_omlr" maxlength="2">

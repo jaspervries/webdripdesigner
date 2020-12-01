@@ -220,6 +220,12 @@ $(document).ready(function () {
 					value = '[a' + value + ']';
 				}
 				break;
+			case 'ring':
+					if (value.match(/^[AN][0-9]{1,3}$/) != null) {
+						valuematch = true;
+						value = '[R' + value + ']';
+					}
+					break;
 			case 'sroute':
 				if (value.match(/^[0-9]{3}$/) != null) {
 					valuematch = true;
