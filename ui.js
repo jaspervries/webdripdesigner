@@ -330,15 +330,16 @@ $(document).ready(function () {
 	* download image
 	*/
 	$('#download_button').click( function() {
-		if ($(this).val() == 'OK') {
-			$(this).attr('disabled', 'disabled');
-		}
 		var canvas = document.getElementById('drip');
 		var canvasData = canvas.toDataURL();
 		canvasData = encodeURIComponent(canvasData);
 		canvasData.replace(/~/g,'%7E').replace(/%20/g,'+');
 		$('#form_data').val(canvasData);
 		$('#form_sav').val(save_drip());
+		if ($(this).val() == 'OK') {
+			$(this).attr('disabled', 'disabled');
+			$(this).parents('form:first').submit();
+		}
 	});
 	
 	/*
