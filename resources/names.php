@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2017-2020 Jasper Vries
+Copyright (C) 2017-2021 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -157,6 +157,7 @@ $names['picto'] = array(
 'J35' => 'Verkeersbord J35: slecht zicht door sneeuw, regen of mist',
 'J36' => 'Verkeersbord J36: ijzel of sneeuw',
 'J37' => 'Verkeersbord J37: gevaar direct na de DRIP, aard van het gevaar moet in tekst worden aangegeven. Niet bedoeld om afsluitingen, stremmingen, afgelastingen etc. aan te duiden',
+'L215' => 'Snelheidscontrole',
 'RC22' => 'Gesloten voor voertuigen gevaarlijke stoffen op grotere afstand van deze DRIP',
 'RC22catC' => 'Gesloten voor voertuigen gevaarlijke stoffen in categorie C op grotere afstand van deze DRIP',
 'RC22catD' => 'Gesloten voor voertuigen gevaarlijke stoffen in categorie D op grotere afstand van deze DRIP',
@@ -170,6 +171,8 @@ $names['picto'] = array(
 'RJ34' => 'Pictogram ter nagedachtenis aan de Costa Concordia, R.I.P',
 'RJ34v2' => 'Ongeval op grotere afstand van deze DRIP',
 'RJ36' => 'IJzel of sneeuw op grotere afstand van deze DRIP',
+'RJ37' => 'Attentieverhogend',
+'RJ100' => 'Afgevallen lading',
 'RL13' => 'Tunnel',
 'RL13C1' => 'Tunnel dicht, gebruik altijd in combinatie met de tekst \'dicht\' in verband met kleurenblinden',
 'RL13J29' => 'Tegenverkeer in tunnel',
