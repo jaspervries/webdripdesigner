@@ -1,0 +1,18 @@
+<?php 
+/*
+Mogelijkheid om headers toe te voegen aan ieder script
+*/
+if (!empty($_GET['return_url'])) {
+    $allowed_domains = [
+        'http://localhost',
+        'http://127.0.0.1'
+    ];
+    $return_url_parsed = parse_url($_GET['return_url']);
+    if ($return_url_parsed !== FALSE) {
+        $origin = $return_url_parsed['scheme'] . '://' . $return_url_parsed['host'] . (is_numeric($return_url_parsed['port']) ? ':' . $return_url_parsed['port'] : '');
+        if (in_array($origin, $allowed_domains)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+        }
+    }
+}
+?>

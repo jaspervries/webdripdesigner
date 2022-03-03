@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2016, 2018 Jasper Vries
+Copyright (C) 2013-2022 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -15,6 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 */
+
+//send headers
+include('headers.inc.php');
 
 //historylist
 if (is_numeric($_GET['s'])) {

@@ -9,4 +9,5 @@ config.cfg.php
 sprites.js
 sprites.png
 googleanalytics.inc.php
+headers.inc.php
 *.diff
