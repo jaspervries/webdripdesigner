@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2016-2017, 2019, 2020 Jasper Vries
+Copyright (C) 2016-2017, 2019, 2020, 2022 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -17,7 +17,7 @@ along with WebDRIP Designer. If not, see <http://www.gnu.org/licenses/>.
 */
 
 $release_dir = 'release';
-$jshrink_dir = 'JShrink-1.1.0';
+$jshrink_dir = 'bundled/JShrink';
 
 //check if JShrink available, otherwise do not minify
 if (is_file($jshrink_dir.'/src/JShrink/Minifier.php')) {
@@ -38,6 +38,27 @@ function rm_r($dir) {
 		elseif (is_file($path)) {
 			unlink($path);
 		}
+	}
+}
+
+//function to copy directory recursively
+function copy_r($source, $target) {
+	if (is_dir($source)) {
+		if (!is_dir($target)) {
+			mkdir($target);
+		}
+		$files = scandir($source);
+		foreach ($files as $file) {
+			if (($file != '.') && ($file != '..')) {
+				$source_path = $source . '/' . $file;
+				$target_path = $target . '/' . $file;
+				copy_r($source_path, $target_path);
+			}
+		}
+	}
+	elseif (is_file($source)) {
+		//source is a file, only copy a single file
+		copy($source, $target);
 	}
 }
 
@@ -84,17 +105,12 @@ foreach ($files as $file) {
 		$js[] = $file;
 	}
 }
-//icon dir
-if (!is_dir($release_dir.'/icon')) {
-	mkdir($release_dir.'/icon');
-	echo 'created icon directory'.PHP_EOL;
-}
-$files = scandir('icon');
-foreach ($files as $file) {
-	if (is_file('icon/'.$file) && (substr($file, strrpos($file, '.')) == '.png')) {
-		copy('icon/'.$file, $release_dir.'/icon/'.$file);
-	}
-}
+
+//copy directories
+copy_r('icon', $release_dir.'/icon');
+echo 'created icon directory'.PHP_EOL;
+copy_r('bundled', $release_dir.'/bundled');
+echo 'created bundled directory'.PHP_EOL;
 
 //minify js
 if ($jshrink === TRUE) {
