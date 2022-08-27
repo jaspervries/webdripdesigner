@@ -97,7 +97,9 @@ if (in_array($_POST['type'], array('png', 'bmp', 'gif')) && ($image = imagecreat
 		if ($_POST['type'] == 'png') imagepng($image);
 		elseif ($_POST['type'] == 'gif') imagegif($image);
 		elseif ($_POST['type'] == 'bmp') {
-			include('BMP.php');
+			if (!function_exists('imagebmp')) {
+				include('BMP.php');
+			}
 			imagebmp($image);
 		}
 	}
