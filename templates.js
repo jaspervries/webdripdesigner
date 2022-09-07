@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2020 Jasper Vries
+Copyright (C) 2013-2020, 2022 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -786,4 +786,89 @@ tpl.push({
 	font: 'CdmsBdType3',
 	picto: 'Picto_0',
 	symbol: 'Regel_15'
+});
+/*
+ * Gemeente Amsterdam
+*/
+template_classes.push({
+	id: 'gad_stadsdrip',
+	name: 'Amsterdam StadsDRIP'
+});
+tpl.push({
+	name: 'Small',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [1, 25, 51, 75],
+	lineheight: 18,
+	line: 1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_40',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Links / Tekst 2+2',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [1, 25, 51, 75],
+	lineheight: 18,
+	line: 1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Tekst 1+3',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [1, 27, 51, 75],
+	lineheight: 18,
+	line: 0,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Tekst 3+1',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [1, 25, 49, 75],
+	lineheight: 18,
+	line: 2,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Tekst 4',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [3, 27, 51, 75],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Midden',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [51, 75],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	symbol: 'Regel_19'
+});
+tpl.push({
+	name: 'Medium Dubbel',
+	class: 'gad_stadsdrip',
+	size: [160, 96],
+	lines: [51, 75],
+	lineheight: 18,
+	line: -1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_48',
+	num_picto: 2,
+	symbol: 'Regel_19'
 });
