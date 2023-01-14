@@ -664,6 +664,24 @@ tpl.push({
 	symbol: 'Regel_15'
 });
 /*
+ * RWS tekstkar Templates
+*/
+template_classes.push({
+	id: 'rws_tekstkar',
+	name: 'RWS Tekstkar'
+});
+tpl.push({
+	name: 'Tekstkar',
+	class: 'rws_tekstkar',
+	size: [112, 80],
+	lines: [2, 22, 41, 60],
+	lineheight: 15,
+	line: 1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_44',
+	symbol: 'Regel_19'
+});
+/*
  * Weinig gebruikte templates
 */
 tpl.push({
