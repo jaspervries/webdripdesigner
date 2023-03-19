@@ -816,7 +816,7 @@ tpl.push({
 	name: 'Small',
 	class: 'gad_stadsdrip',
 	size: [160, 96],
-	lines: [1, 25, 51, 75],
+	lines: [3, 27, 51, 75],
 	lineheight: 18,
 	line: 1,
 	font: 'CdmsBdType2',
@@ -888,5 +888,20 @@ tpl.push({
 	font: 'CdmsBdType2',
 	picto: 'Picto_48',
 	num_picto: 2,
+	symbol: 'Regel_19'
+});
+template_classes.push({
+	id: 'gad_trbord',
+	name: 'Amsterdam TR-bord'
+});
+tpl.push({
+	name: '3 tekstregels',
+	class: 'gad_trbord',
+	size: [192, 64],
+	lines: [1, 22, 43],
+	lineheight: 18,
+	line: 1,
+	font: 'CdmsBdType2',
+	picto: 'Picto_0',
 	symbol: 'Regel_19'
 });
