@@ -4,7 +4,7 @@ include('headers.inc.php');
 ?>
 <!--
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2022 Jasper Vries
+Copyright (C) 2013-2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -117,6 +117,7 @@ else {
 <input type="text" id="ins_tile_regular" maxlength="4">
 <input type="text" id="ins_tile_afrit" maxlength="7">
 <input type="text" id="ins_tile_ring" minlength="2" maxlength="4">
+<input type="text" id="ins_tile_ringinverse" minlength="2" maxlength="4">
 <input type="text" id="ins_tile_sroute" minlength="3" maxlength="3">
 <input type="text" id="ins_tile_omll" maxlength="2">
 <input type="text" id="ins_tile_omlr" maxlength="2">

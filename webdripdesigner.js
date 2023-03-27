@@ -1,6 +1,6 @@
 /*
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2020 Jasper Vries
+Copyright (C) 2013-2020, 2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -91,7 +91,7 @@ function prepare_text(str) {
 					if (str[i+t]) tilestr = tilestr + str[i+t];
 					else break;
 				}
-				//next character must be A, N, s, U, a, RA or RN
+				//next character must be A, N, s, U, a, RA, rA, RN or rN
 				//subsequent one to three characters must be a number, followed by a closing square bracket
 				//OR
 				//next character must be a capital OR a number, followed by closing square bracket
@@ -102,11 +102,14 @@ function prepare_text(str) {
 					/^\[[ANUaE][0-9]{2}]/, //[Xxx]
 					/^\[a[0-9]{1}[a-z]{1}]/, //[axy]
 					/^\[R[AN][0-9]{1}]/, //[RXx]
+					/^\[r[AN][0-9]{1}]/, //[rXx]
 					/^\[[ANsSUaE][0-9]{3}]/, //[Xxxx]
 					/^\[a[0-9]{2}[a-z]{1}]/, //[axxy]
 					/^\{[sS][0-9]{3}}/, //{sxxx}
 					/^\[R[AN][0-9]{2}]/, //[RXxx]
+					/^\[r[AN][0-9]{2}]/, //[rXxx]
 					/^\[R[AN][0-9]{3}]/, //[RXxxx]
+					/^\[r[AN][0-9]{3}]/, //[rXxxx]
 					/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/, //[XX]
 					/^\[afrit [0-9]{1}]/, //[afrit x]
 					/^\[afrit [0-9]{2}]/, //[afrit xx]
@@ -155,6 +158,10 @@ function prepare_text(str) {
 							ids.push('tile_ring');
 							//t = t+1;
 						}
+						else if ((str[i+1] == 'r') && (tilematch > 3)) {
+							ids.push('tile_ringinverse');
+							//t = t+1;
+						}
 						else {
 							ids.push('tile_open');
 						}
@@ -176,8 +183,8 @@ function prepare_text(str) {
 							//exit symbol
 							ids.push('tile_afrit');
 						}
-						else if ((tilematch > 3) && (t == 1) && (str[i] == '[') && (str[i+t] == 'R') && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
-							//do not draw R
+						else if ((tilematch > 3) && (t == 1) && (str[i] == '[') && ((str[i+t] == 'R') || (str[i+t] == 'r')) && ((str[i+t+1] == 'A') || (str[i+t+1] == 'N'))) {
+							//do not draw R or r
 							continue;
 						}
 						else {
@@ -313,7 +320,7 @@ function draw_text(ids, initial_start, initial_top, context) {
 		for (var i = 0; i < ids.length; i++) {
 
 			//multi-char tile helper
-			if ((ids[i] == 'tile_open') || (ids[i] == 'tile_ring') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
+			if ((ids[i] == 'tile_open') || (ids[i] == 'tile_ring') || (ids[i] == 'tile_ringinverse') || (ids[i] == 'tile_s_open') || (ids[i] == 'tile_detour_right_open') || (ids[i] == 'tile_detour_left_open') || (ids[i] == 'tile_detour_top_open')) {
 				if (tpl_font == 'CdmsBdType2') tile_down = 1;
 				tile_start = start;
 			}

@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2020 Jasper Vries
+Copyright (C) 2013-2020, 2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -309,6 +309,11 @@ input#ins_tile_ring {
 	padding-left: 40px;
 	width: 48px;
 	background-image:url(icon/tile_ring.png);
+}
+input#ins_tile_ringinverse {
+	padding-left: 40px;
+	width: 48px;
+	background-image:url(icon/tile_ringinverse.png);
 }
 input#ins_tile_sroute {
 	padding-left: 12px;

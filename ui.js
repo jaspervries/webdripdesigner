@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2020 Jasper Vries
+Copyright (C) 2013-2020, 2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -226,6 +226,12 @@ $(document).ready(function () {
 						value = '[R' + value + ']';
 					}
 					break;
+			case 'ringinverse':
+				if (value.match(/^[AN][0-9]{1,3}$/) != null) {
+					valuematch = true;
+					value = '[r' + value + ']';
+				}
+				break;
 			case 'sroute':
 				if (value.match(/^[0-9]{3}$/) != null) {
 					valuematch = true;
@@ -253,7 +259,7 @@ $(document).ready(function () {
 		}
 		//if invalid string, warn
 		if (valuematch == false) {
-			alert('Geen geldige waarde voor tegeltje.');
+			alert('Geen geldige waarde voor tegeltje.'+type);
 		}
 		//else insert
 		else {
