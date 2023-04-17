@@ -114,15 +114,7 @@ else {
 
 <fieldset id="fieldset_tiles">
 <legend>Tegeltjes</legend>
-<input type="text" id="ins_tile_regular" maxlength="4">
-<input type="text" id="ins_tile_afrit" maxlength="7">
-<input type="text" id="ins_tile_ring" minlength="2" maxlength="4">
-<input type="text" id="ins_tile_ringinverse" minlength="2" maxlength="4">
-<input type="text" id="ins_tile_sroute" minlength="3" maxlength="3">
-<input type="text" id="ins_tile_omll" maxlength="2">
-<input type="text" id="ins_tile_omlr" maxlength="2">
-<input type="text" id="ins_tile_omlb" maxlength="2">
-<span class="button" id="ins_tile_button">tegeltje invoegen</span>
+<input type="text" id="ins_tile_regular" maxlength="4"><input type="text" id="ins_tile_afrit" maxlength="7"><input type="text" id="ins_tile_ring" minlength="2" maxlength="4"><input type="text" id="ins_tile_ringinverse" minlength="2" maxlength="4"><input type="text" id="ins_tile_sroute" minlength="3" maxlength="3"><input type="text" id="ins_tile_omll" maxlength="2"><input type="text" id="ins_tile_omlr" maxlength="2"><input type="text" id="ins_tile_omlb" maxlength="2"><span class="button" id="ins_tile_button">tegeltje invoegen</span>
 </fieldset>
 </div>
 

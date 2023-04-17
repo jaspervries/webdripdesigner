@@ -287,22 +287,27 @@ div.infobox {
 
 /*tegeltjes */
 #fieldset_tiles input {
-	border: none;
-	padding: 3px 4px 4px;
-	margin-right: 16px;
+	display: inline-block;
+	vertical-align: bottom;
+	border: 1px solid #999;
+	border-radius: 4px;
+	padding: 6px;
+	margin: 2px;
 	height: 18px;
 	font-weight: bold;
 	font-size: 14px;
 	text-align: center;
+	filter: invert(1);
 	background-repeat: no-repeat;
+	background-position: center;
 }
 input#ins_tile_regular {
-	width: 40px;
+	width: 42px;
 	background-image:url(icon/tile_regular.png);
 }
 input#ins_tile_afrit {
 	padding-left: 20px;
-	width: 32px;
+	width: 34px;
 	background-image:url(icon/tile_afrit.png);
 }
 input#ins_tile_ring {
@@ -317,25 +322,29 @@ input#ins_tile_ringinverse {
 }
 input#ins_tile_sroute {
 	padding-left: 12px;
-	width: 32px;
+	width: 36px;
 	background-image:url(icon/tile_sroute.png);
 }
 input#ins_tile_omll {
 	padding-left: 12px;
-	width: 21px;
+	width: 25px;
 	background-image:url(icon/tile_omll.png);
 }
 input#ins_tile_omlr {
 	padding-right: 12px;
-	width: 21px;
+	width: 25px;
 	background-image:url(icon/tile_omlr.png);
 }
 input#ins_tile_omlb {
-	width: 21px;
-	height: 22px;
+	width: 18px;
+	height: 25px;
 	padding-top: 12px;
-	padding-left: 0;
 	background-image:url(icon/tile_omlb.png);
+}
+#fieldset_tiles .button {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 2px;
 }
 
 #dialog img {
