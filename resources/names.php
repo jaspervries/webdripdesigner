@@ -1,7 +1,7 @@
 <?php
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2017-2021 Jasper Vries
+Copyright (C) 2017-2021, 2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -214,6 +214,7 @@ $names['picto'] = array(
 'RwC7R1L' => 'T-splitsing links en gesloten voor motorvoertuigen met aanhanger rechts',
 'RwC7Rrot1D1L' => 'Rotonde gesloten voor motorvoertuigen met aanhanger rechts',
 'RwZBD' => 'Zeelandbrug gesloten voor wegverkeer',
-'RwZBO' => 'Zeelandbrug vrij voor wegverkeer'
+'RwZBO' => 'Zeelandbrug vrij voor wegverkeer',
+'RWS01' => 'Stormvloedkering Ramspol gestremd voor scheepvaart'
 );
 ?>
