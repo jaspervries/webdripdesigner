@@ -55,7 +55,8 @@ Chromium (Windows build): http://chromium.woolyss.com
 PHP: http://php.net
 MySQL: https://www.mysql.com
 MariaDB: https://mariadb.org
-JShrink: https://github.com/tedious/JShrink
+JShrink: https://github.com/tedious/JShrink (gebundeld)
+Rangy Inputs: https://github.com/timdown/rangyinputs (gebundeld)
 Bitmap Font Maker: http://xbox.create.msdn.com/en-US/education/catalog/utility/bitmap_font_maker
 imagebmp + imagecreatefrombmp: http://www.phpclasses.org/package/5991-PHP-Load-and-save-images-in-the-BMP-format.html (gebundeld)
 
@@ -202,9 +203,9 @@ php -f generatespritesheet.php
 
 De spritetabel wordt in de vorm van een PNG-afbeelding (sprites.png) en 
 JavaScript bestand (sprites.js) naar de root van het repository 
-geschreven. De spritetabel automatisch gegenereerd bij het genereren van
-een release (zie hoofdstuk 4) en hoeft in dat geval niet apart 
-uitgevoerd te worden.
+geschreven. De spritetabel wordt automatisch gegenereerd bij het 
+genereren van een release (zie hoofdstuk 4) en hoeft in dat geval niet 
+apart uitgevoerd te worden.
 
 -------
 2.5 FAQ
@@ -257,13 +258,7 @@ historiefunctie en dus zonder database te gebruiken.
 Voor het gebruik in een productieomgeving wordt aanbevolen een release 
 te genereren. Hierbij worden enkele optimalisaties uitgevoerd en 
 enkel de noodzakelijke bestanden bij elkaar gezet. Voor een optimale 
-release is JShrink nodig om de JavaScript bestanden te minimaliseren.
-Hiervoor moet JShrink in de root van het repository aanwezig zijn. Pak 
-hiertoe JShrink na downloaden uit in een submap in het repository. 
-
-Standaard verwijst het release-script naar 
-JShrink-1.1.0/src/JShrink/Minifier.php voor het JShrink programma. Dit 
-kan worden aangepast in release.php.
+release wordt JShrink gebruikt om de JavaScript bestanden te minimaliseren.
 
 Voer release.php uit vanuit een opdrachtregel om een release te 
 genereren. Standaard wordt hiervoor een map release/ aangemaakt in de 
@@ -348,7 +343,7 @@ volledige licentietekst in license.txt.
 
 
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2020 Jasper Vries
+Copyright (C) 2013-2023 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
