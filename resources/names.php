@@ -94,6 +94,7 @@ $names['symbol'] = array(
 630 => 'Parkeerroute (smal)',
 631 => 'Parkeerroute (breed)',
 632 => 'Parkeerroute (oud)',
+633 => 'Parkeer-ring',
 //serie 7: doelen binnen bebouwde kom
 700 => 'Winkelcentrum',
 701 => 'Congrescentrum',
