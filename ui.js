@@ -1,6 +1,6 @@
 /*
 This file is part of WebDRIP Designer
-Copyright (C) 2013-2020, 2023 Jasper Vries
+Copyright (C) 2013-2020, 2023-2024 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -209,7 +209,7 @@ $(document).ready(function () {
 		//check for valid string
 		switch (type) {
 			case 'regular':
-				if ((value.match(/^[A-Z0-9]$/) != null) || (value.match(/^[A-Z0-9]{1}[A-Za-z0-9]{1}$/) != null) || (value.match(/^[ANUaE][0-9]{2}$/) != null) || (value.match(/^[ANsSUaE][0-9]{3}$/) != null)) {
+				if ((value.match(/^[A-Z0-9]$/) != null) || (value.match(/^[A-Z0-9]{1}[A-Za-z0-9]{1,4}$/) != null) || (value.match(/^[ANUaE][0-9]{2}$/) != null) || (value.match(/^[ANsSUaE][0-9]{3}$/) != null)) {
 					valuematch = true;
 					value = '[' + value + ']';
 				}

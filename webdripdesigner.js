@@ -1,6 +1,6 @@
 /*
 WebDRIP Designer - webgebaseerde ontwerptool voor DRIP-teksten
-Copyright (C) 2013-2020, 2023 Jasper Vries
+Copyright (C) 2013-2020, 2023-2024 Jasper Vries
 
 WebDRIP Designer is free software: you can redistribute it and/or 
 modify it under the terms of version 3 of the GNU General Public 
@@ -110,7 +110,7 @@ function prepare_text(str) {
 					/^\[r[AN][0-9]{2}]/, //[rXxx]
 					/^\[R[AN][0-9]{3}]/, //[RXxxx]
 					/^\[r[AN][0-9]{3}]/, //[rXxxx]
-					/^\[[A-Z0-9]{1}[A-Za-z0-9]{1}]/, //[XX]
+					/^\[[A-Z0-9]{1}[A-Za-z0-9]{1,4}]/, //[XXXX]
 					/^\[afrit [0-9]{1}]/, //[afrit x]
 					/^\[afrit [0-9]{2}]/, //[afrit xx]
 					/^\[afrit [0-9]{1}[a-z]{1}]/, //[afrit xy]
